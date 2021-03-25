@@ -4,6 +4,8 @@
     <ul id="navUL">
         <li id="navLI"><router-link to="/" exact>Home</router-link></li>
         <li id="navLI"><router-link to="/Login" exact>Login</router-link></li>
+        <li id="navLI"><router-link to="/SignUp" exact>SignUp</router-link></li>
+
     </ul>
 </nav>
 </div>

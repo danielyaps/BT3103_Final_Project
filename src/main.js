@@ -6,11 +6,13 @@ import Routes from './routes.js'
 //register globally
 import Home from './components/Home'
 import Login from './components/Login'
+import SignUp from './components/SignUp'
 
 Vue.config.productionTip = false
 Vue.use(VueRouter)
 Vue.component('home', Home)
 Vue.component('login', Login)
+Vue.component('SignUp', SignUp)
 
 const myRouter = new VueRouter({
   routes: Routes,
