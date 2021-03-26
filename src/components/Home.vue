@@ -16,7 +16,7 @@
 
 <style>
     #navUL {
-        display: flex;
+        display: flex; 
         flex-wrap: wrap;
         list-style-type: none;
         max-width: 70%;

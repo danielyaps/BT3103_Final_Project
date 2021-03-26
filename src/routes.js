@@ -4,7 +4,7 @@ import SignUp from './components/SignUp'
 
 
 export default [
-    { path: '/', component: Home },
+    { path: '/', name: 'home', component: Home },
     { path: '/login', component: Login },
     { path: '/signup', component: SignUp },
 ]

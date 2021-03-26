@@ -8,9 +8,14 @@
     </nav>
     <div class="float-child left">   
         <h1>Welcome Back!</h1>
-        <input type="text" id="userName" placeholder="Username">
-        <br><br>
-        <input type="text" id="password" placeholder="Password">
+        <form @submit.prevent="pressed">
+            <input type="email" id="email" placeholder="Email" v-model="email">
+            <br><br>
+            <input type="password" id="password" placeholder="Password" v-model="password">
+        <br>
+        <br> 
+        <button type="submit">Login</button>
+         </form>
     </div>
 
     <div class="float-child right">   
@@ -24,6 +29,8 @@
 </template>
 
 <script>
+import firebaseApp from '../firebase.js'
+
 export default {
     components: {
 
@@ -32,7 +39,21 @@ export default {
         return {
             myStyle: {
                 backgroundColor:"#E0E0E0"
+            },
+            email: '',
+            password: '',
+        }
+    },
+    methods: {
+        async pressed() {
+            try {
+                const val = await firebaseApp.auth().signInWithEmailAndPassword(this.email, this.password);
+                console.log(val)
+                this.$router.replace({ name:'home' })
+            } catch(err) {
+                console.log(err)
             }
+            
         }
     }
 }
@@ -48,12 +69,15 @@ export default {
         height: 100vh;
     }
     .float-child.right {
-        width: 35%;
+        width: 38%;
         float: right;
         padding: 10px;
         text-align: center;
         vertical-align: middle;
         height:100%; 
+        background-image: url(https://images.unsplash.com/photo-1532619187608-e5375cab36aa?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTJ8fHR1dG9yc3xlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60);
+        background-size: 100% 100%;
+        opacity: 0.5;
 
     }  
     .float-child.right > div {
@@ -71,5 +95,10 @@ export default {
         vertical-align: middle;
         height:100%;
     } 
+    button {
+        vertical-align: middle;
+        horizontal-align: middle;
+        align: center;
+    }
 
 </style>
