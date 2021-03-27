@@ -96,9 +96,7 @@ export default {
         height:100%;
     } 
     button {
-        vertical-align: middle;
-        horizontal-align: middle;
-        align: center;
+        text-align: center;
     }
 
 </style>
