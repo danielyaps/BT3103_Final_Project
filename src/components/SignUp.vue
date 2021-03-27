@@ -132,6 +132,7 @@ input[type=text] {
     border-bottom: 2px solid #888888;
     height: 20px;
     font-family: Roboto;
+    width:145px;
 }
 input#user {
     width: 300px;
