@@ -62,7 +62,7 @@ export default {
                         email: this.email,
                     });
                     this.uploadMetadata(this.previewImage);
-                    this.$router.replace({ name:'home' });
+                    this.$router.replace({name:'home'});
                 },
                 err => {
                     alert(err.message);
@@ -77,33 +77,10 @@ export default {
                     this.previewImage = e.target.result;
                 };
         },
-        uploadMetadata(file) {
+        uploadMetadata(message) {
             var storageRef = firebaseApp.storage().ref();
-            var metadata = {
-                contentType: 'image/jpeg',
-            };
-            var uploadTask = storageRef.child('images/' + this.uid).put(file, metadata);
-            uploadTask.on(firebaseApp.storage.TaskEvent.STATE_CHANGED, (snapshot) => {
-                var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                console.log('Upload is ' + progress + '% done');
-                switch (snapshot.state) {
-                    case firebaseApp.storage.TaskState.PAUSED: // or 'paused'
-                        console.log('Upload is paused');
-                        break;
-                    case firebaseApp.storage.TaskState.RUNNING: // or 'running'
-                        console.log('Upload is running');
-                        break;
-                }
-            }, 
-            (error) => {
-                alert(error.message);
-            },
-            () => {
-                uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
-                console.log('File available at', downloadURL);
-                });
-            }
-            )}
+            storageRef.child('images/' + this.uid).putString(message, 'data_url');
+        }
     }
 }
 </script>
