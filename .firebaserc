@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "bt3103finalproject"
+    "default": "bt3103finalproject",
+    "firebase use default": "bt3103finalproject"
   }
 }
