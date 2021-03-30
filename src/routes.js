@@ -9,7 +9,7 @@ import HomeTutor from './components/HomeTutor'
 export default [
     { path: '/', name: 'home', component: Home },
     { path: '/login', component: Login },
-    { path: '/signup', component: SignUp },
+    { path: '/signup', name:'signup', component: SignUp },
     { path: '/contactus', component: ContactUs},
     { path: '/faq', component: FAQ},
     { path: '/homeTutor', component: HomeTutor}
