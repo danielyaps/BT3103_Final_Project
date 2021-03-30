@@ -11,11 +11,7 @@
     "axios": "^0.21.1",
     "core-js": "^3.9.1",
     "firebase": "^8.3.1",
-<<<<<<< HEAD
     "vue": "^2.6.12",
-=======
-    "vue": "^2.6.11",
->>>>>>> 78b79e813ab6ff79520ce86040be1a2ff8adda72
     "vue-router": "^3.5.1"
   },
   "devDependencies": {
