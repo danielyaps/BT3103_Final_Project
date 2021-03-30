@@ -1,5 +1,5 @@
 <template>
-  <div id="whole">
+  <div id="whole" class="float-container">
     <nav>
       <ul id="navUL">
         <li id="navLI"><router-link to="/" exact>Home</router-link></li>
@@ -13,17 +13,21 @@
     </nav>
 
     <div id="title">Contact Us!</div>
+    <br /><br /><br />
     <form id="inputs">
       <input
         placeholder="Name"
+        type="text"
         v-model.lazy.trim="inputname"
         name="inputname"
       />
+
       <input
         placeholder="Email"
+        type="email"
         v-model.lazy.trim="inputemail"
         name="inputemail"
-      /><br />
+      /><br /><br />
       <textarea
         id="msgbox"
         placeholder="Message"
@@ -32,14 +36,16 @@
         rows="5"
         cols="40"
       ></textarea
-      ><br />
-      <button
-        type="submit"
-        value="Submit"
-        v-on:click="complete(inputname, inputemail, inputmsg)"
-      >
-        Submit
-      </button>
+      ><br /><br />
+      <div id="b">
+        <button
+          type="submit"
+          value="Submit"
+          v-on:click="complete(inputname, inputemail, inputmsg)"
+        >
+          Submit
+        </button>
+      </div>
     </form>
   </div>
 </template>
@@ -68,8 +74,6 @@ export default {
 </script>
 
 <style>
-
-
 #navUL {
   display: flex;
   flex-wrap: wrap;
@@ -86,12 +90,63 @@ export default {
   margin: 10px;
 }
 
+#inputs {
+  position: relative;
+  left: 100px;
+}
+
 #title {
   font-weight: 900;
   font-size: 70px;
+  color: dimgrey;
+  position: relative;
+  left: 100px;
 }
 
-#msgbox::placeholder {
-  font-family: Arial, Helvetica, sans-serif;
+input[type="text"] {
+  background-color: white;
+  border: none;
+  border-bottom: 2px solid #888888;
+  height: 20px;
+  font-family: Roboto;
+  width: 145px;
+  padding: 5px;
+}
+
+input[type="email"] {
+  background-color: white;
+  border: none;
+  border-bottom: 2px solid #888888;
+  height: 20px;
+  font-family: Roboto;
+  width: 200px;
+  padding: 5px;
+  position: relative;
+  left: 20px;
+}
+
+#msgbox {
+  background-color: white;
+  border: none;
+  border-bottom: 2px solid #888888;
+  height: 200px;
+  font-family: Roboto;
+  width: 400px;
+}
+
+button {
+  background-color: dimgray;
+  color: white;
+  border-radius: 4px;
+  width: 130px;
+  height: 30px;
+  border: none;
+  font-size: 14px;
+  font-family: Roboto;
+}
+
+#b {
+  position: relative;
+  left: 100px;
 }
 </style>
