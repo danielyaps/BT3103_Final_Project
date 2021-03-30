@@ -22,7 +22,7 @@
         <div>
             <h2>New Here?</h2>
             <p>Whether you’re a student looking for some help or a teacher who’s looking to share your passion, join our team today!</p>
-            <button>Sign Up Now!</button>
+            <button v-on:click="goSignup()">Sign Up Now!</button>
         </div>
     </div>
 </div>
@@ -54,6 +54,9 @@ export default {
                 console.log(err)
             }
             
+        },
+        goSignup: function() {
+            this.$router.push({path:'/signup'})
         }
     }
 }
