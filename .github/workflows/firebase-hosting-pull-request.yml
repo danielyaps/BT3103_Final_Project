@@ -16,3 +16,4 @@ jobs:
           projectId: bt3103finalproject
         env:
           FIREBASE_CLI_PREVIEWS: hostingchannels
+          FIREBASE_TOKEN: $({ secrets.FIREBASE_TOKEN )}
