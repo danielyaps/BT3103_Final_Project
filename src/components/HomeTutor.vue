@@ -1,5 +1,6 @@
 <template>
 <div>
+    <MenuBarTutors></MenuBarTutors>
     <p style="font-size: 50px; text-align: center; color: #C6C6C6">CLASSY AND FABULOUS TUTORS</p>
     <div id="classImg">
         
@@ -10,6 +11,16 @@
     </div>
 </div>
 </template>
+
+<script>
+import MenuBarTutors from './MenuBarTutors.vue'
+
+export default {
+    components: {
+        MenuBarTutors
+    }
+}
+</script>
 
 <style>
 

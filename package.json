@@ -8,12 +8,17 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@vue/compiler-sfc": "^3.0.10",
     "axios": "^0.21.1",
     "core-js": "^3.9.1",
     "firebase": "^8.3.1",
     "vue": "^2.6.12",
     "vue-router": "^3.5.1",
+<<<<<<< HEAD
     "vuetify": "^2.4.9"
+=======
+    "vue-sidebar-menu": "^4.7.4"
+>>>>>>> 3afb6485290c9237ffed2e1fc678727f88848f34
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.12",
