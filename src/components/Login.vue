@@ -1,39 +1,36 @@
 <template>
-<div id = "whole" class="float-container">
-    <nav>
-        <ul id="navUL">
-            <li id="navLI"><router-link to="/" exact>Home</router-link></li>
-            <li id="navLI"><router-link to="/Login" exact>Login</router-link></li>
-        </ul>
-    </nav>
-    <div class="float-child left">   
-        <h1>Welcome Back!</h1>
-        <form @submit.prevent="pressed">
-            <input type="email" id="email" placeholder="Email" v-model="email">
-            <br><br>
-            <input type="password" id="password" placeholder="Password" v-model="password">
-        <br>
-        <br> 
-        <button type="submit">Login</button>
-         </form>
-    </div>
+<div id = "whole">
+    <Header id="header"></Header>
+    <div class="container">
 
-    <div class="float-child right">   
-        <div>
+        <div class="left">
+            <h1>Welcome Back!</h1><br><br>
+            <form @submit.prevent="pressed">
+                <input id="email" placeholder="Email" v-model="email"><br><br>
+                <input type="password" id="password" placeholder="Password" v-model="password"><br><br>
+                <button id="loginBtn" type="submit">Login</button>
+            </form>
+        </div>
+
+        <div class="right">
+            <div id="pinkBox">
             <h2>New Here?</h2>
             <p>Whether you’re a student looking for some help or a teacher who’s looking to share your passion, join our team today!</p>
-            <button v-on:click="goSignup()">Sign Up Now!</button>
+            <button v-on:click="goSignup()" id="gotoBtn">Sign Up Now!</button>
+            </div> 
         </div>
+        
     </div>
 </div>
 </template>
 
 <script>
 import firebaseApp from '../firebase.js'
+import Header from './Header.vue'
 
 export default {
     components: {
-
+        'Header': Header
     },
     data() {
         return {
@@ -64,42 +61,63 @@ export default {
 </script>
 
 <style>
-    .float-container {
-        border: 3px solid #fff;
-        padding: 10px;
-        background-color: #E0E0E0;
-        overflow:hidden;
+    #whole {
+        background: #C1C0C0;
+    }
+    .container{
+        display: flex;
+        left: 0;
         height: 100vh;
+        width: 100vh;
+        align-items: center;
     }
-    .float-child.right {
-        width: 38%;
-        float: right;
-        padding: 10px;
+    .left {
+        flex: 2;
+        align-items: center;
         text-align: center;
-        vertical-align: middle;
-        height:100%; 
-        background-image: url(https://images.unsplash.com/photo-1532619187608-e5375cab36aa?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTJ8fHR1dG9yc3xlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60);
-        background-size: 100% 100%;
-        opacity: 0.5;
-
-    }  
-    .float-child.right > div {
-        height: 200px;
+        width: 100vh;
+    }
+    #email, #password {
+        width: 50%;
+        padding: 12px 20px;
+        border: none;
+        border-bottom: 2px solid white;
         color: white;
-        padding: 10px;
-        background-color: rgba(10, 6, 0, 0.7);
     }
-    .float-child.left {
-        width: 55%;
-        float: left;
-        padding: 10px;
-        margin-right: 20px;
+    .right {
+        flex: 1;
         text-align: center;
-        vertical-align: middle;
-        height:100%;
-    } 
-    button {
+        background-image: url("https://images.unsplash.com/photo-1581726690015-c9861fa5057f?ixid=MXwxMjA3fDB8MHxzZWFyY2h8ODh8fHRlYWNoZXJ8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60");
+        border-radius: 50px;
+        height: 90vh;
+        width: 80vh;
+        background-position: center;
+        top: 20px;
+    }
+    .right * {
+        margin: 20px;
+        top: 30px;
         text-align: center;
+        color: white;  
+    }
+    h1, h2 {
+        color: white;        
+    }
+    #loginBtn {
+        position: "absolute";
+        text-align: center;
+        border-radius: 10px;
+        background-color: #A3B8B6;
+        color: white;
+    }
+    #gotoBtn {
+        border-radius: 10px;
+        border: 2px solid white;
+    }
+    #pinkBox {
+        background-color: #D6C8CA;
+        padding: 5px;
     }
 
 </style>
+
