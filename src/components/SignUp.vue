@@ -1,5 +1,10 @@
 <template>
     <div class = "signup"> 
+        <br>
+        <br>
+        <Header></Header>
+        <br>
+        <br>
         <form @submit.prevent="pressed">
             <div class="image-upload">
                 <br>
@@ -17,7 +22,9 @@
             <div v-if="this.type === 'Student'">
                 <input type="text" id="user" v-model="username" placeholder="User Name" required>
                 <br>
-                <input type="text" id="fname" v-model="firstname" placeholder="First Name" required> <input type = "text" id="lname" v-model="lastname" placeholder="Last Name" required>
+                <input type="text" id="fname" v-model="firstname" placeholder="First Name" required> 
+                &nbsp;
+                <input type = "text" id="lname" v-model="lastname" placeholder="Last Name" required>
                 <br>
                 <input type="email" id="email" v-model="email" placeholder="Email" required>
                 <br>
@@ -29,24 +36,25 @@
                 <br>
             </div>
             <div v-else-if="this.type === 'Teacher'">
-                <input type = "text" id="user" v-model="username" placeholder="User Name">
+                <input type="text" id="user" v-model="username" placeholder="User Name">
                 <br>
-                <input type = "text" id="fname" v-model="firstname" placeholder="First Name"> <input type = "text" id="lname" v-model="lastname" placeholder="Last Name">
+                <input type="text" id="fname" v-model="firstname" placeholder="First Name"> <input type = "text" id="lname" v-model="lastname" placeholder="Last Name">
                 <br>
-                <input type = "email" id="em" v-model="email" placeholder="Email">
+                <input type="email" id="email" v-model="email" placeholder="Email">
                 <br>
                 <input type="password" id="pw" v-model="password" placeholder="Password">
                 <br>
-                <input type = "text" id="levels" v-model="levels" placeholder="Level">
+                <input type="text" id="levels" v-model="levels" placeholder="Level">
                 <br>
-                <input type = "text" id="subjects" v-model="subjects" placeholder="Subjects Offered">
+                <input type="text" id="subjects" v-model="subjects" placeholder="Subjects Offered">
                 <br>
-                <input type = "text" id="rates" v-model="rates" placeholder="Rates per Hour (SGD)">
+                <input type="text" id="rates" v-model="rates" placeholder="Rates per Hour (SGD)">
                 <br>
                 <br>
-                <textarea v-model="desc" placeholder="Description" cols="37" rows="5"></textarea>
+                <textarea v-model="desc" placeholder="Description" cols="37" rows="7"></textarea>
                 <br>
             </div>
+            <br>
             <br>
             <button type="submit" v-on:click="register">Create Account</button>
         </form>
@@ -61,6 +69,7 @@
 
 <script>
 import firebaseApp from '../firebase.js'
+import Header from './Header.vue'
 export default {
     data() {
         return {
@@ -79,6 +88,7 @@ export default {
         };
     },
     components: {
+        'Header': Header
     },
     methods: {
         register: function(e) {
@@ -152,6 +162,10 @@ export default {
     height: 100vh;
 }
 
+Header {
+    color: black;
+}
+
 .image-upload>input {
     display: none;
 }
@@ -167,11 +181,24 @@ input[type=radio] {
     font-size:14px;
 }
 
-input[type=text], input[type=email],input[type=password] {
+input[type=text],input[type=password] {
     background-color: #E8E8E8;
     border: none;
     border-bottom: 2px solid #888888;
-    padding: 8px;
+    padding:18px;
+    height:32px;
+    font-family: Roboto;
+    font-size:14px;
+    width:300px;
+    left: 0px;
+}
+
+#email {
+    background-color: #E8E8E8;
+    border: none;
+    border-bottom: 2px solid #888888;
+    padding:18px;
+    height:32px;
     font-family: Roboto;
     font-size:14px;
     width:300px;
@@ -182,13 +209,15 @@ input[type=text], input[type=email],input[type=password] {
     background-color: #E8E8E8;
     border: none;
     border-bottom: 2px solid #888888;
-    padding: 10px;
+    padding:18px;
+    height:32px;
     font-family: Roboto;
     font-size:14px;
-    width:135px;
+    width:145px;
 }
 
 textarea {
+    background-color: white;
     font-size:14px;
     font-family: Roboto;
 }
