@@ -5,6 +5,10 @@ import ContactUs from './components/ContactUs'
 import FAQ from './components/FAQ'
 import HomeTutor from './components/HomeTutor'
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+import HomeStudent from './components/HomeStudent'
+>>>>>>> 813d35a9f40e33dd43746f386d3e6e2a5ddb5e86
 import TutorDetails from './components/TutorDetails'
 =======
 import HomeStudent from './components/HomeStudent'
@@ -19,6 +23,10 @@ export default [
     { path: '/faq', component: FAQ},
     { path: '/homeTutor', component: HomeTutor},
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+    { path: '/homeStudent', component: HomeStudent},
+>>>>>>> 813d35a9f40e33dd43746f386d3e6e2a5ddb5e86
     { path: '/tutorDetails', component: TutorDetails}
 =======
     { path: '/homeStudent', component: HomeStudent}
