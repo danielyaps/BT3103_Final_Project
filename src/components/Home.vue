@@ -1,7 +1,13 @@
 <template>
 <div>
 <nav>
-    <navbar></navbar>
+    <ul id="navUL">
+        <li id="navLI"><router-link to="/" exact>Home</router-link></li>
+        <li id="navLI"><router-link to="/Login" exact>Login</router-link></li>
+        <li id="navLI"><router-link to="/SignUp" exact>SignUp</router-link></li>
+        <li id="navLI"><router-link to="/ContactUs" exact>Contact Us</router-link></li>
+        <li id="navLI"><router-link to="/FAQ" exact>FAQ</router-link></li>
+    </ul>
 </nav>
 
 <body>
@@ -43,13 +49,6 @@
 </template>
 
 <script>
-import navbar from "./NavBar.vue"
-
-export default{
-    components:{
-        navbar
-    }
-}
 </script>
 
 <style>

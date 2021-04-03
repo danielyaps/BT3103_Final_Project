@@ -1,6 +1,16 @@
 <template>
   <div id="whole" >
-    <navbar></navbar>
+    <nav>
+      <ul id="navUL">
+        <li id="navLI"><router-link to="/" exact>Home</router-link></li>
+        <li id="navLI"><router-link to="/Login" exact>Login</router-link></li>
+        <li id="navLI"><router-link to="/SignUp" exact>SignUp</router-link></li>
+        <li id="navLI">
+          <router-link to="/ContactUs" exact>Contact Us</router-link>
+        </li>
+        <li id="navLI"><router-link to="/FAQ" exact>FAQ</router-link></li>
+      </ul>
+    </nav>
     <div id="title">Chats</div>
     <div id="chatuser">
       <img
@@ -26,11 +36,9 @@
 </template>
 
 <script>
-import navbar from "./NavBar.vue";
+
 export default {
-  components: {
-    navbar,
-  },
+  
 
   data() {
     return {

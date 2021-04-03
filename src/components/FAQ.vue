@@ -1,17 +1,16 @@
 <template>
   <div id="whole" class="float-container">
-    <div id="faqright">
-      <div>
-        <p id="other">Other burning questions unanswered?</p>
-        <router-link id="contactlink" to="/ContactUs" exact
-          >Click here to contact us now!</router-link
-        >
-      </div>
-    </div>
     <nav>
-      <navbar></navbar>
+      <ul id="navUL">
+        <li id="navLI"><router-link to="/" exact>Home</router-link></li>
+        <li id="navLI"><router-link to="/Login" exact>Login</router-link></li>
+        <li id="navLI"><router-link to="/SignUp" exact>SignUp</router-link></li>
+        <li id="navLI">
+          <router-link to="/ContactUs" exact>Contact Us</router-link>
+        </li>
+        <li id="navLI"><router-link to="/FAQ" exact>FAQ</router-link></li>
+      </ul>
     </nav>
-
     <div id="title">Frequently Asked Questions</div>
     <div id="questions">
       <h3 id="q">How does this platform work?</h3>
@@ -29,20 +28,38 @@
         users.
       </p>
     </div>
+
+    <div id="faqright">
+      <div> 
+        <p id="other">Other burning questions unanswered?</p>
+        <router-link id="contactlink" to="/ContactUs" exact
+          >Click here to contact us now!</router-link
+        >
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import navbar from "./NavBar.vue";
-
-export default {
-  components: {
-    navbar,
-  },
-};
 </script>
 
 <style>
+#navUL {
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+  max-width: 70%;
+  padding: 0;
+}
+#navLI {
+  flex-grow: 1;
+  flex-basis: 300px;
+  text-align: center;
+  padding: 10px;
+  max-width: 29%;
+  margin: 10px;
+}
+
 .float-container {
   border: 3px solid #fff;
   padding: 10px;
@@ -50,7 +67,6 @@ export default {
   overflow: hidden;
   height: 100vh;
 }
-
 #faqright {
   width: 20%;
   float: right;
@@ -69,11 +85,12 @@ export default {
   text-align: center;
   vertical-align: middle;
   height: 100%;
-  background-color: grey;
+  background-color:grey;
   border-radius: 25px;
+
 }
 
-#other {
+#other{
   color: white;
 }
 
