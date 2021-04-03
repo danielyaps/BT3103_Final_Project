@@ -1,15 +1,7 @@
 <template>
   <div id="whole" class="float-container">
     <nav>
-      <ul id="navUL">
-        <li id="navLI"><router-link to="/" exact>Home</router-link></li>
-        <li id="navLI"><router-link to="/Login" exact>Login</router-link></li>
-        <li id="navLI"><router-link to="/SignUp" exact>SignUp</router-link></li>
-        <li id="navLI">
-          <router-link to="/ContactUs" exact>Contact Us</router-link>
-        </li>
-        <li id="navLI"><router-link to="/FAQ" exact>FAQ</router-link></li>
-      </ul>
+      <navbar></navbar>
     </nav>
 
     <div id="title">Contact Us!</div>
@@ -51,8 +43,12 @@
 </template>
 
 <script>
+import navbar from "./NavBar.vue"
+
 export default {
-  components: {},
+  components: {
+    navbar
+  },
   data() {
     return {
       inputname: "",
@@ -74,21 +70,7 @@ export default {
 </script>
 
 <style>
-#navUL {
-  display: flex;
-  flex-wrap: wrap;
-  list-style-type: none;
-  max-width: 70%;
-  padding: 0;
-}
-#navLI {
-  flex-grow: 1;
-  flex-basis: 300px;
-  text-align: center;
-  padding: 10px;
-  max-width: 29%;
-  margin: 10px;
-}
+
 
 #inputs {
   position: relative;
