@@ -85,15 +85,15 @@ export default {
             rates: "",
             description: "",
             image: "https://firebasestorage.googleapis.com/v0/b/bt3103finalproject.appspot.com/o/images%2FScreenshot%202021-03-27%20at%201.38.35%20PM.png?alt=media&token=ae751660-76cc-47c5-a305-543d2f06a1ae",
+            change: false,
         };
     },
     components: {
         'Header': Header
     },
     methods: {
-        register: function(e) {
-            e.preventDefault();
-            if (this.previewImage != "") {
+        register: function() {
+            if (this.change) {
                 firebaseApp.auth().createUserWithEmailAndPassword(this.email, this.password).then((userCredential) => {
                     var user = userCredential.user;
                     this.uid = user.uid;
@@ -137,6 +137,7 @@ export default {
                 reader.readAsDataURL(image);
                 reader.onload = e =>{
                     this.image = e.target.result;
+                    this.change = true;
                 };
         },
 
