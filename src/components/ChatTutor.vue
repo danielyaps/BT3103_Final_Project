@@ -1,16 +1,6 @@
 <template>
   <div id="whole" >
-    <nav>
-      <ul id="navUL">
-        <li id="navLI"><router-link to="/" exact>Home</router-link></li>
-        <li id="navLI"><router-link to="/Login" exact>Login</router-link></li>
-        <li id="navLI"><router-link to="/SignUp" exact>SignUp</router-link></li>
-        <li id="navLI">
-          <router-link to="/ContactUs" exact>Contact Us</router-link>
-        </li>
-        <li id="navLI"><router-link to="/FAQ" exact>FAQ</router-link></li>
-      </ul>
-    </nav>
+    <Header></Header>
     <div id="title">Chats</div>
     <div id="chatuser">
       <img
@@ -24,21 +14,24 @@
 
     <div id="inputmsg">
       <textarea
+      id="chatmsg"
         placeholder="Message"
         v-model.lazy.trim="inputmsg"
         name="inputmsg"
         rows="3"
         cols="100"
       ></textarea>
-      <button type="submit">Send</button>
+      <button id="submitb" type="submit">Send</button>
     </div>
   </div>
 </template>
 
 <script>
-
+import Header from "./Header.vue"
 export default {
-  
+  components:{
+      Header
+  },
 
   data() {
     return {
@@ -82,6 +75,15 @@ export default {
   height: 500px;
   border-radius: 35px;
   background-color: #555;
+}
+
+#chatmsg{
+    background-color: white;
+}
+
+#submitb{
+    background-color: dimgrey;
+    color: white;
 }
 
 </style>

@@ -2,27 +2,24 @@
   <div id="whole" class="float-container">
     <Header></Header>
 
-    <div id="title">Contact Us!</div>
+    <div id="title">Leave A Review</div>
     <br /><br /><br />
-    <form id="inputs">
-      <input
-        placeholder="Name"
-        type="text"
-        v-model.lazy.trim="inputname"
-        name="inputname"
-      />
 
-      <input
-        placeholder="Email"
-        type="email"
-        v-model.lazy.trim="inputemail"
-        name="inputemail"
-      /><br /><br />
+    <form id="inputs">
+      <select id="selectt" v-model="tutor" required>
+        <option value="" disabled selected>Select something...</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+      </select>
+      <br /><br />
+        
+      <Rating required></Rating>
+      <br /><br />
       <textarea
-        id="msgbox"
-        placeholder="Message"
-        v-model.lazy.trim="inputmsg"
-        name="inputmsg"
+        id="reviewbox"
+        placeholder="Leave a short review"
+        v-model.lazy.trim="review"
+        name="review"
         rows="5"
         cols="40"
       ></textarea
@@ -31,43 +28,59 @@
         <button
           type="submit"
           value="Submit"
-          v-on:click="complete(inputname, inputemail, inputmsg)"
+          v-on:click="complete(tutor, review)"
         >
           Submit
         </button>
+        <button id="cancelb" v-on:click="cancel()">Cancel</button>
       </div>
     </form>
   </div>
 </template>
 
 <script>
-import Header from "./Header.vue"
+import Header from "./Header.vue";
+import Rating from "./Rating.vue"
 
 export default {
   components: {
-    Header
+    Header, Rating
   },
   data() {
     return {
-      inputname: "",
-      inputemail: "",
-      inputmsg: "",
-    };
+      tutor: "",
+      stars: "",
+      review: "",
+
+    }
   },
 
   methods: {
-    complete: function (value1, value2, value3) {
-      if (value1 == "" || value2 == "" || value3 == "") {
+    complete: function (value1, value2) {
+      if (value1 == "" || value2 == "") {
         alert("Incomplete submission, please fill in all fields");
       } else {
         alert("Your response has been submitted");
       }
+    },
+
+    cancel: function () {
+      this.$router.push({ path: "/" });
     },
   },
 };
 </script>
 
 <style>
+select:required:invalid {
+  color: gray;
+}
+option[value=""][disabled] {
+  display: none;
+}
+option {
+  color: black;
+}
 #inputs {
   position: relative;
   left: 100px;
@@ -103,7 +116,7 @@ input[type="email"] {
   left: 20px;
 }
 
-#msgbox {
+#reviewbox {
   background-color: white;
   border: none;
   border-bottom: 2px solid #888888;
@@ -126,5 +139,10 @@ button {
 #b {
   position: relative;
   left: 100px;
+}
+
+#cancelb {
+  position: relative;
+  left: 20px;
 }
 </style>
