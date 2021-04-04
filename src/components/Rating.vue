@@ -27,8 +27,31 @@ export default {
   data() {
     return {
       stars: this.star,
-      star_desc: this.getRatingDesc(this.star)
-    };
+      star_desc: this.getRatingDesc(this.star),
+      desc: [
+        {
+          text: 'Poor',
+          class: 'star-poor'
+        },
+        {
+          text: 'Below Average',
+          class: 'star-belowAverage'
+        },
+        {
+          text: 'Average',
+          class: 'star-average'
+        },
+        {
+          text: 'Good',
+          class: 'star-good'
+        },
+        {
+          text: 'Excellent',
+          class: 'star-excellent'
+        }
+      ],
+      starSize: 'lg' //xs/6x
+    }
   },
   props: {
     star: {

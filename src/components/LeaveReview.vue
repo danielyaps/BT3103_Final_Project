@@ -6,15 +6,19 @@
     <br /><br /><br />
 
     <form id="inputs">
-      <select id="selectt" v-model="tutor" required>
-        <option value="" disabled selected>Select something...</option>
+      Tutor Name: <select id="selectt" v-model="tutor" required>
+        <option value="" disabled selected>Select Tutor...</option>
         <option value="1">One</option>
         <option value="2">Two</option>
       </select>
-      <br /><br />
+      <br /><br>
+      
+      Rating:<br />
         
       <Rating required></Rating>
       <br /><br />
+
+      Review: <br><br>
       <textarea
         id="reviewbox"
         placeholder="Leave a short review"
@@ -72,8 +76,16 @@ export default {
 </script>
 
 <style>
+#selectt{
+    background-color: white;
+    border-radius: 5px;
+    width: 200px;
+    height: 30px;
+}
+
 select:required:invalid {
   color: gray;
+
 }
 option[value=""][disabled] {
   display: none;
