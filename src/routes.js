@@ -17,6 +17,6 @@ export default [
     { path: '/faq', component: FAQ},
     { path: '/homeTutor', component: HomeTutor},
     { path: '/homeStudent', component: HomeStudent},
-    { path: '/tutorDetails', component: TutorDetails},
+    { name: 'tutorDetails', path: '/tutorDetails', component: TutorDetails},
     { path: '/profile/:uID', component: Profile, props:true}
 ]
