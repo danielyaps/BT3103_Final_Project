@@ -50,6 +50,11 @@ export default {
       applyBtn: function() {
         this.$router.push({path:'/applynow'})
       }
+    },
+    props: {
+      tutorid: {
+        type: String
+      }
     }
 }
 </script>

@@ -2,7 +2,7 @@
 <div>
 <nav>
     <ul id="navUL">
-        <li id="navLI"><router-link class="routerlink" to="/" exact>Home</router-link></li>
+        <li id="navLI"><router-link id="rl" class="routerlink" to="/" exact>Home</router-link></li>
         <li id="navLI"><router-link class="routerlink" to="/ContactUs" exact>Contact Us</router-link></li>
         <li id="navLI"><router-link class="routerlink" to="/FAQ" exact>FAQ</router-link></li>
         <li id="navLI"><router-link class="routerlink" to="/TutorDetails" exact>Tutor Details</router-link></li>
