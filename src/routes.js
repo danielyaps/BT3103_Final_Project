@@ -14,13 +14,13 @@ import LeaveReview from './components/LeaveReview'
 
 export default [
     { path: '/', name: 'home', component: Home },
-    { path: '/login', component: Login },
+    { path: '/login', name:'login', component: Login },
     { path: '/signup', name:'signup', component: SignUp },
     { path: '/contactus', component: ContactUs},
     { path: '/faq', component: FAQ},
-    { path: '/homeTutor', component: HomeTutor},
+    { path: '/homeTutor/:uid', name:'homeTutor', component: HomeTutor, props:true},
     { path: '/chatTutor', component: ChatTutor},
-    { path: '/homeStudent', component: HomeStudent},
+    { path: '/homeStudent/:uid', name:'homeStudent', component: HomeStudent, props:true},
     { name: 'tutorDetails', path: '/tutorDetails', component: TutorDetails},
     { path: '/profile/:uID', component: Profile, props:true},
     { path: '/leaveReview', component: LeaveReview},
