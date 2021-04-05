@@ -9,6 +9,17 @@
             {{s.subjects}}
         </option>
         <label for = "Day">Day of Week: </label>
+        <select v-model="daySelected" multiple>
+            <option>Monday</option>
+            <option>Tuesday</option>
+            <option>Wednesday</option>
+            <option>Thursday</option>
+            <option>Friday</option>
+            <option>Saturday</option>
+            <option>Sunday</option>
+            </select>
+            <br>
+        <span>Selected: {{ daySelected }}</span>
         <label for = "Time">Time: </label>
         <label for = "Duration">Duration: </label>
         <label for = "Location">Location: </label>
@@ -28,6 +39,7 @@ export default {
         return {
             uid: "",
             details: [], 
+            daySelected: "",
         }
     }, 
     methods: {
