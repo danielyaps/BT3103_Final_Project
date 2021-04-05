@@ -39,6 +39,7 @@ export default {
         return {
             uid: "",
             details: [], 
+<<<<<<< HEAD
             daySelected: "",
         }
     }, 
@@ -46,13 +47,26 @@ export default {
         fetchItems:function(){
             firebaseApp.firestore().collection('users').doc(this.uid).get().then((doc)=>{
                 this.details.push(doc.data())
+=======
+            datapacket: "",
+        }
+    }, 
+    methods: {
+        fetchItems: function() {
+            var id = this.$route.params.tutorid;
+            this.tutor_id = id
+            console.log(id)
+            firebaseApp.firestore().collection('users').doc(id).get().then(snapshot => {
+                this.datapacket = snapshot.data()
+                this.name = this.datapacket.firstName + " " + this.datapacket.lastName
+                this.subjects = this.datapacket.subjects
+                this.level = this.datapacket.level
+                this.rate = this.datapacket.rates  
+>>>>>>> angele
             });
-            console.log(this.details);
-            var storageRef = firebaseApp.storage().ref();
-            storageRef.child('images/' + this.uid).getDownloadURL().then((url) => {
-                this.image = url;
-            })
+        
         },
+        
     }
 }
 </script>

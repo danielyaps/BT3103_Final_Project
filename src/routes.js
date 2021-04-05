@@ -24,5 +24,5 @@ export default [
     { name: 'tutorDetails', path: '/tutorDetails', component: TutorDetails},
     { path: '/profile/:uID', component: Profile, props:true},
     { path: '/leaveReview', component: LeaveReview},
-    { path: '/applyNow', component: ApplyNow}
+    { name: 'applyNow', path: '/applyNow', component: ApplyNow}
 ]
