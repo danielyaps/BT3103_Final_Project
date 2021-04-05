@@ -46,6 +46,11 @@ export default {
         reviews: [],
       }
     },
+    props: {
+      tutorid: {
+        type: String
+      }
+    }
 }
 </script>
 
