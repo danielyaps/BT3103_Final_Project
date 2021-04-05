@@ -1,16 +1,14 @@
 <template>
   <div id="whole" class="float-container">
-    <nav>
-      <ul id="navUL">
-        <li id="navLI"><router-link to="/" exact>Home</router-link></li>
-        <li id="navLI"><router-link to="/Login" exact>Login</router-link></li>
-        <li id="navLI"><router-link to="/SignUp" exact>SignUp</router-link></li>
-        <li id="navLI">
-          <router-link to="/ContactUs" exact>Contact Us</router-link>
-        </li>
-        <li id="navLI"><router-link to="/FAQ" exact>FAQ</router-link></li>
-      </ul>
-    </nav>
+    <div id="faqright">
+      <div> 
+        <p id="other">Other burning questions unanswered?</p>
+        <router-link id="contactlink" to="/ContactUs" exact
+          >Click here to contact us now!</router-link
+        >
+      </div>
+    </div>
+    <Header></Header>
     <div id="title">Frequently Asked Questions</div>
     <div id="questions">
       <h3 id="q">How does this platform work?</h3>
@@ -29,18 +27,17 @@
       </p>
     </div>
 
-    <div class="float-child right">
-      <div>
-        <p>Other burning questions unanswered?</p>
-        <router-link id="contactlink" to="/ContactUs" exact
-          >Click here to contact us now!</router-link
-        >
-      </div>
-    </div>
   </div>
 </template>
 
 <script>
+import Header from "./Header.vue"
+
+export default{
+  components:{
+    Header
+  }
+}
 </script>
 
 <style>
@@ -52,17 +49,18 @@
   overflow: hidden;
   height: 100vh;
 }
-.float-child.right {
-  width: 35%;
+#faqright {
+  width: 20%;
   float: right;
   padding: 10px;
   text-align: center;
   vertical-align: middle;
   height: 100%;
+  background-color: black;
 }
 
 #questions {
-  width: 55%;
+  width: 70%;
   float: left;
   padding: 10px;
   margin-right: 20px;
@@ -72,6 +70,10 @@
   background-color:grey;
   border-radius: 25px;
 
+}
+
+#other{
+  color: white;
 }
 
 #contactlink:hover {

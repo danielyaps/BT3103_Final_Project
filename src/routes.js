@@ -4,9 +4,11 @@ import SignUp from './components/SignUp'
 import ContactUs from './components/ContactUs'
 import FAQ from './components/FAQ'
 import HomeTutor from './components/HomeTutor'
+import ChatTutor from './components/ChatTutor'
 import HomeStudent from './components/HomeStudent'
 import TutorDetails from './components/TutorDetails'
 import Profile from './components/Profile'
+import LeaveReview from './components/LeaveReview'
 
 
 export default [
@@ -16,7 +18,9 @@ export default [
     { path: '/contactus', component: ContactUs},
     { path: '/faq', component: FAQ},
     { path: '/homeTutor', component: HomeTutor},
+    { path: '/chatTutor', component: ChatTutor},
     { path: '/homeStudent', component: HomeStudent},
     { name: 'tutorDetails', path: '/tutorDetails', component: TutorDetails},
-    { path: '/profile/:uID', component: Profile, props:true}
+    { path: '/profile/:uID', component: Profile, props:true},
+    { path: '/leaveReview', component: LeaveReview}
 ]
