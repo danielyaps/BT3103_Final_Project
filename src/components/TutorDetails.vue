@@ -4,6 +4,7 @@
 <v-container grid-list-md text-md-center fluid fill-height>
     <v-col md="4">
           <v-card dark tile flat color="error">
+          <h2>{{name}}</h2>
             <v-img
                   height="600"
                   width="500"
@@ -11,14 +12,14 @@
                   position="center"
                 ></v-img>
             <v-btn block>Chat</v-btn>
-            <v-btn v-on:click="applyBtn()" block>Apply Now!</v-btn>
+            <v-btn v-on:click="applyBtn(this.tutor_id)" block>Apply Now!</v-btn>
           </v-card>
     </v-col>
     <v-col md="8">
           <v-card dark tile flat color="pink darken-4">
-            <v-card-text>Subjects Offered:  Math/Science</v-card-text><v-divider></v-divider>
-            <v-card-text>Level:</v-card-text><v-divider></v-divider>
-            <v-card-text>Rate:</v-card-text>
+            <v-card-text>Subjects Offered: {{subjects}} </v-card-text><v-divider></v-divider> 
+            <v-card-text>Level: {{level}} </v-card-text><v-divider></v-divider>
+            <v-card-text>Rate: S${{rate}}/hr </v-card-text>
           </v-card>
           
           <v-card dark tile flat color="pink darken-4">
@@ -44,27 +45,40 @@ export default {
     },
     data () {
       return {
+        name: "",
         reviews: [],
         tutor_id: "",
+        subjects: "",
+        level: "",
+        rate: "",
         datapacket: [],
       }
     },
     methods: {
       fetchItems: function() {
-        var id = this.$route.params.id;
-        firebaseApp.firestore.collection('orders').doc(id).get().then(snapshot => {
+        var id = this.$route.params.tutorid;
+        this.tutor_id = id
+        console.log(id)
+        firebaseApp.firestore().collection('users').doc(id).get().then(snapshot => {
           this.datapacket = snapshot.data()
+          this.name = this.datapacket.firstName + " " + this.datapacket.lastName
+          this.subjects = this.datapacket.subjects
+          this.level = this.datapacket.level
+          this.rate = this.datapacket.rates  
         });
-
+        
       },
-      applyBtn: function() {
-        this.$router.push({path:'/applynow', params: { id: this.tutor_id }})
+      applyBtn: function(tutor_id) {
+        this.$router.push({path:'/applynow', params: {tutorid: tutor_id}, props: true})
       }
     },
     props: {
       tutorid: {
         type: String
       }
+    },
+    created () {
+      this.fetchItems()    
     }
 }
 </script>
