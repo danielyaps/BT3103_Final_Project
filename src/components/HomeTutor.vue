@@ -16,6 +16,11 @@
 import MenuBarTutors from './MenuBarTutors.vue'
 
 export default {
+    data() {
+        return {
+            uid: this.$route.params.uid,
+        }
+    },
     components: {
         MenuBarTutors
     }

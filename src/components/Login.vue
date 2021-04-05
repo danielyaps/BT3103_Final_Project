@@ -7,10 +7,10 @@
 
         <div class="left">
             <h1>Welcome Back!</h1><br><br>
-            <form @submit.prevent="pressed">
+            <form onsubmit="return false">
                 <input id="email" placeholder="Email" v-model="email"><br><br>
                 <input type="password" id="password" placeholder="Password" v-model="password"><br><br>
-                <button id="loginBtn" type="submit">Login</button>
+                <button id="loginBtn" type="submit" v-on:click="login">Login</button>
             </form>
         </div>
 
@@ -41,22 +41,38 @@ export default {
             },
             email: '',
             password: '',
+            uid:'',
+            details: null,
+            type: '',
         }
     },
     methods: {
-        async pressed() {
-            try {
-                const val = await firebaseApp.auth().signInWithEmailAndPassword(this.email, this.password);
-                console.log(val)
-                this.$router.replace({ name:'home' })
-            } catch(err) {
-                console.log(err)
-            }
-            
+        login: function () {
+            firebaseApp.auth().signInWithEmailAndPassword(this.email, this.password)
+            .then((userCredential) => {
+                var user = userCredential.user;
+                this.uid = user.uid;
+                var docRef = firebaseApp.firestore().collection('users').doc(this.uid);
+                docRef.get().then((doc) => {
+                    this.details = doc.data();
+                    this.type = this.details.type;
+                    console.log(this.type);
+                    var x = 'home'.concat(this.type);
+                    this.$router.push({name: x, params:{uid : this.uid}})
+                }).catch((error) => {
+                    alert("Error getting document:", error);
+                });
+            })
+            .catch((error) => {
+                var errorMessage = error.message;
+                alert(errorMessage);
+            });
         },
+
         goSignup: function() {
             this.$router.push({path:'/signup'})
-        }
+        },
+
     }
 }
 

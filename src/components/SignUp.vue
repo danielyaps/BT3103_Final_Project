@@ -17,8 +17,8 @@
             <br>
             <input type="radio" id="one" value="Student" v-model="type">
             <label for="one">Student</label> 
-            <input type="radio" id="two" value="Teacher" v-model="type">
-            <label for="two">Teacher</label>
+            <input type="radio" id="two" value="Tutor" v-model="type">
+            <label for="two">Tutor</label>
             <div v-if="this.type === 'Student'">
                 <input type="text" id="user" v-model="username" placeholder="User Name" required>
                 <br>
@@ -35,7 +35,7 @@
                 <input type="text" id="subjects" v-model="subjects" placeholder="Subjects Interested" required>
                 <br>
             </div>
-            <div v-else-if="this.type === 'Teacher'">
+            <div v-else-if="this.type === 'Tutor'">
                 <input type="text" id="user" v-model="username" placeholder="User Name">
                 <br>
                 <input type="text" id="fname" v-model="firstname" placeholder="First Name"> <input type = "text" id="lname" v-model="lastname" placeholder="Last Name">
@@ -121,7 +121,8 @@ export default {
                         });
                     } 
                     this.uploadMetadata(this.image);
-                    this.$router.replace({name:'home'});
+                    alert("Registration successful! Please login!");
+                    this.$router.push({name:'login'});
                 },
                 err => {
                 alert(err.message);

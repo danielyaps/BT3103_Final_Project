@@ -36,7 +36,6 @@
 
 <script>
 import Header from './Header.vue'
-import firebaseApp from '../firebase.js'
 
 export default {
     components: {
@@ -45,20 +44,11 @@ export default {
     data () {
       return {
         reviews: [],
-        tutor_id: "",
-        datapacket: [],
       }
     },
     methods: {
-      fetchItems: function() {
-        var id = this.$route.params.id;
-        firebaseApp.firestore.collection('orders').doc(id).get().then(snapshot => {
-          this.datapacket = snapshot.data()
-        });
-
-      },
       applyBtn: function() {
-        this.$router.push({path:'/applynow', params: { id: this.tutor_id }})
+        this.$router.push({path:'/applynow'})
       }
     },
     props: {
