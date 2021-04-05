@@ -5,17 +5,17 @@
     <p style="font-size: 30px; color: #C6C6C6; padding-left: 20px; padding-top: 50px">Find Your Tutor Now!</p> <br>
     <div style="background-color: #E2E2E2; min-height: 600px">
         <ul id="un">
-            <li id="boxed" v-for="tutor of tutors" v-bind:key="tutor.id">
+            <li id="boxed" v-for="tutor of tutors" v-bind:key="tutor.id" v-on:click="tutorDetails(tutor.id)">
                 <ol style="list-style-type: none">
                     
                     <div style="text-align: center">
                         <img v-bind:id="tutor.id" style="width: 300px; height: 200px;"> <br>
                         <div style="display: inline-block; text-align: left; width: 300px"> 
                             Name: {{tutor.firstName}} {{tutor.lastName}} <br>
-                            Subjects Offered: {{tutor.Subjects}} <br>
-                            Level: {{tutor.Level}} <br>
-                            Rates: {{tutor.Rates}} <br><br>
-                            Description: {{tutor.Description}}
+                            Subjects Offered: {{tutor.subjects}} <br>
+                            Level: {{tutor.level}} <br>
+                            Rates: ${{tutor.rates}}/hr <br><br>
+                            Description: {{tutor.description}}
                         </div>
                     </div>
                 </ol>
@@ -58,6 +58,9 @@ export default {
                 })
             })
             console.log(this.tutors)
+        },
+        tutorDetails: function(tutor_id) {
+            this.$router.push({name: "tutorDetails", params: {tutorid: tutor_id}, props: true})
         }
     },
 

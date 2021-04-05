@@ -20,7 +20,7 @@ export default [
     { path: '/homeTutor', component: HomeTutor},
     { path: '/chatTutor', component: ChatTutor},
     { path: '/homeStudent', component: HomeStudent},
-    { path: '/tutorDetails', component: TutorDetails},
+    { name: 'tutorDetails', path: '/tutorDetails', component: TutorDetails},
     { path: '/profile/:uID', component: Profile, props:true},
     { path: '/leaveReview', component: LeaveReview}
 ]
