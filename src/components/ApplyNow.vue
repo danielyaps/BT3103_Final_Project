@@ -5,9 +5,7 @@
         <H1>Class Application</H1>
         <label for = "Subject">Subjects: </label>
         <option disabled value="">Select Option</option>
-        <option v-for="s in details" v-bind:value="s.subjects"> 
-            {{s.subjects}}
-        </option>
+        
         <label for = "Day">Day of Week: </label>
         <label for = "Time">Time: </label>
         <label for = "Duration">Duration: </label>
@@ -19,6 +17,7 @@
 
 <script>
 import Header from './Header.vue'
+import firebaseApp from '../firebase.js'
 
 export default {
     components: {
@@ -31,8 +30,9 @@ export default {
         }
     }, 
     methods: {
-        fetchItems:function(){
-            firebaseApp.firestore().collection('users').doc(this.uid).get().then((doc)=>{
+        fetchItems:function() {
+            var id = this.$route.params.id;
+            firebaseApp.firestore().collection('users').doc(id).get().then((doc)=>{
                 this.details.push(doc.data())
             });
             console.log(this.details);
