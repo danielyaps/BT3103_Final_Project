@@ -39,16 +39,7 @@ export default {
         return {
             uid: "",
             details: [], 
-<<<<<<< HEAD
             daySelected: "",
-        }
-    }, 
-    methods: {
-        fetchItems:function(){
-            firebaseApp.firestore().collection('users').doc(this.uid).get().then((doc)=>{
-                this.details.push(doc.data())
-=======
-            datapacket: "",
         }
     }, 
     methods: {
@@ -62,7 +53,6 @@ export default {
                 this.subjects = this.datapacket.subjects
                 this.level = this.datapacket.level
                 this.rate = this.datapacket.rates  
->>>>>>> angele
             });
         
         },
