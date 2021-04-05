@@ -37,6 +37,7 @@
 
 <script>
 import Header from './Header.vue'
+import firebaseApp from '../firebase.js'
 
 export default {
     components: {
@@ -46,13 +47,6 @@ export default {
       return {
         name: "",
         reviews: [],
-<<<<<<< HEAD
-      }
-    },
-    methods: {
-      applyBtn: function() {
-        this.$router.push({path:'/applynow'})
-=======
         tutor_id: "",
         subjects: "",
         level: "",
@@ -76,7 +70,6 @@ export default {
       },
       applyBtn: function(tutor_id) {
         this.$router.push({path:'/applynow', params: {tutorid: tutor_id}, props: true})
->>>>>>> angele
       }
     },
     props: {
