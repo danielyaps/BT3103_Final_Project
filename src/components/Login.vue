@@ -1,6 +1,8 @@
 <template>
 <div id = "whole">
-    <Header id="header"></Header>
+    <div>
+        <Header id="header"></Header>
+    </div>
     <div class="container">
 
         <div class="left">

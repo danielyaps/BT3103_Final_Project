@@ -8,6 +8,7 @@ import ChatTutor from './components/ChatTutor'
 import HomeStudent from './components/HomeStudent'
 import TutorDetails from './components/TutorDetails'
 import Profile from './components/Profile'
+import ApplyNow from './components/ApplyNow'
 import LeaveReview from './components/LeaveReview'
 
 

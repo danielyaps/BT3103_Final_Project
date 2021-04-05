@@ -11,7 +11,7 @@
                   position="center"
                 ></v-img>
             <v-btn block>Chat</v-btn>
-            <v-btn block>Apply Now!</v-btn>
+            <v-btn v-on:click="applyBtn()" block>Apply Now!</v-btn>
           </v-card>
     </v-col>
     <v-col md="8">
@@ -44,6 +44,11 @@ export default {
     data () {
       return {
         reviews: [],
+      }
+    },
+    methods: {
+      applyBtn: function() {
+        this.$router.push({path:'/applynow'})
       }
     },
     props: {
