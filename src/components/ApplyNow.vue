@@ -40,6 +40,7 @@ export default {
             uid: "",
             details: [], 
             daySelected: "",
+            datapacket: "",
         }
     }, 
     methods: {

@@ -2,7 +2,7 @@
 <div>
     <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" v-on:click="closeNav">&times;</a>
-    <a href="#">My Profile</a>
+    <router-link :to="{ name: 'profile', params: { uid: uid, type: 'Tutor' }}">My Profile</router-link>
     <a href="#">Chats</a>
     <a href="#">Reviews</a>
     </div>
@@ -12,6 +12,11 @@
 
 <script>
 export default {
+    props:{
+        uid:{
+            type:String
+        },
+    },
     methods: {
         openNav: function() {
             document.getElementById("mySidenav").style.width = "250px";
