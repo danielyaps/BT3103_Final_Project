@@ -64,6 +64,7 @@ export default {
                 dayA: "",
                 locationA: "",
             }], 
+            
             datapacket: [],
             oyePeriod: "",
             oyeMin: "",
@@ -76,7 +77,7 @@ export default {
         fetchItems: function() {
             var id = this.$route.params.tutorid;
             this.uid = id
-            console.log(this.$route.params.tutorid)
+            console.log(id)
             firebaseApp.firestore().collection('users').doc(id).get().then(snapshot => {
                 this.datapacket = snapshot.data()
                 this.name = this.datapacket.firstName + " " + this.datapacket.lastName
@@ -84,6 +85,7 @@ export default {
                 this.level = this.datapacket.level
                 this.rate = this.datapacket.rates  
             });
+            
         
         },
         submitBtn: function() {

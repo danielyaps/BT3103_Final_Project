@@ -21,7 +21,7 @@ export default [
     { path: '/homeTutor/:uid', name:'homeTutor', component: HomeTutor, props:true},
     { path: '/chatTutor', component: ChatTutor},
     { path: '/homeStudent/:uid', name:'homeStudent', component: HomeStudent, props:true},
-    { name: 'tutorDetails', path: '/tutorDetails', component: TutorDetails},
+    { name: 'tutorDetails', path: '/tutorDetails', component: TutorDetails, props:true},
     { path: '/profile/:uid', name:'profile', component: Profile, props:true},
     { path: '/leaveReview', component: LeaveReview},
     { name: 'applyNow', path: '/applyNow', component: ApplyNow}
