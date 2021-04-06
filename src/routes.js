@@ -10,6 +10,7 @@ import TutorDetails from './components/TutorDetails'
 import Profile from './components/Profile'
 import ApplyNow from './components/ApplyNow'
 import LeaveReview from './components/LeaveReview'
+import Schedule from './components/Schedule'
 
 
 export default [
@@ -24,5 +25,6 @@ export default [
     { name: 'tutorDetails', path: '/tutorDetails', component: TutorDetails},
     { path: '/profile/:uID', component: Profile, props:true},
     { path: '/leaveReview', component: LeaveReview},
-    { name: 'applyNow', path: '/applyNow', component: ApplyNow}
+    { name: 'applyNow', path: '/applyNow', component: ApplyNow},
+    { path: '/schedule', component: Schedule}
 ]

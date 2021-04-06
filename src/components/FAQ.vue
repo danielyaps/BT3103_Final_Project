@@ -1,12 +1,10 @@
 <template>
   <div id="whole" class="float-container">
     <div id="faqright">
-      <div> 
-        <p id="other">Other burning questions unanswered?</p>
-        <router-link id="contactlink" to="/ContactUs" exact
-          >Click here to contact us now!</router-link
-        >
-      </div>
+      <p id="other">Other burning questions unanswered?</p>
+      <router-link id="contactlinkfaq" to="/ContactUs" exact
+        >Click here to contact us now!</router-link
+      >
     </div>
     <Header></Header>
     <div id="title">Frequently Asked Questions</div>
@@ -19,6 +17,7 @@
         for them. Our site also allows students to review the tutors, allowing
         future students to find tutors better suited for them.
       </p>
+      <br />
       <h3 id="q">Do we make payment for lessons through this site?</h3>
       <p id="a">
         At the moment, Classy Tutors are not accepting any payment through this
@@ -26,22 +25,20 @@
         users.
       </p>
     </div>
-
   </div>
 </template>
 
 <script>
-import Header from "./Header.vue"
+import Header from "./Header.vue";
 
-export default{
-  components:{
-    Header
-  }
-}
+export default {
+  components: {
+    Header,
+  },
+};
 </script>
 
 <style>
-
 .float-container {
   border: 3px solid #fff;
   padding: 10px;
@@ -67,20 +64,19 @@ export default{
   text-align: center;
   vertical-align: middle;
   height: 100%;
-  background-color:grey;
+  background-color: grey;
   border-radius: 25px;
-
 }
 
-#other{
+#other {
   color: white;
 }
 
-#contactlink:hover {
+#contactlinkfaq:hover {
   color: lightskyblue;
 }
 
-#contactlink {
+#contactlinkfaq {
   text-decoration: none;
   color: white;
 }
