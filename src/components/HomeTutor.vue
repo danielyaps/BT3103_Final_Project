@@ -1,6 +1,6 @@
 <template>
 <div>
-    <MenuBarTutors></MenuBarTutors>
+    <MenuBarTutors v-bind:uid="uid"></MenuBarTutors>
     <p style="font-size: 50px; text-align: center; color: #C6C6C6">CLASSY AND FABULOUS TUTORS</p>
     <div id="classImg">
         

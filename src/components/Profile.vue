@@ -1,11 +1,10 @@
 <template>
-    <div class = "signup"> 
+    <div class = "page"> 
         <br>
         <br>
         "INSERT NEW HEADER FOR POST LOGIN"
         <br>
         <br>
-        <form @submit.prevent="pressed">
             <div class="image-upload">
                 <br>
                 <label for="file-input">
@@ -24,16 +23,16 @@
                 <br>
                 Email: <input type="email" id="email" v-model="updatedDetails.email" :placeholder="this.details.email">
                 <br>
-                Current Password: <input type="password" id="cpw" v-model="initialPassword" placeholder="Current Password" required>
+                Current Password: <input type="password" id="cpw" v-model="initialPassword" placeholder="*******" required>
                 <br>
-                New Password: <input type="password" id="npw" v-model="newPassword" placeholder="New Password">
+                New Password: <input type="password" id="npw" v-model="newPassword" placeholder="If Required">
                 <br>
                 Level/School: <input type="text" id="level" v-model="updatedDetails.level" :placeholder="this.details.level">
                 <br>
                 Subjects Interested: <input type="text" id="subjects" v-model="updatedDetails.subjects" :placeholder="this.details.subjects">
                 <br>
             </div>
-            <div v-else-if="this.type === 'Teacher'">
+            <div v-else>
                 Username: <input type="text" id="user" v-model="updatedDetails.username" :placeholder="this.details.username">
                 <br>
                 Name: <input type="text" id="fname" v-model="updatedDetails.firstname" :placeholder="this.details.firstName"> 
@@ -42,7 +41,9 @@
                 <br>
                 Email: <input type="email" id="email" v-model="updatedDetails.email" :placeholder="this.details.email">
                 <br>
-                Password: <input type="password" id="pw" v-model="password" placeholder="Password" required>
+                Current Password: <input type="password" id="cpw" v-model="initialPassword" placeholder="******" required>
+                <br>
+                New Password: <input type="password" id="npw" v-model="newPassword" placeholder="If you want to change!">
                 <br>
                 Level/School: <input type="text" id="level" v-model="updatedDetails.level" :placeholder="this.details.level">
                 <br>
@@ -51,13 +52,12 @@
                 Rates per Hour<input type="text" id="rates" v-model="updatedDetails.rates" :placeholder="this.details.rates">
                 <br>
                 <br>
-                Description <textarea v-model="desc" :placeholder="this.description" cols="37" rows="7"></textarea>
+                Description <textarea v-model="updatedDetails.description" :placeholder="this.details.description" cols="37" rows="7"></textarea>
                 <br>
             </div>
             <br>
             <br>
-            <button type="submit" v-on:click="save">Save</button>
-        </form>
+            <button type="button" v-on:click="save">Save</button>
         <br>
         <br>
         <br>
@@ -78,7 +78,7 @@ export default {
             changeImage: false,
             initialPassword:"",
             newPassword:"",
-            details: null,
+            details: {},
             updatedDetails: {},
         };
     },
@@ -143,6 +143,7 @@ export default {
 
     created(){
       this.fetchItems();
+
     }
 }
 
@@ -150,7 +151,7 @@ export default {
 
 <style scoped>
 
-.signup {
+.page {
     position: fixed;
     overflow-y:scroll;
     background-color: #E8E8E8;
