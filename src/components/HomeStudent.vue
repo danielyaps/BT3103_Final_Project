@@ -1,6 +1,6 @@
 <template>
 <div>
-    <MenuBarStudents></MenuBarStudents>
+    <MenuBarStudents v-bind:uid="uid"></MenuBarStudents>
     <p style="font-size: 50px; text-align: center; color: #C6C6C6">CLASSY AND FABULOUS TUTORS</p>
     <p style="font-size: 30px; color: #C6C6C6; padding-left: 20px; padding-top: 50px">Find Your Tutor Now!</p> <br>
     <div style="background-color: #E2E2E2; min-height: 600px">
@@ -37,6 +37,7 @@ export default {
     data() {
         return {
             uid: this.$route.params.uid,
+            type: "Student",
             tutors: []
         }
     },
@@ -58,7 +59,6 @@ export default {
                     }
                 })
             })
-            console.log(this.tutors)
         },
         tutorDetails: function(tutor_id) {
             this.$router.push({name: "tutorDetails", params: {tutorid: tutor_id}, props: true})

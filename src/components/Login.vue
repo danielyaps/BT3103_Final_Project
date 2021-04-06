@@ -56,7 +56,6 @@ export default {
                 docRef.get().then((doc) => {
                     this.details = doc.data();
                     this.type = this.details.type;
-                    console.log(this.type);
                     var x = 'home'.concat(this.type);
                     this.$router.push({name: x, params:{uid : this.uid}})
                 }).catch((error) => {
