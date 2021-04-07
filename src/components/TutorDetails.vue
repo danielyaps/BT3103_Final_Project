@@ -4,10 +4,11 @@
 <v-container grid-list-md text-md-center fluid fill-height>
     <v-col md="4">
           <v-card dark tile flat color="error">
-            <v-img
+          <h2>{{name}}</h2>
+           <v-img
                   height="600"
                   width="500"
-                  lazy-src="https://images.unsplash.com/photo-1544168190-79c17527004f?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MjZ8fHRlYWNoZXJ8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60"
+                  v-bind:src="imgSrc"
                   position="center"
                 ></v-img>
             <v-btn block>Chat</v-btn>
@@ -16,9 +17,9 @@
     </v-col>
     <v-col md="8">
           <v-card dark tile flat color="pink darken-4">
-            <v-card-text>Subjects Offered:  Math/Science</v-card-text><v-divider></v-divider>
-            <v-card-text>Level:</v-card-text><v-divider></v-divider>
-            <v-card-text>Rate:</v-card-text>
+            <v-card-text>Subjects Offered: {{subjects}} </v-card-text><v-divider></v-divider> 
+            <v-card-text>Level: {{level}} </v-card-text><v-divider></v-divider>
+            <v-card-text>Rate: S${{rate}}/hr </v-card-text>
           </v-card>
           
           <v-card dark tile flat color="pink darken-4">
@@ -36,6 +37,7 @@
 
 <script>
 import Header from './Header.vue'
+import firebaseApp from '../firebase.js'
 
 export default {
     components: {
@@ -43,18 +45,45 @@ export default {
     },
     data () {
       return {
+        name: "",
         reviews: [],
+        tutor_id: "",
+        subjects: "",
+        level: "",
+        rate: "",
+        datapacket: [],
+        imgSrc:"",
       }
     },
     methods: {
+      fetchItems: function() {
+        var id = this.$route.params.tutorid;
+        this.tutor_id = id
+        console.log(id)
+        firebaseApp.firestore().collection('users').doc(id).get().then(snapshot => {
+          this.datapacket = snapshot.data()
+          this.name = this.datapacket.firstName + " " + this.datapacket.lastName
+          this.subjects = this.datapacket.subjects
+          this.level = this.datapacket.level
+          this.rate = this.datapacket.rates  
+        });
+        firebaseApp.storage().ref().child('images/' + id).getDownloadURL()
+                            .then((url) => {
+                                this.imgSrc = url; 
+                            })
+      },
       applyBtn: function() {
-        this.$router.push({path:'/applynow'})
+        console.log(this.tutor_id)
+        this.$router.push({name:'applyNow', params: {tutorid: this.tutor_id}, props: true})
       }
     },
     props: {
       tutorid: {
         type: String
       }
+    },
+    created () {
+      this.fetchItems()    
     }
 }
 </script>

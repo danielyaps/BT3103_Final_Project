@@ -49,7 +49,7 @@ export default {
                     item=doc.data()
                     item.id=doc.id
                     item.photo=null
-                    if (item.type == "Teacher") {
+                    if (item.type == "Tutor") {
                         var storageRef = firebaseApp.storage().ref();
                         storageRef.child('images/' + doc.id).getDownloadURL()
                             .then((url) => {
