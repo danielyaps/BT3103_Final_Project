@@ -59,8 +59,6 @@ export default {
         start: function() {
             var user = firebaseApp.auth().currentUser;
             if (user) {
-                console.log(user.uid);
-                console.log("This is true!");
                 this.loggedin = true;
                 this.uid = user.uid;
                 firebaseApp.firestore().collection('users').doc(user.uid).get().then((doc)=>{
@@ -72,7 +70,6 @@ export default {
         }
     },
     created() {
-        console.log(this.color);
         this.start();
     }
 }

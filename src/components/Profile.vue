@@ -139,7 +139,7 @@ export default {
                 });
                 if (this.newPassword != "") {
                     user.updatePassword(this.newPassword).then(function() {
-                        console.log("Successful!")
+                        console.log("Success!")
                     }).catch(function(error) {
                         alert(error);
                     });
