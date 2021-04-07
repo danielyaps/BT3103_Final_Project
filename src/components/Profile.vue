@@ -1,58 +1,70 @@
 <template>
     <div class = "page"> 
-        <br>
-        <br>
-        "INSERT NEW HEADER FOR POST LOGIN"
+        <Header></Header>
         <br>
         <br>
             <div class="image-upload">
                 <br>
-                <label for="file-input">
+                <label class="image" for="file-input">
                     <img :src="this.image">
                 </label>
                 <input id="file-input" type="file" accept="image/*" v-on:change="selectImage">
                 <br>
             </div>
             <br>
-            <div v-if="this.type === 'Student'">
-                Username: <input type="text" id="user" v-model="updatedDetails.username" :placeholder="this.details.username">
+            <div class="inputs" v-if="this.type === 'Student'">
+                <label> Username:</label> 
+                <input type="text" id="user" v-model="updatedDetails.username" :placeholder="this.details.username">
                 <br>
-                Name: <input type="text" id="fname" v-model="updatedDetails.firstname" :placeholder="this.details.firstName"> 
+                <label>Name: </label>
+                <input type="text" id="fname" v-model="updatedDetails.firstname" :placeholder="this.details.firstName"> 
                 &nbsp;
                 <input type = "text" id="lname" v-model="updatedDetails.lastname" :placeholder="this.details.lastName">
                 <br>
-                Email: <input type="email" id="email" v-model="updatedDetails.email" :placeholder="this.details.email">
+                <label>Email: </label>
+                <input type="email" id="email" v-model="updatedDetails.email" :placeholder="this.details.email">
                 <br>
-                Current Password: <input type="password" id="cpw" v-model="initialPassword" placeholder="*******" required>
+                <label>Current Password: </label>
+                <input type="password" id="cpw" v-model="initialPassword" placeholder="*******" required>
                 <br>
-                New Password: <input type="password" id="npw" v-model="newPassword" placeholder="If Required">
+                <label>New Password: </label>
+                <input type="password" id="npw" v-model="newPassword" placeholder="If Required">
                 <br>
-                Level/School: <input type="text" id="level" v-model="updatedDetails.level" :placeholder="this.details.level">
+                <label>Level/School: </label>
+                <input type="text" id="level" v-model="updatedDetails.level" :placeholder="this.details.level">
                 <br>
-                Subjects Interested: <input type="text" id="subjects" v-model="updatedDetails.subjects" :placeholder="this.details.subjects">
+                <label>Subjects Interested: </label>
+                <input type="text" id="subjects" v-model="updatedDetails.subjects" :placeholder="this.details.subjects">
                 <br>
             </div>
-            <div v-else>
-                Username: <input type="text" id="user" v-model="updatedDetails.username" :placeholder="this.details.username">
+            <div class="inputs" v-else>
+                <label> Username: </label> <input type="text" id="user" v-model="updatedDetails.username" :placeholder="this.details.username">
                 <br>
-                Name: <input type="text" id="fname" v-model="updatedDetails.firstname" :placeholder="this.details.firstName"> 
+                <label> Name: </label> <input type="text" id="fname" v-model="updatedDetails.firstname" :placeholder="this.details.firstName"> 
                 &nbsp;
                 <input type = "text" id="lname" v-model="updatedDetails.lastname" :placeholder="this.details.lastName">
                 <br>
-                Email: <input type="email" id="email" v-model="updatedDetails.email" :placeholder="this.details.email">
+                <label> Email: </label> 
+                <input type="email" id="email" v-model="updatedDetails.email" :placeholder="this.details.email">
                 <br>
-                Current Password: <input type="password" id="cpw" v-model="initialPassword" placeholder="******" required>
+                <label>Current Password: </label>
+                <input type="password" id="cpw" v-model="initialPassword" placeholder="******" required>
                 <br>
-                New Password: <input type="password" id="npw" v-model="newPassword" placeholder="If you want to change!">
+                <label>New Password: </label>
+                <input type="password" id="npw" v-model="newPassword" placeholder="If you want to change!">
                 <br>
-                Level/School: <input type="text" id="level" v-model="updatedDetails.level" :placeholder="this.details.level">
+                <label>Level/School: </label>
+                <input type="text" id="level" v-model="updatedDetails.level" :placeholder="this.details.level">
                 <br>
-                Subjects Offered: <input type="text" id="subjects" v-model="updatedDetails.subjects" :placeholder="this.details.subjects">
+                <label>Subjects Offered:</label> 
+                <input type="text" id="subjects" v-model="updatedDetails.subjects" :placeholder="this.details.subjects">
                 <br>
-                Rates per Hour<input type="text" id="rates" v-model="updatedDetails.rates" :placeholder="this.details.rates">
+                <label>Rates per Hour:</label>
+                <input type="text" id="rates" v-model="updatedDetails.rates" :placeholder="this.details.rates">
                 <br>
                 <br>
-                Description <textarea v-model="updatedDetails.description" :placeholder="this.details.description" cols="37" rows="7"></textarea>
+                <label>Description:</label>
+                <textarea v-model="updatedDetails.description" :placeholder="this.details.description" cols="37" rows="7"></textarea>
                 <br>
             </div>
             <br>
@@ -69,6 +81,7 @@
 
 <script>
 import firebaseApp from '../firebase.js'
+import Header from './Header.vue'
 export default {
     data() {
         return {
@@ -144,7 +157,11 @@ export default {
     created(){
       this.fetchItems();
 
-    }
+    },
+
+    components: {
+        'Header': Header
+    },
 }
 
 </script>
@@ -163,9 +180,6 @@ export default {
     height: 100vh;
 }
 
-Header {
-    color: black;
-}
 
 .image-upload>input {
     display: none;
@@ -174,6 +188,20 @@ Header {
 img {
     width: 250px;
     height: 250px;
+}
+
+.image{
+    margin-right:-50px;
+}
+
+label, input, textarea {
+  display: inline-block;
+}
+
+label {
+    margin-left: -8%;
+    width: 10%;
+    text-align: right;
 }
 
 input[type=radio] {

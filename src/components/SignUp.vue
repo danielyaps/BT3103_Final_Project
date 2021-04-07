@@ -1,7 +1,5 @@
 <template>
     <div class = "signup"> 
-        <br>
-        <br>
         <Header></Header>
         <br>
         <br>
@@ -69,6 +67,12 @@
 import firebaseApp from '../firebase.js'
 import Header from './Header.vue'
 export default {
+    props: {
+        color: {
+            type: String,
+            default: 'black'
+        }
+    },
     data() {
         return {
             uid: "",
