@@ -27,7 +27,6 @@ export default [
     { name: 'applyNow', path: '/applyNow', component: ApplyNow},
     { name: 'studentApp', path: '/studentapp', component: StudentApp},
     { path: '/leaveReview/:uid', name: 'leaveReview', component: LeaveReview},
-
 ]
 
 
