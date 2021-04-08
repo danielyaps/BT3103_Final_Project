@@ -113,7 +113,6 @@ export default {
       }
       if (star <= this.maxstars && star >= 0) {
         this.stars = this.stars === star ? star - 1 : star;
-        this.$emit('clicked', this.stars)
       }
     },
     hoverStar(star) {

@@ -4,7 +4,8 @@
     <a href="javascript:void(0)" class="closebtn" v-on:click="closeNav">&times;</a>
     <router-link :to="{ name: 'profile', params: { uid: uid, type: 'Student' }}">My Profile</router-link>
     <a href="#">Chats</a>
-    <router-link :to="{ name: 'leaveReview', params: { uid: uid }}">Leave A Review</router-link>
+    <a href="#">Schedule</a>
+    <a href="#">Leave A Review</a>
     </div>
     <span style="font-size:30px; cursor:pointer; color: white" v-on:click="openNav">&#9776; Menu</span>
 </div>

@@ -6,13 +6,16 @@
     <br /><br /><br />
 
     <form id="inputs">
-      <span>Tutor Username: </span>
-      <input type="text" v-model="tutorUsername" required>
+      Tutor Name: <select id="selectt" v-model="tutor" required>
+        <option value="" disabled selected>Select Tutor...</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+      </select>
       <br /><br>
       
       Rating:<br />
         
-      <Rating @clicked="onClick" required></Rating>
+      <Rating required></Rating>
       <br /><br />
 
       Review: <br><br>
@@ -29,7 +32,7 @@
         <button
           type="submit"
           value="Submit"
-          v-on:click.prevent="complete(tutorUsername, stars, review)"
+          v-on:click="complete(tutor, review)"
         >
           Submit
         </button>
@@ -41,8 +44,7 @@
 
 <script>
 import Header from "./Header.vue";
-import Rating from "./Rating.vue";
-import firebaseApp from '../firebase.js'
+import Rating from "./Rating.vue"
 
 export default {
   components: {
@@ -50,28 +52,20 @@ export default {
   },
   data() {
     return {
-      tutorUsername: "",
-      stars: 0,
+      tutor: "",
+      stars: "",
       review: "",
-      uid: this.$route.params.uid
+
     }
   },
 
   methods: {
-    onClick: function(value) {
-      this.stars = value
-    },
-
-    complete: function(tutor, stars, review) {
-      const rating = {Stars: stars, Review: review}
-      firebaseApp.firestore().collection('users').where('username', '==', this.tutorUsername).get().then(snapshot => {
-        snapshot.docs.forEach(doc => {
-          rating.tutorId = doc.id
-          rating.studentId = this.uid;
-          console.log(rating)
-          firebaseApp.firestore().collection('users').doc(rating.tutorId).collection('reviews').add(rating)
-        })
-      })
+    complete: function (value1, value2) {
+      if (value1 == "" || value2 == "") {
+        alert("Incomplete submission, please fill in all fields");
+      } else {
+        alert("Your response has been submitted");
+      }
     },
 
     cancel: function () {
