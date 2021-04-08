@@ -1,11 +1,10 @@
 <template>
-    <div class = "signup"> 
+    <div class = "page"> 
         <br>
         <br>
-        <Header></Header>
+        "INSERT NEW HEADER FOR POST LOGIN"
         <br>
         <br>
-        <form @submit.prevent="pressed">
             <div class="image-upload">
                 <br>
                 <label for="file-input">
@@ -16,44 +15,49 @@
             </div>
             <br>
             <div v-if="this.type === 'Student'">
-                <input type="text" id="user" v-model="username" placeholder="User Name" required>
+                Username: <input type="text" id="user" v-model="updatedDetails.username" :placeholder="this.details.username">
                 <br>
-                <input type="text" id="fname" v-model="firstname" placeholder="First Name" required> 
+                Name: <input type="text" id="fname" v-model="updatedDetails.firstname" :placeholder="this.details.firstName"> 
                 &nbsp;
-                <input type = "text" id="lname" v-model="lastname" placeholder="Last Name" required>
+                <input type = "text" id="lname" v-model="updatedDetails.lastname" :placeholder="this.details.lastName">
                 <br>
-                <input type="email" id="email" v-model="email" placeholder="Email" required>
+                Email: <input type="email" id="email" v-model="updatedDetails.email" :placeholder="this.details.email">
                 <br>
-                <input type="password" id="pw" v-model="password" placeholder="Password" required>
+                Current Password: <input type="password" id="cpw" v-model="initialPassword" placeholder="*******" required>
                 <br>
-                <input type="text" id="level" v-model="level" placeholder="Level/School" required>
+                New Password: <input type="password" id="npw" v-model="newPassword" placeholder="If Required">
                 <br>
-                <input type="text" id="subjects" v-model="subjects" placeholder="Subjects Interested" required>
+                Level/School: <input type="text" id="level" v-model="updatedDetails.level" :placeholder="this.details.level">
+                <br>
+                Subjects Interested: <input type="text" id="subjects" v-model="updatedDetails.subjects" :placeholder="this.details.subjects">
                 <br>
             </div>
-            <div v-else-if="this.type === 'Teacher'">
-                <input type="text" id="user" v-model="username" placeholder="User Name">
+            <div v-else>
+                Username: <input type="text" id="user" v-model="updatedDetails.username" :placeholder="this.details.username">
                 <br>
-                <input type="text" id="fname" v-model="firstname" placeholder="First Name"> <input type = "text" id="lname" v-model="lastname" placeholder="Last Name">
+                Name: <input type="text" id="fname" v-model="updatedDetails.firstname" :placeholder="this.details.firstName"> 
+                &nbsp;
+                <input type = "text" id="lname" v-model="updatedDetails.lastname" :placeholder="this.details.lastName">
                 <br>
-                <input type="email" id="email" v-model="email" placeholder="Email">
+                Email: <input type="email" id="email" v-model="updatedDetails.email" :placeholder="this.details.email">
                 <br>
-                <input type="password" id="pw" v-model="password" placeholder="Password">
+                Current Password: <input type="password" id="cpw" v-model="initialPassword" placeholder="******" required>
                 <br>
-                <input type="text" id="levels" v-model="levels" placeholder="Level">
+                New Password: <input type="password" id="npw" v-model="newPassword" placeholder="If you want to change!">
                 <br>
-                <input type="text" id="subjects" v-model="subjects" placeholder="Subjects Offered">
+                Level/School: <input type="text" id="level" v-model="updatedDetails.level" :placeholder="this.details.level">
                 <br>
-                <input type="text" id="rates" v-model="rates" placeholder="Rates per Hour (SGD)">
+                Subjects Offered: <input type="text" id="subjects" v-model="updatedDetails.subjects" :placeholder="this.details.subjects">
+                <br>
+                Rates per Hour<input type="text" id="rates" v-model="updatedDetails.rates" :placeholder="this.details.rates">
                 <br>
                 <br>
-                <textarea v-model="desc" placeholder="Description" cols="37" rows="7"></textarea>
+                Description <textarea v-model="updatedDetails.description" :placeholder="this.details.description" cols="37" rows="7"></textarea>
                 <br>
             </div>
             <br>
             <br>
-            <button type="submit" v-on:click="register">Create Account</button>
-        </form>
+            <button type="button" v-on:click="save">Save</button>
         <br>
         <br>
         <br>
@@ -65,26 +69,25 @@
 
 <script>
 import firebaseApp from '../firebase.js'
-import Header from './Header.vue'
 export default {
     data() {
         return {
-            uid: this.$route.params.uID,
+            uid: this.$route.params.uid,
             type: this.$route.params.type,
-            details: [],
-            image: "",
-            change: false,
+            image: null,
+            changeImage: false,
+            initialPassword:"",
+            newPassword:"",
+            details: {},
+            updatedDetails: {},
         };
     },
-    components: {
-        'Header': Header
-    },
+
     methods: {
         fetchItems:function(){
             firebaseApp.firestore().collection('users').doc(this.uid).get().then((doc)=>{
-                this.details.push(doc.data())
+                this.details = doc.data();
             });
-            console.log(this.details);
             var storageRef = firebaseApp.storage().ref();
             storageRef.child('images/' + this.uid).getDownloadURL().then((url) => {
                 this.image = url;
@@ -101,16 +104,133 @@ export default {
                 };
         },
 
-        uploadMetadata(message) {
+        updateImage(message) {
             var storageRef = firebaseApp.storage().ref();
+            storageRef.child('images/' + this.uid).delete();
             storageRef.child('images/' + this.uid).putString(message, 'data_url');
-        }
+        },
+
+        save:function() {
+            firebaseApp.auth().signInWithEmailAndPassword(this.details.email, this.initialPassword)
+            .then((userCredential) => {
+                var user = userCredential.user;
+                if (Object.keys(this.updatedDetails).length > 0) {
+                    Object.entries(this.updatedDetails).forEach(([key,value]) => {
+                        this.details[key] = value;
+                    })
+                }
+
+                firebaseApp.firestore().collection("users").doc(this.uid).set(this.details)
+                .catch((error) => {
+                    console.error("Error writing document: ", error);
+                });
+                if (this.newPassword != "") {
+                    user.updatePassword(this.newPassword).then(function() {
+                        console.log("Successful!")
+                    }).catch(function(error) {
+                        alert(error);
+                    });
+                }
+                alert("Successfully saved!");
+                var x = 'home'.concat(this.type);
+                this.$router.push({name: x, params:{uid : this.uid}});
+
+            }).catch(function() {
+                alert("Password is invalid!");
+            });
+        },
     },
+
     created(){
       this.fetchItems();
+
     }
 }
+
 </script>
 
 <style scoped>
+
+.page {
+    position: fixed;
+    overflow-y:scroll;
+    background-color: #E8E8E8;
+    text-align: center;
+    color: #888888;
+    font-family: Roboto;
+    font-size: 14px;
+    width: 100vw;
+    height: 100vh;
+}
+
+Header {
+    color: black;
+}
+
+.image-upload>input {
+    display: none;
+}
+
+img {
+    width: 250px;
+    height: 250px;
+}
+
+input[type=radio] {
+    text-align: center;
+    left: 10px;
+    font-size:14px;
+}
+
+input[type=text],input[type=password] {
+    background-color: #E8E8E8;
+    border: none;
+    border-bottom: 2px solid #888888;
+    padding:18px;
+    height:32px;
+    font-family: Roboto;
+    font-size:14px;
+    width:300px;
+    left: 0px;
+}
+
+#email {
+    background-color: #E8E8E8;
+    border: none;
+    border-bottom: 2px solid #888888;
+    padding:18px;
+    height:32px;
+    font-family: Roboto;
+    font-size:14px;
+    width:300px;
+    left: 0px;
+}
+
+#fname, #lname {
+    background-color: #E8E8E8;
+    border: none;
+    border-bottom: 2px solid #888888;
+    padding:18px;
+    height:32px;
+    font-family: Roboto;
+    font-size:14px;
+    width:145px;
+}
+
+textarea {
+    background-color: white;
+    font-size:14px;
+    font-family: Roboto;
+}
+
+button{
+    background-color: #60C1EA;
+    color: white;
+    border-radius: 4px;
+    width: 130px;
+    height: 30px;
+    border: none;
+    font-size: 14px;
+    font-family: Roboto;
+}
 </style>

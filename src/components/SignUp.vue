@@ -5,7 +5,6 @@
         <Header></Header>
         <br>
         <br>
-        <form @submit.prevent="pressed">
             <div class="image-upload">
                 <br>
                 <label for="file-input">
@@ -56,8 +55,7 @@
             </div>
             <br>
             <br>
-            <button type="submit" v-on:click="register">Create Account</button>
-        </form>
+            <button type="button" v-on:click="register">Create Account</button>
         <br>
         <br>
         <br>

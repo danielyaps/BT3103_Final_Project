@@ -5,14 +5,14 @@
     <v-col md="4">
           <v-card dark tile flat color="error">
           <h2>{{name}}</h2>
-            <v-img
+           <v-img
                   height="600"
                   width="500"
-                  lazy-src="https://images.unsplash.com/photo-1544168190-79c17527004f?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MjZ8fHRlYWNoZXJ8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60"
+                  v-bind:src="imgSrc"
                   position="center"
                 ></v-img>
             <v-btn block>Chat</v-btn>
-            <v-btn v-on:click="applyBtn(this.tutor_id)" block>Apply Now!</v-btn>
+            <v-btn v-on:click="applyBtn()" block>Apply Now!</v-btn>
           </v-card>
     </v-col>
     <v-col md="8">
@@ -52,6 +52,7 @@ export default {
         level: "",
         rate: "",
         datapacket: [],
+        imgSrc:"",
       }
     },
     methods: {
@@ -66,10 +67,14 @@ export default {
           this.level = this.datapacket.level
           this.rate = this.datapacket.rates  
         });
-        
+        firebaseApp.storage().ref().child('images/' + id).getDownloadURL()
+                            .then((url) => {
+                                this.imgSrc = url; 
+                            })
       },
-      applyBtn: function(tutor_id) {
-        this.$router.push({path:'/applynow', params: {tutorid: tutor_id}, props: true})
+      applyBtn: function() {
+        console.log(this.tutor_id)
+        this.$router.push({name:'applyNow', params: {tutorid: this.tutor_id}, props: true})
       }
     },
     props: {
