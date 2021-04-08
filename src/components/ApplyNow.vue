@@ -61,6 +61,7 @@ export default {
     },
     data() {
         return {
+            uid: this.$route.params.uid,
             tutor_id: "",
             subjectA: null,
             dayA: null,
@@ -120,7 +121,10 @@ export default {
                 firebaseApp.firestore().collection('users').doc(id)
                     .collection('applicationsNew').add(
                         this.form
-                    );
+                );
+                alert("Application Submitted");
+                this.$router.push({path:'/homeStudent/:uid'})
+
             }
             
         }, 
