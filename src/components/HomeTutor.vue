@@ -1,5 +1,6 @@
 <template>
 <div>
+    <Header></Header>
     <MenuBarTutors v-bind:uid="uid"></MenuBarTutors>
     <p style="font-size: 50px; text-align: center; color: #C6C6C6">CLASSY AND FABULOUS TUTORS</p>
     <div id="classImg">
@@ -14,6 +15,7 @@
 
 <script>
 import MenuBarTutors from './MenuBarTutors.vue'
+import Header from './Header.vue'
 
 export default {
     data() {
@@ -22,7 +24,8 @@ export default {
         }
     },
     components: {
-        MenuBarTutors
+        MenuBarTutors,
+        Header
     }
 }
 </script>
