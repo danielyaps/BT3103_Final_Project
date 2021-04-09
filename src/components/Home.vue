@@ -2,22 +2,25 @@
 <div>
 <Header v-bind:color="color"></Header>
 <body>
+    <br>
+<p style="font-size: 50px; text-align: center; color: #388087; font-weight: bold;">CLASSY AND FABULOUS TUTORS</p>
+<br>
 <div class="imageContainer"> 
     <img id="tutorImg">
     <p id="aboutUs">About Us</p> 
 </div>
 
-<div style="color: #C6C6C6; text-align: center">
+<div style="color: #388087; text-align: center">
     <p style="font-size: 50px; text-decoration: underline">Who We Are</p>
     <p style="font-size: 30px">Classy & Fabulous Tutors is a tuition matching platform allowing for centralised tuition sourcing.</p>
     <p> ... </p>
 </div>
 <div>
-    <p style="text-align: center; color: #C6C6C6; font-size: 50px; text-decoration: underline">Our Students/Tutors Testimonials</p>
+    <p style="text-align: center; color: #388087; font-size: 50px; text-decoration: underline">Our Students/Tutors Testimonials</p>
     <div style="position: absolute; left: 100px; width: 1200px">
         <img src="https://images.theconversation.com/files/304864/original/file-20191203-67028-qfiw3k.jpeg?ixlib=rb-1.1.0&rect=638%2C2%2C795%2C745&q=45&auto=format&w=496&fit=clip"
             style="width: 120px; height: 120px; position: relative; float: left">
-        <p style="font-size: 20px; position: relative; top: 20px; left: 20px; color: #C6C6C6"> 
+        <p style="font-size: 20px; position: relative; top: 20px; left: 20px; color: #388087"> 
         "Mr McDonald has helped my grades improve from a C5 to an A1 over the span of 3 months! 
             Thank you Classy & Fabulous tutors for connecting us!" <br>
             - Bean, 2021
@@ -26,7 +29,7 @@
     <div style="position: absolute; left: 100px; top: 1150px; width: 1200px">
         <img src=https://d21xzygesx9h0w.cloudfront.net/TUTOROO-connects-you-with-Shailly,-English-tutor-in-Singapore-5ec7c8032a1f3
             style="width: 120px; height: 120px; position: relative; float: left">
-        <p style="font-size: 20px; position: relative; top: 20px; left: 20px; color: #C6C6C6"> 
+        <p style="font-size: 20px; position: relative; top: 20px; left: 20px; color: #388087"> 
             "With Classy & Fabulous tutors, I'm now able to earn a stable stream of income from tutoring.
             The platform is easy to use and helps me stay organised with the multiple tutoring sessions I have so that I can better manage my time.
             Thank you Classy & Fabulous tutors!" <br>
@@ -48,7 +51,7 @@ import Header from './Header.vue'
     },
     data() {
         return {
-            color: "white",
+            color: "#388087",
         };
     },
  }
@@ -56,7 +59,7 @@ import Header from './Header.vue'
 
 <style>
     body {
-        background: #2D2D2D
+        background: white
     }
     .imageContainer {
         position: relative;
@@ -77,7 +80,7 @@ import Header from './Header.vue'
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        color: white;
+        color: #388087;
     }
 
 </style>

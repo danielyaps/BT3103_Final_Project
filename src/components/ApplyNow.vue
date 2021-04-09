@@ -3,7 +3,7 @@
     <Header></Header>
     <br>
     <H1>Apply for {{name}}'s class</H1>
-    <v-app style="background: #2D2D2D">
+    <v-app style="background: #6FB3B8">
     <v-container grid-list-md text-md-center fluid fill-height>
         <v-col fluid>
         <v-card elevation="2" fluid outlined tile>
@@ -51,101 +51,112 @@
 </template>
 
 <script>
-import Header from './Header.vue'
-import firebaseApp from '../firebase.js'
-
+import Header from "./Header.vue";
+import firebaseApp from "../firebase.js";
 
 export default {
-    components: {
-        'Header': Header,
+  components: {
+    Header: Header,
+  },
+  data() {
+    return {
+      uid: this.$route.params.uid,
+      tutor_id: "",
+      subjectA: null,
+      dayA: null,
+      locationA: null,
+      durationA: null,
+      AP: ["AM", "PM"],
+      datapacket: [],
+      startP: "",
+      startMin: "",
+      startHr: "",
+      name: "",
+      days: [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday",
+      ],
+      formHasErrors: false,
+      error: false,
+    };
+  },
+  computed: {
+    form() {
+      return {
+        subjectA: this.subjectA,
+        dayA: this.dayA,
+        locationA: this.locationA,
+        startHr: this.startHr,
+        startMin: this.startMin,
+        startP: this.startP,
+        durationA: this.durationA,
+      };
     },
-    data() {
-        return {
-            uid: this.$route.params.uid,
-            tutor_id: "",
-            subjectA: null,
-            dayA: null,
-            locationA: null,
-            durationA: null,
-            AP: ["AM", "PM"],
-            datapacket: [],
-            startP: "",
-            startMin: "",
-            startHr:"",
-            name: "",
-            days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday','Sunday'],
-            formHasErrors: false,
-            error: false,
-        }
-    }, 
-    computed: {
-        form() {
-            return {
-                subjectA: this.subjectA,
-                dayA: this.dayA,
-                locationA: this.locationA,
-                startHr: this.startHr,
-                startMin: this.startMin,
-                startP: this.startP,
-                durationA: this.durationA,
-            }
-        }
+  },
+  methods: {
+    fetchItems: function () {
+      var id = this.$route.params.tutorid;
+      this.tutor_id = id;
+      console.log(this.tutor_id);
+      firebaseApp
+        .firestore()
+        .collection("users")
+        .doc(id)
+        .get()
+        .then((snapshot) => {
+          this.datapacket = snapshot.data();
+          this.name =
+            this.datapacket.firstName + " " + this.datapacket.lastName;
+          this.subjects = this.datapacket.subjects;
+          this.level = this.datapacket.level;
+          this.rate = this.datapacket.rates;
+        });
     },
-    methods: {
-        fetchItems: function() {
-            var id = this.$route.params.tutorid;
-            this.tutor_id = id
-            console.log(this.tutor_id)
-            firebaseApp.firestore().collection('users').doc(id).get().then(snapshot => {
-                this.datapacket = snapshot.data()
-                this.name = this.datapacket.firstName + " " + this.datapacket.lastName
-                this.subjects = this.datapacket.subjects
-                this.level = this.datapacket.level
-                this.rate = this.datapacket.rates  
-            });
-            
-        
-        },
-        submitBtn: function() {
-            this.error=false;
-            console.log(this.form)
-            for (let value of Object.values(this.form)) {
-                console.log(value)
-                if (value == null) {
-                    this.error=true;
-                }
-            }
-            
-            if (this.error==false) {
-                var id = this.$route.params.tutorid;
-                firebaseApp.firestore().collection('users').doc(id)
-                    .collection('applicationsNew').add(
-                        this.form
-                );
-                alert("Application Submitted");
-                this.$router.push({path:'/homeStudent/:uid'})
+    submitBtn: function () {
+      this.error = false;
+      console.log(this.form);
+      for (let value of Object.values(this.form)) {
+        console.log(value);
+        if (value == null) {
+          this.error = true;
+        }
+      }
 
-            }
-            
-        }, 
-        resetBtn() {
-            this.errorMessages = []
-            this.formHasErrors = false
-
-            Object.keys(this.form).forEach(f => {
-                this.$refs[f].reset()
-            })
-        }
-    },
-    props: {
-      tutorid: {
-        type: String
+      if (this.error == false) {
+        var id = this.$route.params.tutorid;
+        firebaseApp
+          .firestore()
+          .collection("users")
+          .doc(id)
+          .collection("applicationsNew")
+          .add(this.form);
+        alert("Application Submitted");
+        this.$router.push({ path: "/homeStudent/:uid" });
       }
     },
-    created () {
-      this.fetchItems()    
-    }
-}
+    resetBtn() {
+      this.errorMessages = [];
+      this.formHasErrors = false;
+
+      Object.keys(this.form).forEach((f) => {
+        this.$refs[f].reset();
+      });
+    },
+  },
+  props: {
+    tutorid: {
+      type: String,
+    },
+  },
+  created() {
+    this.fetchItems();
+  },
+};
 </script>
 
 <style>
@@ -153,17 +164,26 @@ export default {
   display: flex;
   flex-direction: row;
 }
-.v-btn { width: 100px; }
+.v-btn {
+  width: 100px;
+}
 .p-1 {
   padding: 10px;
 }
 
-.v-text-field{
-    height: 100px;
+.v-text-field {
+  height: 100px;
 }
 
 h1 {
-    margin-left: 30px;
+  margin-left: 30px;
 }
 
+.theme--light.v-btn.v-btn--has-bg {
+    background-color: #388087;
+}
+
+.theme--light.v-btn {
+    color: white;
+}
 </style>

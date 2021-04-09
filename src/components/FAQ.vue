@@ -1,5 +1,5 @@
 <template>
-  <div id="whole" class="float-container">
+  <div class="float-container">
     <div id="faqright">
       <p id="other">Other burning questions unanswered?</p>
       <router-link id="contactlinkfaq" to="/ContactUs" exact
@@ -7,7 +7,7 @@
       >
     </div>
     <Header></Header>
-    <div id="title">Frequently Asked Questions</div>
+    <h1>Frequently Asked Questions</h1>
     <div id="questions">
       <h3 id="q">How does this platform work?</h3>
       <p id="a">
@@ -39,10 +39,18 @@ export default {
 </script>
 
 <style>
+
+h1{
+  font-family: Amiri;
+font-style: normal;
+font-weight: bold;
+font-size: 36px;
+line-height: 63px;
+}
 .float-container {
   border: 3px solid #fff;
   padding: 10px;
-  background-color: #e0e0e0;
+  background-color: #FFFFFF;
   overflow: hidden;
   height: 100vh;
 }
@@ -53,8 +61,24 @@ export default {
   text-align: center;
   vertical-align: middle;
   height: 100%;
-  background-color: black;
+  background-color: #BADFE7;
 }
+
+#q{
+  color: white;
+  font-family: Roboto;
+font-style: normal;
+
+}
+
+#a{
+  color: white;
+  font-family: Roboto;
+font-style: normal;
+
+
+}
+
 
 #questions {
   width: 70%;
@@ -64,12 +88,19 @@ export default {
   text-align: center;
   vertical-align: middle;
   height: 100%;
-  background-color: grey;
+  background-color: #6FB3B8;
   border-radius: 25px;
 }
 
 #other {
   color: white;
+  top: 240px;
+  position: relative;
+  font-family: Roboto;
+font-style: normal;
+font-weight: bold;
+font-size: 24px;
+line-height: 28px;
 }
 
 #contactlinkfaq:hover {
@@ -79,5 +110,13 @@ export default {
 #contactlinkfaq {
   text-decoration: none;
   color: white;
+  text-align: center;
+  top: 250px;
+  position: relative;
+  font-family: Roboto;
+font-style: normal;
+font-weight: bold;
+font-size: 24px;
+line-height: 28px;
 }
 </style>

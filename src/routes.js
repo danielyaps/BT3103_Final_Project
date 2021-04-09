@@ -21,13 +21,12 @@ export default [
     { path: '/contactus', component: ContactUs},
     { path: '/faq', component: FAQ},
     { path: '/homeTutor/:uid', name:'homeTutor', component: HomeTutor, props:true},
-    { path: '/chatTutor', component: ChatTutor},
+    { path: '/chatTutor/:uid', name:'chatTutor', component: ChatTutor,props:true},
     { path: '/homeStudent/:uid', name:'homeStudent', component: HomeStudent, props:true},
     { name: 'tutorDetails', path: '/tutorDetails', component: TutorDetails, props:true},
     { path: '/profile/:uid', name:'profile', component: Profile, props:true},
-    { path: '/leaveReview', component: LeaveReview},
     { name: 'applyNow', path: '/applyNow', component: ApplyNow},
-    { path: '/schedule', component: Schedule}
+    { path: '/schedule', component: Schedule},
     { name: 'studentApp', path: '/studentapp', component: StudentApp},
     { path: '/leaveReview/:uid', name: 'leaveReview', component: LeaveReview},
 ]

@@ -2,9 +2,13 @@
 <div>
     <Header></Header>
     <MenuBarStudents v-bind:uid="uid"></MenuBarStudents>
-    <p style="font-size: 50px; text-align: center; color: #C6C6C6">CLASSY AND FABULOUS TUTORS</p>
-    <p style="font-size: 30px; color: #C6C6C6; padding-left: 20px; padding-top: 50px">Find Your Tutor Now!</p> <br>
-    <div style="background-color: #E2E2E2; min-height: 600px">
+    <p style="font-size: 50px; text-align: center; color: #388087">CLASSY AND FABULOUS TUTORS</p>
+    <p style="font-size: 30px; color: #388087; padding-left: 20px; padding-top: 50px; font-family: Roboto;
+font-style: normal;
+font-weight: bold;
+font-size: 40px;
+line-height: 56px;">Find Your Tutor Now!</p> <br>
+    <div style="background-color: #388087; min-height: 600px">
         <ul id="un">
             <li id="boxed" v-for="tutor of tutors" v-bind:key="tutor.id" v-on:click="tutorDetails(tutor.id)">
                 <ol style="list-style-type: none">
@@ -86,7 +90,7 @@ ul {
     flex-basis: 300px;
     text-align: center;
     padding: 10px;
-    background-color: #C2C2C2;
+    background-color: #F6F6F2;
     margin: 10px;
 }
 </style>
