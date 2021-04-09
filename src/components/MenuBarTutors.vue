@@ -5,7 +5,7 @@
     <router-link :to="{ name: 'profile', params: { uid: uid, type: 'Tutor' }}">My Profile</router-link>
     <a href="#">Chats</a>
     <a href="#">Schedule</a>
-    <a href="#">Reviews</a>
+    <router-link :to="{ name: 'reviews', params: { uid: uid }}">Reviews</router-link>
     </div>
     <span style="font-size:30px; cursor:pointer; color: #388087" v-on:click="openNav">&#9776; Menu</span>
 </div>
