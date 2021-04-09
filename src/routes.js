@@ -11,6 +11,7 @@ import Profile from './components/Profile'
 import ApplyNow from './components/ApplyNow'
 import LeaveReview from './components/LeaveReview'
 import StudentApp from './components/StudentApp'
+import Reviews from './components/Reviews'
 
 
 export default [
@@ -27,6 +28,7 @@ export default [
     { name: 'applyNow', path: '/applyNow', component: ApplyNow},
     { name: 'studentApp', path: '/studentapp', component: StudentApp},
     { path: '/leaveReview/:uid', name: 'leaveReview', component: LeaveReview},
+    { path: '/reviews/:uid', name: 'reviews', component: Reviews, props:true}
 ]
 
 
