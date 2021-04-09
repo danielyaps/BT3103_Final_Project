@@ -45,6 +45,7 @@ export default {
     },
     data () {
       return {
+        uid: this.$route.params.uid,
         name: "",
         reviews: [],
         tutor_id: "",
@@ -74,7 +75,7 @@ export default {
       },
       applyBtn: function() {
         console.log(this.tutor_id)
-        this.$router.push({name:'applyNow', params: {tutorid: this.tutor_id}, props: true})
+        this.$router.push({name:'applyNow', params: {tutorid: this.tutor_id, uid : this.uid}, props: true})
       }
     },
     props: {

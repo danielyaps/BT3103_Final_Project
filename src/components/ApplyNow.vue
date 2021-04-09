@@ -7,38 +7,41 @@
     <v-container grid-list-md text-md-center fluid fill-height>
         <v-col fluid>
         <v-card elevation="2" fluid outlined tile>
-            <v-card-text>
+            <v-card-text class="text-left">
             <h4>Subject:</h4>
-            <v-text-field placeholder="Subject" v-model="details.subjectA"></v-text-field>
+            <v-text-field placeholder="Subject" v-model="subjectA"></v-text-field>
             <h4>Day:</h4>
-            <v-autocomplete ref="day" :items="days" v-model="details.dayA"
+            <v-autocomplete ref="day" :items="days" v-model="dayA"
               label="Day" required solo-inverted></v-autocomplete>
             <h4>Time:</h4>
             <div class="oye-timepicker">
             
                 <div class="p-1">
-                    <select v-model="oyeHour" name="" id="">
-                        <option  v-for="n in 12" :value="n" :key="n">{{n}}</option>
-                    </select>
+                    <v-text-field v-model="startHr" name="" id="" type="number"></v-text-field>
                 </div>
                 <div class="p-1">:</div>
                 <div class="p-1">
-                    <select name="" v-model="oyeMin" id="">
-                        <option  v-for="n in 60" :value="n" :key="n">{{n}}</option>
-                    </select>
+                    <v-text-field name="" v-model="startMin" id="" type="number"></v-text-field>
                 </div> 
 
                 <div class="p-1">
-                    <select v-model="oyePeriod" name="" id="">
-                        <option  value="am" >AM</option>
-                        <option value="pm" >PM</option>
-                    </select>
+                    <v-select :items="AP" label="Solo field" dense solo v-model="startP" autowidth></v-select>
                 </div>
-            </div><br>
+            </div>
+            <h4>Duration:</h4>
+            <v-text-field placeholder="Duration (hours) " v-model="durationA" type="number" suffix="hours"></v-text-field>
+
             <h4>Location:</h4>
-            <v-text-field placeholder="Location" v-model="details.locationA"></v-text-field>
-            <v-btn v-on:click="submitBtn()">Submit</v-btn>
+            <v-text-field placeholder="Location" v-model="locationA"></v-text-field>
+            <v-alert v-if="this.error" dense border="left" type="warning">One or more fields missing</v-alert>
+
             </v-card-text>
+            <v-card-actions>
+
+                <v-btn to="" left>Cancel</v-btn>
+                <v-btn v-on:click="submitBtn()" right position: absolute>Submit</v-btn>
+                
+            </v-card-actions>
         </v-card>
         </v-col>
         </v-container>
@@ -58,26 +61,41 @@ export default {
     },
     data() {
         return {
-            uid: "",
-            details: [{
-                subjectA: "",
-                dayA: "",
-                locationA: "",
-            }], 
-            
+            uid: this.$route.params.uid,
+            tutor_id: "",
+            subjectA: null,
+            dayA: null,
+            locationA: null,
+            durationA: null,
+            AP: ["AM", "PM"],
             datapacket: [],
-            oyePeriod: "",
-            oyeMin: "",
-            oyeHour:"",
+            startP: "",
+            startMin: "",
+            startHr:"",
             name: "",
-            days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday','Sunday']
+            days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday','Sunday'],
+            formHasErrors: false,
+            error: false,
         }
     }, 
+    computed: {
+        form() {
+            return {
+                subjectA: this.subjectA,
+                dayA: this.dayA,
+                locationA: this.locationA,
+                startHr: this.startHr,
+                startMin: this.startMin,
+                startP: this.startP,
+                durationA: this.durationA,
+            }
+        }
+    },
     methods: {
         fetchItems: function() {
             var id = this.$route.params.tutorid;
-            this.uid = id
-            console.log(id)
+            this.tutor_id = id
+            console.log(this.tutor_id)
             firebaseApp.firestore().collection('users').doc(id).get().then(snapshot => {
                 this.datapacket = snapshot.data()
                 this.name = this.datapacket.firstName + " " + this.datapacket.lastName
@@ -89,12 +107,35 @@ export default {
         
         },
         submitBtn: function() {
-            var id = this.$route.params.tutorid;
-            firebaseApp.firestore().collection('users').doc(id)
-                .collection('applicationsNew').add(
-                    this.details
-                )
+            this.error=false;
+            console.log(this.form)
+            for (let value of Object.values(this.form)) {
+                console.log(value)
+                if (value == null) {
+                    this.error=true;
+                }
+            }
+            
+            if (this.error==false) {
+                var id = this.$route.params.tutorid;
+                firebaseApp.firestore().collection('users').doc(id)
+                    .collection('applicationsNew').add(
+                        this.form
+                );
+                alert("Application Submitted");
+                this.$router.push({path:'/homeStudent/:uid'})
+
+            }
+            
         }, 
+        resetBtn() {
+            this.errorMessages = []
+            this.formHasErrors = false
+
+            Object.keys(this.form).forEach(f => {
+                this.$refs[f].reset()
+            })
+        }
     },
     props: {
       tutorid: {
@@ -112,7 +153,7 @@ export default {
   display: flex;
   flex-direction: row;
 }
-
+.v-btn { width: 100px; }
 .p-1 {
   padding: 10px;
 }
