@@ -23,16 +23,15 @@
         name="review"
         rows="5"
         cols="40"
+        required
       ></textarea
       ><br /><br />
       <div id="b">
         <button
           type="submit"
-          value="Submit"
           v-on:click.prevent="complete(tutorUsername, stars, review)"
-        >
-          Submit
-        </button>
+          style="color: white"
+        > Submit </button>
         <button id="cancelb" v-on:click="cancel()">Cancel</button>
       </div>
     </form>
@@ -63,15 +62,36 @@ export default {
     },
 
     complete: function(tutor, stars, review) {
-      const rating = {Stars: stars, Review: review}
-      firebaseApp.firestore().collection('users').where('username', '==', this.tutorUsername).get().then(snapshot => {
-        snapshot.docs.forEach(doc => {
-          rating.tutorId = doc.id
-          rating.studentId = this.uid;
-          console.log(rating)
-          firebaseApp.firestore().collection('users').doc(rating.tutorId).collection('reviews').add(rating)
+      if (tutor == "" || stars == 0 || review == "") {
+        alert("Incomplete Submission")
+      } else {
+        alert("Submitted")
+        const rating = {Stars: stars, Review: review}
+        firebaseApp.firestore().collection('users').where('username', '==', this.tutorUsername).get().then(snapshot => {
+          snapshot.docs.forEach(doc => {
+            var tutorId = doc.id
+            var studentId = this.uid;
+            var storageRef = firebaseApp.storage().ref();
+            storageRef.child('images/' + studentId).getDownloadURL()
+              .then((url) => {
+                var photo = url
+                return photo
+              }).then((photo) => {
+                rating.photo = photo
+                firebaseApp.firestore().collection('users').doc(studentId).get().then((docRef) => {
+                  rating.studentName = docRef.data().username
+                  return rating
+                }).then((rating) => {
+                  console.log(rating)
+                  firebaseApp.firestore().collection('users').doc(tutorId).collection('reviews').add(rating)
+                }).then(setTimeout(function () {
+                        location.reload()
+                    }, 3000));
+              })
+          })
         })
-      })
+
+      }
     },
 
     cancel: function () {
