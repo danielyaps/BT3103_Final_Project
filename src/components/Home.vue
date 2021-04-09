@@ -1,6 +1,6 @@
 <template>
 <div>
-<Header></Header>
+<Header v-bind:color="color"></Header>
 <body>
 <div class="imageContainer"> 
     <img id="tutorImg">
@@ -46,6 +46,11 @@ import Header from './Header.vue'
     components: {
         'Header': Header
     },
+    data() {
+        return {
+            color: "white",
+        };
+    },
  }
 </script>
 
@@ -74,4 +79,5 @@ import Header from './Header.vue'
         transform: translate(-50%, -50%);
         color: white;
     }
+
 </style>
