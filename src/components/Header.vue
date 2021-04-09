@@ -15,7 +15,7 @@
         <li><router-link :class='{"white": color === "white", "black": color === "black"}' to="/ContactUs" exact>Contact Us</router-link></li>
         <li><router-link :class='{"white": color === "white", "black": color === "black"}' to="/FAQ" exact>FAQ</router-link></li>
     </ul>   
-    <button id="login" v-on:click="goLogin()">Login?</button> 
+    <button v-show="!loginPage" id="login" v-on:click="goLogin()">Login?</button> 
     </div>
     
     
@@ -31,6 +31,10 @@ export default {
         color: {
             type: String,
             default: 'black',
+        },
+        loginPage: {
+            type: Boolean,
+            default: false,
         }
     },
     data() {

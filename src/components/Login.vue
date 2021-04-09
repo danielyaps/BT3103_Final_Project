@@ -1,6 +1,6 @@
 <template>
 <div id = "whole">
-    <Header id="header"></Header>
+    <Header v-bind:loginPage="true"></Header>
     <div class="container">
 
         <div class="left">
