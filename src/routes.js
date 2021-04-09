@@ -12,6 +12,7 @@ import ApplyNow from './components/ApplyNow'
 import LeaveReview from './components/LeaveReview'
 import Schedule from './components/Schedule'
 import StudentApp from './components/StudentApp'
+import Reviews from './components/Reviews'
 
 
 export default [
@@ -29,6 +30,7 @@ export default [
     { path: '/schedule', component: Schedule},
     { name: 'studentApp', path: '/studentapp', component: StudentApp},
     { path: '/leaveReview/:uid', name: 'leaveReview', component: LeaveReview},
+    { path: '/reviews/:uid', name: 'reviews', component: Reviews, props:true}
 ]
 
 
