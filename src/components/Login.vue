@@ -94,11 +94,13 @@ export default {
   left: 0;
   height: 100vh;
   width: 100vh;
+  text-align: center;
   align-items: center;
 }
 .left {
   flex: 2;
   align-items: center;
+  text-align: center;
   width: 100vh;
 }
 #email,
