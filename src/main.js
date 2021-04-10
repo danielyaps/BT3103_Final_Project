@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 import Routes from './routes.js'
 import axios from "axios"
 import vuetify from './plugins/vuetify'
+import VueTextareaAutosize from 'vue-textarea-autosize'
 
 //register globally
 import Home from './components/Home'
@@ -14,6 +15,7 @@ import SignUp from './components/SignUp'
 Vue.config.productionTip = false
 Vue.prototype.$axios = axios;
 Vue.use(VueRouter)
+Vue.use(VueTextareaAutosize)
 Vue.component('home', Home)
 Vue.component('login', Login)
 Vue.component('SignUp', SignUp)
