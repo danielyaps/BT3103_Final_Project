@@ -12,8 +12,8 @@
 
     <div id="chatbox">
       <ol>
-        <li v-for="message in messages" v-bind:key="message.content" id="messageDesign">
-          {{message.content}}
+        <li v-for="message in messages" v-bind:key="message.content">
+          <span class="messageDesign">{{message.content}}</span>
         </li>
       </ol>
     </div>
@@ -156,12 +156,15 @@ export default {
   left: 20px;
 }
 
-#messageDesign {
+.messageDesign {
   list-style-type: none;
   position: relative;
-  margin: 20px;
+  margin: 10px;
   color: white;
-  background-color: #388087
+  background-color: #388087;
+  padding: 10px;
+  border-radius: 35px;
+  max-width: 50%;
 }
 
 </style>
