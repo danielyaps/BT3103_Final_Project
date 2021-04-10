@@ -1,15 +1,13 @@
 <template>
-  <div id="whole" class="float-container">
+  <div class="float-container">
     <div id="faqright">
-      <div> 
-        <p id="other">Other burning questions unanswered?</p>
-        <router-link id="contactlink" to="/ContactUs" exact
-          >Click here to contact us now!</router-link
-        >
-      </div>
+      <p id="other">Other burning questions unanswered?</p>
+      <router-link id="contactlinkfaq" to="/ContactUs" exact
+        >Click here to contact us now!</router-link
+      >
     </div>
     <Header></Header>
-    <div id="title">Frequently Asked Questions</div>
+    <h1>Frequently Asked Questions</h1>
     <div id="questions">
       <h3 id="q">How does this platform work?</h3>
       <p id="a">
@@ -19,6 +17,7 @@
         for them. Our site also allows students to review the tutors, allowing
         future students to find tutors better suited for them.
       </p>
+      <br />
       <h3 id="q">Do we make payment for lessons through this site?</h3>
       <p id="a">
         At the moment, Classy Tutors are not accepting any payment through this
@@ -26,26 +25,32 @@
         users.
       </p>
     </div>
-
   </div>
 </template>
 
 <script>
-import Header from "./Header.vue"
+import Header from "./Header.vue";
 
-export default{
-  components:{
-    Header
-  }
-}
+export default {
+  components: {
+    Header,
+  },
+};
 </script>
 
 <style>
 
+h1{
+  font-family: Amiri;
+font-style: normal;
+font-weight: bold;
+font-size: 36px;
+line-height: 63px;
+}
 .float-container {
   border: 3px solid #fff;
   padding: 10px;
-  background-color: #e0e0e0;
+  background-color: #FFFFFF;
   overflow: hidden;
   height: 100vh;
 }
@@ -56,8 +61,24 @@ export default{
   text-align: center;
   vertical-align: middle;
   height: 100%;
-  background-color: black;
+  background-color: #BADFE7;
 }
+
+#q{
+  color: white;
+  font-family: Roboto;
+font-style: normal;
+
+}
+
+#a{
+  color: white;
+  font-family: Roboto;
+font-style: normal;
+
+
+}
+
 
 #questions {
   width: 70%;
@@ -67,21 +88,35 @@ export default{
   text-align: center;
   vertical-align: middle;
   height: 100%;
-  background-color:grey;
+  background-color: #6FB3B8;
   border-radius: 25px;
-
 }
 
-#other{
+#other {
   color: white;
+  top: 240px;
+  position: relative;
+  font-family: Roboto;
+font-style: normal;
+font-weight: bold;
+font-size: 24px;
+line-height: 28px;
 }
 
-#contactlink:hover {
+#contactlinkfaq:hover {
   color: lightskyblue;
 }
 
-#contactlink {
+#contactlinkfaq {
   text-decoration: none;
   color: white;
+  text-align: center;
+  top: 250px;
+  position: relative;
+  font-family: Roboto;
+font-style: normal;
+font-weight: bold;
+font-size: 24px;
+line-height: 28px;
 }
 </style>

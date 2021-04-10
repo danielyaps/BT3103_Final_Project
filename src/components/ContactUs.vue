@@ -1,11 +1,12 @@
 <template>
-  <div id="whole" class="float-container">
+  <div>
     <Header></Header>
 
-    <div id="title">Contact Us!</div>
+    <h1>Contact Us!</h1>
     <br /><br /><br />
     <form id="inputs">
       <input
+      id="inputboxname"
         placeholder="Name"
         type="text"
         v-model.lazy.trim="inputname"
@@ -13,6 +14,7 @@
       />
 
       <input
+      id="inputboxemail"
         placeholder="Email"
         type="email"
         v-model.lazy.trim="inputemail"
@@ -27,15 +29,14 @@
         cols="40"
       ></textarea
       ><br /><br />
-      <div id="b">
         <button
+        id="submitbtn"
           type="submit"
           value="Submit"
           v-on:click="complete(inputname, inputemail, inputmsg)"
         >
           Submit
         </button>
-      </div>
     </form>
   </div>
 </template>
@@ -73,16 +74,16 @@ export default {
   left: 100px;
 }
 
-#title {
+h1 {
   font-weight: 900;
   font-size: 70px;
-  color: dimgrey;
+  color: #388087;
   position: relative;
   left: 100px;
 }
 
-input[type="text"] {
-  background-color: white;
+#inputboxname {
+  background-color: #6FB3B8;
   border: none;
   border-bottom: 2px solid #888888;
   height: 20px;
@@ -91,8 +92,8 @@ input[type="text"] {
   padding: 5px;
 }
 
-input[type="email"] {
-  background-color: white;
+#inputboxemail{
+  background-color: #6FB3B8;
   border: none;
   border-bottom: 2px solid #888888;
   height: 20px;
@@ -101,10 +102,11 @@ input[type="email"] {
   padding: 5px;
   position: relative;
   left: 20px;
+  color: white;
 }
 
 #msgbox {
-  background-color: white;
+  background-color: #6FB3B8;
   border: none;
   border-bottom: 2px solid #888888;
   height: 200px;
@@ -112,8 +114,8 @@ input[type="email"] {
   width: 400px;
 }
 
-button {
-  background-color: dimgray;
+#submitbtn {
+  background-color: #388087;
   color: white;
   border-radius: 4px;
   width: 130px;
@@ -123,8 +125,5 @@ button {
   font-family: Roboto;
 }
 
-#b {
-  position: relative;
-  left: 100px;
-}
+
 </style>

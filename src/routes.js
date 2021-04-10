@@ -10,6 +10,7 @@ import TutorDetails from './components/TutorDetails'
 import Profile from './components/Profile'
 import ApplyNow from './components/ApplyNow'
 import LeaveReview from './components/LeaveReview'
+import Schedule from './components/Schedule'
 import StudentApp from './components/StudentApp'
 import Reviews from './components/Reviews'
 
@@ -21,11 +22,12 @@ export default [
     { path: '/contactus', component: ContactUs},
     { path: '/faq', component: FAQ},
     { path: '/homeTutor/:uid', name:'homeTutor', component: HomeTutor, props:true},
-    { path: '/chatTutor', component: ChatTutor},
+    { path: '/chatTutor/:uid', name:'chatTutor', component: ChatTutor,props:true},
     { path: '/homeStudent/:uid', name:'homeStudent', component: HomeStudent, props:true},
     { name: 'tutorDetails', path: '/tutorDetails', component: TutorDetails, props:true},
     { path: '/profile/:uid', name:'profile', component: Profile, props:true},
     { name: 'applyNow', path: '/applyNow', component: ApplyNow},
+    { path: '/schedule', component: Schedule},
     { name: 'studentApp', path: '/studentapp', component: StudentApp},
     { path: '/leaveReview/:uid', name: 'leaveReview', component: LeaveReview},
     { path: '/reviews/:uid', name: 'reviews', component: Reviews, props:true}

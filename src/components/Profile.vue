@@ -171,7 +171,7 @@ export default {
 .page {
     position: fixed;
     overflow-y:scroll;
-    background-color: #E8E8E8;
+    background-color: white;
     text-align: center;
     color: #888888;
     font-family: Roboto;
@@ -179,7 +179,6 @@ export default {
     width: 100vw;
     height: 100vh;
 }
-
 
 .image-upload>input {
     display: none;
@@ -211,7 +210,7 @@ input[type=radio] {
 }
 
 input[type=text],input[type=password] {
-    background-color: #E8E8E8;
+    background-color: white;
     border: none;
     border-bottom: 2px solid #888888;
     padding:18px;
@@ -223,7 +222,7 @@ input[type=text],input[type=password] {
 }
 
 #email {
-    background-color: #E8E8E8;
+    background-color: white;
     border: none;
     border-bottom: 2px solid #888888;
     padding:18px;
@@ -235,7 +234,7 @@ input[type=text],input[type=password] {
 }
 
 #fname, #lname {
-    background-color: #E8E8E8;
+    background-color: white;
     border: none;
     border-bottom: 2px solid #888888;
     padding:18px;
@@ -246,13 +245,14 @@ input[type=text],input[type=password] {
 }
 
 textarea {
-    background-color: white;
+    background-color: #6FB3B8;
     font-size:14px;
     font-family: Roboto;
+    border-radius: 15px;
 }
 
 button{
-    background-color: #60C1EA;
+    background-color: #388087;
     color: white;
     border-radius: 4px;
     width: 130px;

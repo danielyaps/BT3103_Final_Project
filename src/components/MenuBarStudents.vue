@@ -6,7 +6,7 @@
     <a href="#">Chats</a>
     <router-link :to="{ name: 'leaveReview', params: { uid: uid }}">Leave A Review</router-link>
     </div>
-    <span style="font-size:30px; cursor:pointer; color: white" v-on:click="openNav">&#9776; Menu</span>
+    <span style="font-size:30px; cursor:pointer; color: #388087" v-on:click="openNav">&#9776; Menu</span>
 </div>
 </template>
 
@@ -37,7 +37,7 @@ export default {
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: #111;
+  background-color: #388087;
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 60px;
@@ -50,6 +50,10 @@ export default {
   color: white;
   display: block;
   transition: 0.3s;
+}
+
+.sidenav a:hover{
+  background-color:#6FB3B8 ;
 }
 
 .sidenav a:hover {
