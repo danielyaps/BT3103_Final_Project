@@ -159,7 +159,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .oye-timepicker {
   display: flex;
   flex-direction: row;

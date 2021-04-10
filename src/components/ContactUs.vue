@@ -68,7 +68,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 #inputs {
   position: relative;
   left: 100px;
