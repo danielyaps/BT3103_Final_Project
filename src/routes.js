@@ -4,7 +4,7 @@ import SignUp from './components/SignUp'
 import ContactUs from './components/ContactUs'
 import FAQ from './components/FAQ'
 import HomeTutor from './components/HomeTutor'
-import ChatTutor from './components/ChatTutor'
+import Chat from './components/Chat'
 import HomeStudent from './components/HomeStudent'
 import TutorDetails from './components/TutorDetails'
 import Profile from './components/Profile'
@@ -22,9 +22,9 @@ export default [
     { path: '/contactus', component: ContactUs},
     { path: '/faq', component: FAQ},
     { path: '/homeTutor/:uid', name:'homeTutor', component: HomeTutor, props:true},
-    { path: '/chatTutor/:uid', name:'chatTutor', component: ChatTutor,props:true},
+    { path: '/chat/:uid', name:'chat', component: Chat, props:true},
     { path: '/homeStudent/:uid', name:'homeStudent', component: HomeStudent, props:true},
-    { name: 'tutorDetails', path: '/tutorDetails', component: TutorDetails, props:true},
+    { path: '/tutorDetails/:uid', name: 'tutorDetails', component: TutorDetails, props:true},
     { path: '/profile/:uid', name:'profile', component: Profile, props:true},
     { name: 'applyNow', path: '/applyNow', component: ApplyNow},
     { path: '/schedule', component: Schedule},

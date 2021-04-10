@@ -67,7 +67,7 @@ export default {
             })
         },
         tutorDetails: function(tutor_id) {
-            this.$router.push({name: "tutorDetails", params: {tutorid: tutor_id}, props: true})
+            this.$router.push({name: "tutorDetails", params: {tutorid: tutor_id, uid: this.uid}})
         }
     },
 
