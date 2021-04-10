@@ -73,13 +73,17 @@ export default {
   position: relative;
   left: 100px;
 }
+div {
+  text-align: left
+}
 
 h1 {
   font-weight: 900;
   font-size: 70px;
   color: #388087;
   position: relative;
-  left: 100px;
+  left: 70px;
+  text-align: left
 }
 
 #inputboxname {
@@ -112,6 +116,7 @@ h1 {
   height: 200px;
   font-family: Roboto;
   width: 400px;
+  color: white;
 }
 
 #submitbtn {

@@ -42,10 +42,13 @@ export default {
 
 h1{
   font-family: Amiri;
-font-style: normal;
-font-weight: bold;
-font-size: 36px;
-line-height: 63px;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 63px;
+  left: 0px;
+  text-align: left
+
 }
 .float-container {
   border: 3px solid #fff;
@@ -67,18 +70,14 @@ line-height: 63px;
 #q{
   color: white;
   font-family: Roboto;
-font-style: normal;
-
+  font-style: normal;
 }
 
 #a{
   color: white;
   font-family: Roboto;
-font-style: normal;
-
-
+  font-style: normal;
 }
-
 
 #questions {
   width: 70%;
@@ -87,7 +86,7 @@ font-style: normal;
   margin-right: 20px;
   text-align: center;
   vertical-align: middle;
-  height: 100%;
+  height: 80%;
   background-color: #6FB3B8;
   border-radius: 25px;
 }

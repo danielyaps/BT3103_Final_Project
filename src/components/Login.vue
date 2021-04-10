@@ -99,7 +99,6 @@ export default {
 .left {
   flex: 2;
   align-items: center;
-  text-align: center;
   width: 100vh;
 }
 #email,
@@ -126,9 +125,12 @@ export default {
   text-align: center;
   color: white;
 }
-h1,
+h1 {
+  text-align: center;
+}
 h2 {
   color: #388087;
+  text-align: center;
 }
 #loginBtn {
   position: "absolute";
@@ -139,7 +141,7 @@ h2 {
 }
 #gotoBtn {
   border-radius: 10px;
-  border: 2px solid white;
+  background-color: #388087;
 }
 #pinkBox {
   background-color: #6fb3b8;

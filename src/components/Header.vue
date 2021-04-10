@@ -10,8 +10,7 @@
             >
           </li>
           <li>
-            <router-link
-              
+            <router-link 
               to="/ContactUs"
               exact
               >Contact Us</router-link
@@ -53,7 +52,7 @@
             >
           </li>
         </ul>
-        <button id="login" v-on:click="goLogin()">Login?</button>
+        <v-btn id="login" v-on:click="goLogin()">Login?</v-btn>
       </div>
     </nav>
   </div>
@@ -143,7 +142,7 @@ li {
   right: 10px;
   top: 14px;
   text-align: center;
-  background-color: 388087;
+  background-color: #388087;
   color: white;
   font-size: 14px;
   border-radius: 5px;
@@ -157,6 +156,7 @@ a {
   text-decoration: none;
   color: #767676;
 }
+
 </style>
 
 
