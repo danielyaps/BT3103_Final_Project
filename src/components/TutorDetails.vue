@@ -11,7 +11,7 @@
                   v-bind:src="imgSrc"
                   position="center"
                 ></v-img>
-            <v-btn block>Chat</v-btn>
+            <v-btn v-on:click="chatBtn()" block>Chat</v-btn>
             <v-btn v-on:click="applyBtn()" block>Apply Now!</v-btn>
           </v-card>
     </v-col>
@@ -76,6 +76,9 @@ export default {
       applyBtn: function() {
         console.log(this.tutor_id)
         this.$router.push({name:'applyNow', params: {tutorid: this.tutor_id, uid : this.uid}, props: true})
+      },
+      chatBtn: function() {
+        this.$router.push({name: 'chat', params: {uid: this.uid, otherId: this.tutor_id}, props: true})
       }
     },
     props: {
