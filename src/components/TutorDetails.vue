@@ -103,7 +103,7 @@ export default {
     chatBtn: function () {
       this.$router.push({
         name: "chat",
-        params: { uid: this.uid, otherId: this.tutor_id },
+        params: { uid: this.uid, otherid: this.tutor_id },
         props: true,
       });
     },
