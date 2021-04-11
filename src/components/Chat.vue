@@ -14,15 +14,12 @@
     </div>
 
     <div id="chatbox">
-      <ol>
-        <li
-          v-for="message in messages"
-          v-bind:key="message.content"
-          style="text-align: left"
-        >
-          <span class="messageDesign">{{ message.content }}</span>
+      <ul>
+        <li v-for="message in messages" v-bind:key="message.content" v-bind:class="{alignRight: message.myself}">
+          <span v-bind:class="message.myself ? 'senderMessageDesign' : 'recipientMessageDesign'">{{message.content}}</span>
+          <span style="color: white; font-size: 10px">{{message.timestamp.day}}/{{message.timestamp.month}}/{{message.timestamp.year}}, {{message.timestamp.hours}}:{{message.timestamp.minutes}}</span>
         </li>
-      </ol>
+      </ul>
     </div>
 
     <div id="inputMsgContainer">
@@ -52,7 +49,7 @@ export default {
   data() {
     return {
       uid: this.$route.params.uid,
-      otherId: this.$route.params.otherId,
+      otherId: this.$route.params.otherid,
       inputmsg: "",
       textAreaValue: "",
       messages: [],
@@ -62,108 +59,54 @@ export default {
   },
 
   methods: {
-    fetchItems: function () {
-      firebaseApp
-        .firestore()
-        .collection("users")
-        .doc(this.uid)
-        .collection("chats")
-        .where("otherID", "==", this.otherId)
-        .limit(1)
-        .onSnapshot((snapshot) => {
-          const thing = snapshot.docs[0];
-          if (typeof thing != "undefined") {
-            console.log(thing.data().messages);
-            this.messages = thing.data().messages;
-          }
-        });
-
-      var storageRef = firebaseApp.storage().ref();
-      storageRef
-        .child("images/" + this.uid)
-        .getDownloadURL()
-        .then((url) => {
-          this.image = url;
-          console.log(this.image);
-        });
-
-      firebaseApp
-        .firestore()
-        .collection("users")
-        .doc(this.uid)
-        .get()
-        .then((snapshot) => {
-          this.datapacket = snapshot.data();
-          this.name =
-            this.datapacket.firstName + " " + this.datapacket.lastName;
-        });
+    fetchItems: function() {
+      console.log(this.uid)
+      console.log(this.otherId)
+      firebaseApp.firestore().collection('users').doc(this.uid).collection('chats').where('otherID', '==', this.otherId).limit(1).onSnapshot(snapshot => {
+        const thing = snapshot.docs[0]
+        if (typeof thing != "undefined") {
+          this.messages = thing.data().messages
+        }
+      })
     },
 
-    sendMsg: function () {
-      let msg = {};
-      msg.content = this.textAreaValue;
-      msg.myself = true;
-      var date = new Date();
-      msg.timestamp = {
-        year: date.getFullYear(),
-        month: date.getMonth() + 1,
-        day: date.getDate(),
-        hours: date.getHours(),
-        minutes: date.getMinutes(),
-      };
-      this.messages.push(msg);
-      firebaseApp
-        .firestore()
-        .collection("users")
-        .doc(this.uid)
-        .collection("chats")
-        .where("otherID", "==", this.otherId)
-        .limit(1)
-        .get()
-        .then((snapshot) => {
-          const thing = snapshot.docs[0];
-          if (typeof thing == "undefined") {
-            let chatt = {};
-            chatt.messages = this.messages;
-            chatt.otherID = this.otherId;
-            firebaseApp
-              .firestore()
-              .collection("users")
-              .doc(this.uid)
-              .collection("chats")
-              .add(chatt);
-          } else {
-            thing.ref.update({ messages: this.messages });
-          }
-        });
+    sendMsg: function() {
+      let msg = {}
+      msg.content = this.textAreaValue
+      msg.myself = true
+      var date = new Date()
+      msg.timestamp = {year: date.getFullYear(), month: date.getMonth() + 1, day: date.getDate(), hours: date.getHours(), minutes: date.getMinutes()}
+      firebaseApp.firestore().collection('users').doc(this.uid).collection('chats').where('otherID', '==', this.otherId).limit(1).get().then(snapshot => {
+        const thing = snapshot.docs[0]
+        if (typeof thing == "undefined") {
+          let chatt = {}
+          chatt.messages = this.messages
+          chatt.otherID = this.otherId
+          firebaseApp.firestore().collection('users').doc(this.uid).collection('chats').add(chatt)
+        } else {
+          thing.ref.update({messages: this.messages})
+        }   
+      })
 
-      msg.myself = false;
-      firebaseApp
-        .firestore()
-        .collection("users")
-        .doc(this.otherId)
-        .collection("chats")
-        .where("otherID", "==", this.uid)
-        .limit(1)
-        .get()
-        .then((snapshot) => {
-          const thing = snapshot.docs[0];
-          if (typeof thing == "undefined") {
-            let chatt = {};
-            chatt.messages = this.messages;
-            chatt.otherID = this.uid;
-            firebaseApp
-              .firestore()
-              .collection("users")
-              .doc(this.otherId)
-              .collection("chats")
-              .add(chatt);
-          } else {
-            thing.ref.update({ messages: this.messages });
-          }
-        });
-      this.textAreaValue = "";
-    },
+      var Msg = Object.assign({}, msg)
+      Msg.myself = false
+      firebaseApp.firestore().collection('users').doc(this.otherId).collection('chats').where('otherID', '==', this.uid).limit(1).get().then(snapshot => {
+        const thing = snapshot.docs[0]
+        if (typeof thing == "undefined") {
+          let chatt={}
+          chatt.messages = [Msg]
+          chatt.otherID = this.uid
+          firebaseApp.firestore().collection('users').doc(this.otherId).collection('chats').add(chatt)
+        } else {
+          var Messages = thing.data().messages
+          Messages.push(Msg)
+          thing.ref.update({messages: Messages})
+        }
+      })
+
+      this.messages.push(msg)
+      this.textAreaValue = ''
+    }
   },
 
   created() {
@@ -230,13 +173,31 @@ export default {
   border-radius: 5px;
 }
 
-.messageDesign {
+.senderMessageDesign {
+  background-color: #388087;
   list-style-type: none;
   position: relative;
   color: white;
-  background-color: #388087;
   padding: 10px;
   border-radius: 35px;
   max-width: 50%;
+  margin: 10px;
+  display: inline-block;
+}
+
+.recipientMessageDesign {
+  background-color: purple;
+  list-style-type: none;
+  position: relative;
+  color: white;
+  padding: 10px;
+  border-radius: 35px;
+  max-width: 50%;
+  margin: 10px;
+  display: inline-block;
+}
+
+.alignRight {
+  text-align: right
 }
 </style>
