@@ -7,7 +7,7 @@
         
         <p class="imgTxt">View Student Applications</p>
     </div>
-    <div id="scheduleContainer">
+    <div id="scheduleContainer" v-on:click="goSchedule()">
         <p class="imgTxtS">View Your Schedule</p>
     </div>
 </div>
@@ -31,6 +31,10 @@ export default {
         goApps: function() {
             this.$router.push({name:'studentApp', params: { uid: this.uid }, props: true})
 
+        }, 
+
+        goSchedule: function(){
+            this.$router.push({name:'schedule', params: {uid: this.uid}})
         }
     }
 }
