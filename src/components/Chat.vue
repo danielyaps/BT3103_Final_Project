@@ -9,7 +9,7 @@
                 <MenuBarTutors></MenuBarTutors></div> 
     <div id="title">Chats</div>
     <div id="chatuser">
-      <img :src="this.image" />
+      <img :src="this.image" id="userimg"/>
       {{this.name}}
     </div>
 
@@ -60,14 +60,32 @@ export default {
 
   methods: {
     fetchItems: function() {
-      console.log(this.uid)
-      console.log(this.otherId)
       firebaseApp.firestore().collection('users').doc(this.uid).collection('chats').where('otherID', '==', this.otherId).limit(1).onSnapshot(snapshot => {
         const thing = snapshot.docs[0]
         if (typeof thing != "undefined") {
           this.messages = thing.data().messages
         }
       })
+
+      var storageRef = firebaseApp.storage().ref();
+      storageRef
+        .child("images/" + this.otherId)
+        .getDownloadURL()
+        .then((url) => {
+          this.image = url;
+          console.log(this.image);
+        });
+
+      firebaseApp
+        .firestore()
+        .collection("users")
+        .doc(this.otherId)
+        .get()
+        .then((snapshot) => {
+          this.datapacket = snapshot.data();
+          this.name =
+            this.datapacket.firstName + " " + this.datapacket.lastName;
+        });
     },
 
     sendMsg: function() {
@@ -143,6 +161,9 @@ export default {
   font-size: 30px;
   font-weight: bold;
   color: #388087;
+  position: relative;
+  top: 30px;
+  left: 30px;
 }
 
 #chatbox {
@@ -150,12 +171,18 @@ export default {
   border-radius: 35px;
   background-color: #6FB3B8;
   overflow: scroll;
+  position: relative;
+  top: 50px;
+  left: 50px;
+  width: 1300px;
 }
 
 #chatmsg {
   position: relative;
   float: left;
   border-style: solid;
+  top: 60px;
+  left: 50px
 }
 
 #submitb {
@@ -164,6 +191,9 @@ export default {
   height: 25px;
   width: 60px;
   border-radius: 5px;
+  left: 60px;
+  top: 75px;
+  position: relative
 }
 
 #inputMsgContainer {
