@@ -27,9 +27,9 @@
                 </v-list-item-content>
                 
                 <v-list-item-action class = "actions">
-                    <v-btn v-bind:stuid="item.id" v-on:click="confirmApp($event)">Confirm</v-btn>
+                    <v-btn id="confirmBtn" v-bind:stuid="item.id" v-on:click="confirmApp($event)">Confirm</v-btn>
                     <br>
-                    <v-btn v-bind:stuid="item.id" v-on:click="goChat($event)">Chat</v-btn>
+                    <v-btn id="chatBtn" v-bind:stuid="item.id" v-on:click="goChat($event)">Chat</v-btn>
                 </v-list-item-action>
               </v-list-item>
               
@@ -81,7 +81,7 @@ export default {
       },
       
       goChat: function(event) {
-        this.stuid = event.target.getAttribute("id");
+        this.stuid = event.target.getAttribute("stuid");
         this.$router.push({name:'chat', params: { uid: this.uid, otherid: this.stuid }, props: true})
       },
 
@@ -129,6 +129,13 @@ export default {
     .mx-auto {
         margin-left: auto;
         margin-right: auto;
+    }
+    #confirmBtn, #chatBtn {
+      position: "absolute";
+      text-align: center;
+      border-radius: 10px;
+      background-color: #388087;
+      color: white;
     }
 
 
