@@ -3,8 +3,8 @@
     <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" v-on:click="closeNav">&times;</a>
     <router-link :to="{ name: 'profile', params: { uid: uid, type: 'Tutor' }}">My Profile</router-link>
-    <a href="#">Chats</a>
-    <a href="#">Schedule</a>
+    <router-link :to="{ name: 'chat', params: { uid: uid, type: 'Tutor' }}">Chat</router-link>
+    <router-link :to="{ name: 'schedule', params: { uid: uid, type: 'Tutor' }}">Schedule</router-link>
     <router-link :to="{ name: 'reviews', params: { uid: uid }}">Reviews</router-link>
     <router-link :to="{ name: 'dashboardtutor', params: { uid: uid }}">Analytics</router-link>
     </div>
@@ -54,7 +54,7 @@ export default {
 }
 
 .sidenav a:hover {
-  color: #f1f1f1;
+  background-color: #6FB3B8;
 }
 
 .sidenav .closebtn {

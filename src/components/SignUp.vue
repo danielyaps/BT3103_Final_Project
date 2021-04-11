@@ -87,12 +87,15 @@
         id="fname"
         v-model="firstname"
         placeholder="First Name"
+        required
       />
+      &nbsp;
       <input
         type="text"
         id="lname"
         v-model="lastname"
         placeholder="Last Name"
+        required
       />
       <br />
       <input type="email" id="email" v-model="email" placeholder="Email" />
@@ -306,9 +309,11 @@ input[type="password"] {
 }
 
 textarea {
-  background-color: white;
+  background-color: #BADFE7;
   font-size: 14px;
   font-family: Roboto;
+  border-radius: 5px;
+  width: 300px;
 }
 
 button {
@@ -319,6 +324,5 @@ button {
   height: 30px;
   border: none;
   font-size: 14px;
-  font-family: Roboto;
 }
 </style>

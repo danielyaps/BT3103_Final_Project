@@ -1,9 +1,10 @@
 <template>
   <div id="whole" class="float-container">
     <Header></Header>
+    <MenuBarStudents></MenuBarStudents>
 
-    <div id="title">Leave A Review</div>
-    <br /><br /><br />
+    <h1>Leave A Review</h1>
+    <br />
 
     <form id="inputs">
       <span>Tutor Username: </span>
@@ -41,11 +42,12 @@
 <script>
 import Header from "./Header.vue";
 import Rating from "./Rating.vue";
-import firebaseApp from '../firebase.js'
+import firebaseApp from '../firebase.js';
+import MenuBarStudents from "./MenuBarStudents.vue";
 
 export default {
   components: {
-    Header, Rating
+    Header, Rating, MenuBarStudents
   },
   data() {
     return {
@@ -102,6 +104,15 @@ export default {
 </script>
 
 <style scoped>
+h1 {
+  font-weight: 900;
+  font-size: 50px;
+  color: #388087;
+  position: relative;
+  left: 90px;
+  text-align: left;
+}
+
 #selectt{
     background-color: white;
     border-radius: 5px;
@@ -164,7 +175,7 @@ input[type="email"] {
 }
 
 button {
-  background-color: dimgray;
+  background-color: #388087;
   color: white;
   border-radius: 4px;
   width: 130px;

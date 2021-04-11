@@ -130,6 +130,7 @@ export default {
 }
 h1 {
   text-align: center;
+  color: #388087;
 }
 h2 {
   color: #388087;
@@ -138,13 +139,24 @@ h2 {
 #loginBtn {
   position: "absolute";
   text-align: center;
-  border-radius: 10px;
+  border-radius: 5px;
+  height: 25px;
+  width: 80px;
   background-color: #388087;
   color: white;
+  font-family: Roboto;
+  font-style: normal;
+  font-size: 14px;
 }
 #gotoBtn {
-  border-radius: 10px;
+  border-radius: 5px;
+  height: 25px;
+  width: 100px;
   background-color: #388087;
+  font-family: Roboto;
+  font-style: normal;
+  font-size: 14px;
+  
 }
 #pinkBox {
   background-color: #6fb3b8;
