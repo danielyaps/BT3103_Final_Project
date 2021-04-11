@@ -26,9 +26,9 @@ export default [
     { path: '/homeStudent/:uid', name:'homeStudent', component: HomeStudent, props:true},
     { path: '/tutorDetails/:uid', name: 'tutorDetails', component: TutorDetails, props:true},
     { path: '/profile/:uid', name:'profile', component: Profile, props:true},
-    { name: 'applyNow', path: '/applyNow', component: ApplyNow},
     { name: 'schedule', path: '/schedule/:uid', component: Schedule, props: true},
-    { name: 'studentApp', path: '/studentapp', component: StudentApp},
+    { name: 'applyNow', path: '/applyNow/:uid', component: ApplyNow},
+    { name: 'studentApp', path: '/studentapp/:uid', component: StudentApp},
     { path: '/leaveReview/:uid', name: 'leaveReview', component: LeaveReview},
     { path: '/reviews/:uid', name: 'reviews', component: Reviews, props:true}
 ]
