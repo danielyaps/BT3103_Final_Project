@@ -40,15 +40,13 @@ export default {
 
 <style scoped>
 
-h1{
-  font-family: Amiri;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 36px;
-  line-height: 63px;
-  left: 0px;
-  text-align: left
-
+h1 {
+  font-weight: 900;
+  font-size: 50px;
+  color: #388087;
+  position: relative;
+  left: 70px;
+  text-align: left;
 }
 .float-container {
   border: 3px solid #fff;
@@ -69,14 +67,12 @@ h1{
 
 #q{
   color: white;
-  font-family: Roboto;
-  font-style: normal;
+  font-size: 20px;
 }
 
 #a{
   color: white;
-  font-family: Roboto;
-  font-style: normal;
+  font-size: 16px;
 }
 
 #questions {
@@ -89,13 +85,14 @@ h1{
   height: 80%;
   background-color: #6FB3B8;
   border-radius: 25px;
+  position: relative;
+  top: 20px;
 }
 
 #other {
   color: white;
   top: 240px;
   position: relative;
-  font-family: Roboto;
 font-style: normal;
 font-weight: bold;
 font-size: 24px;
@@ -103,7 +100,7 @@ line-height: 28px;
 }
 
 #contactlinkfaq:hover {
-  color: lightskyblue;
+  color: #388087;
 }
 
 #contactlinkfaq {
@@ -112,7 +109,6 @@ line-height: 28px;
   text-align: center;
   top: 250px;
   position: relative;
-  font-family: Roboto;
 font-style: normal;
 font-weight: bold;
 font-size: 24px;

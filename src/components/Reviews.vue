@@ -2,7 +2,7 @@
 <div class="page">
     <MenuBarTutors></MenuBarTutors>
     <div style="position: absolute; left: 70px; top: 70px">
-        <h2 style="font-size: 40px; color: #7D7D7D; font-family: Playfair Display">Reviews</h2>
+        <h2 style="font-size: 40px; color: #388087; font-family: Playfair Display">Reviews</h2>
         <p style="text-align: right; font-size: 30px; color: #FF9900; font-weight: bold; font-family: roboto"> {{this.averageStars()}} OF 5.0 STARS </p>
         <ul id="box">
             <li v-for="review in reviews" v-bind:key=review.id>
@@ -69,7 +69,7 @@ export default {
 
 <style scoped>
 .page {
-    background-color: #E8E8E8;
+    background-color: white;
     overflow-y: scroll;
     position: fixed;
     width: 100vw;

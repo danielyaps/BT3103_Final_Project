@@ -163,7 +163,7 @@ export default {
     this.fetchItems();
   },
 };
-</script>
+</script> 
 
 <style scoped>
 .oye-timepicker {
@@ -183,6 +183,9 @@ export default {
 
 h1 {
   margin-left: 30px;
+  font-weight: 900;
+  font-size: 40px;
+  color: #388087;
 }
 
 .theme--light.v-btn.v-btn--has-bg {

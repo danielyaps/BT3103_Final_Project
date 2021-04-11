@@ -2,13 +2,13 @@
 <div>
     <Header></Header>
     <MenuBarTutors v-bind:uid="uid"></MenuBarTutors>
-    <p style="font-size: 50px; text-align: center; color: #388087">CLASSY AND FABULOUS TUTORS</p>
-    <div id="classImg" v-on:click="toApp()">
+    <p style="font-size: 50px; text-align: center; color: #388087; font-weight: bold">CLASSY AND FABULOUS TUTORS</p>
+    <div id="classImg">
         
         <p class="imgTxt">View Student Applications</p>
     </div>
     <div id="scheduleContainer">
-        <p class="imgTxt">View Your Schedule</p>
+        <p class="imgTxtS">View Your Schedule</p>
     </div>
 </div>
 </template>
@@ -26,13 +26,6 @@ export default {
     components: {
         MenuBarTutors,
         Header
-    },
-    methods: {
-        toApp: function() {
-            console.log(this.uid);
-            this.$router.push({name:'studentApp', params: { uid: this.uid }, props: true})
-
-        }
     }
 }
 </script>
@@ -47,6 +40,7 @@ export default {
     height: 500px;
     left: 300px;
     top: 250px;
+    border-radius: 15px;
 }
 
 .imgTxt {
@@ -59,14 +53,25 @@ export default {
     color: white;
 }
 
+.imgTxtS {
+    width: 300px;
+    left: 50px;
+    font-size: 60px;
+    position: relative;
+    top: 100px;
+    text-align: center;
+    color: black;
+}
+
 #scheduleContainer {
     background-image: url(../assets/schedule.jpg);
-    opacity: 0.8;
+    opacity: 0.7;
     position: absolute;
     width: 400px;
     height: 500px;
     left: 800px;
     top: 250px;
+    border-radius: 15px;
 }
 
 </style>

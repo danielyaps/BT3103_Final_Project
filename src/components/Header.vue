@@ -10,46 +10,24 @@
             >
           </li>
           <li>
-            <router-link 
-              to="/ContactUs"
-              exact
-              >Contact Us</router-link
-            >
+            <router-link to="/ContactUs" exact>Contact Us</router-link>
           </li>
           <li>
-            <router-link
-              
-              to="/FAQ"
-              exact
-              >FAQ</router-link
-            >
+            <router-link to="/FAQ" exact>FAQ</router-link>
           </li>
         </ul>
-        <button id="logout" v-on:click="logout()">Logout</button>
+        <v-btn id="logout" v-on:click="logout()">Logout</v-btn>
       </div>
       <div v-else>
         <ul>
           <li>
-            <router-link
-              to="/"
-              >Home</router-link
-            >
+            <router-link to="/">Home</router-link>
           </li>
           <li>
-            <router-link
-              
-              to="/ContactUs"
-              exact
-              >Contact Us</router-link
-            >
+            <router-link to="/ContactUs" exact>Contact Us</router-link>
           </li>
           <li>
-            <router-link
-              
-              to="/FAQ"
-              exact
-              >FAQ</router-link
-            >
+            <router-link to="/FAQ" exact>FAQ</router-link>
           </li>
         </ul>
         <v-btn id="login" v-on:click="goLogin()">Login?</v-btn>
@@ -117,9 +95,8 @@ export default {
 </script>
 
 <style scoped>
-
 .v-application a {
-    color: #767676;
+  color: #767676;
 }
 ul {
   display: flex;
@@ -136,6 +113,13 @@ li {
   text-align: center;
   padding: 10px;
 }
+
+li:hover{
+  border: none;
+  border-bottom: 2px solid #888888;
+
+}
+
 #logout,
 #login {
   position: absolute;
@@ -146,6 +130,9 @@ li {
   color: white;
   font-size: 14px;
   border-radius: 5px;
+  font-family: Roboto;
+  font-style: normal;
+  font-size: 14px;
 }
 
 a {
@@ -156,7 +143,6 @@ a {
   text-decoration: none;
   color: #767676;
 }
-
 </style>
 
 
