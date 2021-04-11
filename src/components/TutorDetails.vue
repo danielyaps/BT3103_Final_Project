@@ -3,7 +3,7 @@
 <Header></Header>
 <v-container grid-list-md text-md-center fluid fill-height>
     <v-col md="4">
-          <v-card dark tile flat color="error">
+          <v-card light tile flat color="error">
           <h2>{{name}}</h2>
            <v-img
                   height="600"
@@ -16,13 +16,13 @@
           </v-card>
     </v-col>
     <v-col md="8">
-          <v-card dark tile flat color="pink darken-4">
-            <v-card-text>Subjects Offered: {{subjects}} </v-card-text><v-divider></v-divider> 
+          <v-card tile flat color="#388087">
+            <v-card-text >Subjects Offered: {{subjects}} </v-card-text><v-divider></v-divider> 
             <v-card-text>Level: {{level}} </v-card-text><v-divider></v-divider>
             <v-card-text>Rate: S${{rate}}/hr </v-card-text>
           </v-card>
           
-          <v-card dark tile flat color="pink darken-4">
+          <v-card dark tile flat color="#388087">
             <v-card-text>Reviews:</v-card-text>
             <v-flex v-for="review in reviews" :key="review.num">
               <v-card color="gray" dark width="150px">

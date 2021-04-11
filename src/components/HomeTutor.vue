@@ -3,7 +3,7 @@
     <Header></Header>
     <MenuBarTutors v-bind:uid="uid"></MenuBarTutors>
     <p style="font-size: 50px; text-align: center; color: #388087">CLASSY AND FABULOUS TUTORS</p>
-    <div id="classImg">
+    <div id="classImg" v-on:click="toApp()">
         
         <p class="imgTxt">View Student Applications</p>
     </div>
@@ -26,6 +26,13 @@ export default {
     components: {
         MenuBarTutors,
         Header
+    },
+    methods: {
+        toApp: function() {
+            console.log(this.uid);
+            this.$router.push({name:'studentApp', params: { uid: this.uid }, props: true})
+
+        }
     }
 }
 </script>
