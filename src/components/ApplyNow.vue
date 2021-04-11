@@ -6,10 +6,10 @@
     <v-app style="background: #6FB3B8">
     <v-container grid-list-md text-md-center fluid fill-height>
         <v-col fluid>
-        <v-card elevation="2" fluid outlined tile>
-            <v-card-text class="text-left">
+        <v-card background-color="#388087" elevation="2" fluid outlined tile >
+            <v-card-text class="text-left" background-color="#388087">
             <h4>Subject:</h4>
-            <v-text-field placeholder="Subject" v-model="subjectA"></v-text-field>
+            <v-text-field placeholder="Subject" v-model="subjectA" ></v-text-field>
             <h4>Day:</h4>
             <v-autocomplete ref="day" :items="days" v-model="dayA"
               label="Day" required solo-inverted></v-autocomplete>
@@ -102,7 +102,6 @@ export default {
     fetchItems: function () {
       var id = this.$route.params.tutorid;
       this.tutor_id = id;
-      console.log(this.tutor_id);
       firebaseApp
         .firestore()
         .collection("users")
@@ -129,12 +128,14 @@ export default {
 
       if (this.error == false) {
         var id = this.$route.params.tutorid;
-        firebaseApp
+        console.log(this.uid)
+        let docref = firebaseApp
           .firestore()
           .collection("users")
           .doc(id)
-          .collection("applicationsNew")
-          .add(this.form);
+        docref.collection("applicationsNew")
+          .doc(this.uid)
+          .set(this.form);
         alert("Application Submitted");
         this.$router.push({ path: "/homeStudent/:uid" });
       }
