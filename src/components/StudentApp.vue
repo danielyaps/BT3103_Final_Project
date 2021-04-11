@@ -22,7 +22,7 @@
                   <v-list-item-title > {{ item.stuName }}</v-list-item-title>
                   <v-list-item-subtitle class="leftDetails">Subject: {{ item.subjectA }}</v-list-item-subtitle>
                   <v-list-item-subtitle class="leftDetails">Day: {{ item.dayA }}</v-list-item-subtitle>
-                  <v-list-item-subtitle class="rightDetails">Rate: {{ item.rateA }}</v-list-item-subtitle>
+                  <v-list-item-subtitle class="rightDetails">Rate: S${{ item.rateA }}</v-list-item-subtitle>
                   <v-list-item-subtitle class="rightDetails">Location: {{ item.locationA }}</v-list-item-subtitle>
                 </v-list-item-content>
                 

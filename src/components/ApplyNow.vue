@@ -30,6 +30,9 @@
             </div>
             <h4>Duration:</h4>
             <v-text-field placeholder="Duration (hours) " v-model="durationA" type="number" suffix="hours"></v-text-field>
+            
+            <h4>Rate (S$/hr):</h4>
+            <v-text-field placeholder="/hour" v-model="rateA" type="number" prefix="S$"></v-text-field>
 
             <h4>Location:</h4>
             <v-text-field placeholder="Location" v-model="locationA"></v-text-field>
@@ -67,6 +70,7 @@ export default {
       locationA: null,
       durationA: null,
       AP: ["AM", "PM"],
+      rateA: null, 
       datapacket: [],
       startP: "",
       startMin: "",
@@ -95,6 +99,7 @@ export default {
         startMin: this.startMin,
         startP: this.startP,
         durationA: this.durationA,
+        rateA: this.rateA
       };
     },
   },
