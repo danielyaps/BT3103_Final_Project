@@ -224,6 +224,6 @@ span {
   background: $excellent-color;
 }
 .nostar_desc {
-  background: $no-star-desc-color;
+  background: #388087;
 }
 </style>
