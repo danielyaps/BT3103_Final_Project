@@ -102,6 +102,7 @@ export default {
   align-items: center;
   text-align: center;
   width: 100vh;
+  text-align: center;
 }
 #email,
 #password {
