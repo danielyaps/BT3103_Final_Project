@@ -30,7 +30,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 #classImg {
     background-image: url(https://lirp-cdn.multiscreensite.com/95bbc5a6/dms3rep/multi/opt/photo-1509062522246-3755977927d7-18db30ee-480w.jpg);

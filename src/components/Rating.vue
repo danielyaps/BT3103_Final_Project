@@ -145,7 +145,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 $active-color: #f3d23e;
 $white-color: #fff;
 $poor-color: rgb(186, 186, 186);

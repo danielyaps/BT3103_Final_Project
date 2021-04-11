@@ -57,7 +57,7 @@ import Header from './Header.vue'
  }
 </script>
 
-<style>
+<style scoped>
     body {
         background: white
     }
