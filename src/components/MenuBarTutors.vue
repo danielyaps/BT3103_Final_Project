@@ -6,6 +6,7 @@
     <a href="#">Chats</a>
     <a href="#">Schedule</a>
     <router-link :to="{ name: 'reviews', params: { uid: uid }}">Reviews</router-link>
+    <router-link :to="{ name: 'dashboardtutor', params: { uid: uid }}">Analytics</router-link>
     </div>
     <span style="font-size:30px; cursor:pointer; color: #388087" v-on:click="openNav">&#9776; Menu</span>
 </div>
