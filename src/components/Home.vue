@@ -38,16 +38,17 @@
     </div>
 </div>
 </body>
-
+<DashboardHome></DashboardHome>
 </div>
 </template>
 
 <script>
 import Header from './Header.vue'
-
+import DashboardHome from './DashboardHome.vue'
  export default {
     components: {
-        'Header': Header
+        'Header': Header,
+        'DashboardHome': DashboardHome
     },
     data() {
         return {
