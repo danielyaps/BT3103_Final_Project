@@ -55,6 +55,7 @@ export default {
       messages: [],
       image: null,
       name: null,
+      type: "",
     };
   },
 
@@ -83,6 +84,7 @@ export default {
         .get()
         .then((snapshot) => {
           this.datapacket = snapshot.data();
+          this.type = this.datapacket.type;
           this.name =
             this.datapacket.firstName + " " + this.datapacket.lastName;
         });
