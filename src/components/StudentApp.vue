@@ -107,6 +107,7 @@ export default {
 
     goChat: function (event) {
       this.stuid = event.target.getAttribute("stuid");
+      alert(this.stuid)
       this.$router.push({
         name: "chat",
         params: { uid: this.uid, otherid: this.stuid },

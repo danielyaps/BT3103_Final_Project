@@ -85,6 +85,15 @@ export default {
         "Saturday",
         "Sunday",
       ],
+      days: [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday",
+      ],
       formHasErrors: false,
       error: false,
     };
