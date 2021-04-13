@@ -1,4 +1,4 @@
-import { Bar } from 'vue-chartjs'
+import {Bar} from 'vue-chartjs'
 
 export default {
     extends: Bar,
@@ -14,7 +14,7 @@ export default {
                 labels: [],
                 datasets: [{
                     label: "Your Analytics",
-                    backgroundColor: 'blue',
+                    backgroundColor: [],
                     data: []
                 }]
             },
@@ -32,7 +32,7 @@ export default {
                 legend: { display: false },
                 title: {
                 display: true,
-                text: 'Analytics!'
+                text: '',
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -41,17 +41,29 @@ export default {
     },
     methods: {
         process: function (){
-            for (const [key,value] of Object.entries(this.chartdata)) {
-                this.datacollection.labels.push(key);
-                this.datacollection.datasets[0].data.push(value);
-            }
+            setTimeout(() => {
+                Object.values(this.chartdata.label).forEach(val => {
+                    this.datacollection.labels.push(val);
+                    console.log(val);
+                });
+                Object.values(this.chartdata.data).forEach(val => {
+                    this.datacollection.datasets[0].data.push(val);
+                    console.log(val);
+                });
+                this.options.title.text = this.chartdata.name;
+                this.datacollection.datasets[0].backgroundColor = this.chartdata.color;
+            }, 1000);
+
         },
         fetchItems: function () {
             this.process();
-            this.renderChart(this.datacollection, this.options)
+            setTimeout(()=> {
+                this.renderChart(this.datacollection, this.options);
+            }, 1000);
+            
         }
     },
-    created () {
+    mounted() {
         this.fetchItems()
     }
 }
