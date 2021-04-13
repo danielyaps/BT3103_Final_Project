@@ -1,6 +1,7 @@
 <template>
 <div>
     <Header></Header>
+    <MenuBarStudents v-bind:uid="uid"></MenuBarStudents>
     <br>
     <H1>Apply for {{name}}'s class</H1>
     <v-app style="background: #6FB3B8">
@@ -59,10 +60,11 @@
 <script>
 import Header from "./Header.vue";
 import firebaseApp from "../firebase.js";
+import MenuBarStudents from './MenuBarStudents.vue';
 
 export default {
   components: {
-    Header: Header,
+    Header, MenuBarStudents
   },
   data() {
     return {
