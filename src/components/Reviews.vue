@@ -1,6 +1,6 @@
 <template>
 <div class="page">
-    <MenuBarTutors></MenuBarTutors>
+    <MenuBarTutors v-bind:uid="uid"></MenuBarTutors>
     <div style="position: absolute; left: 70px; top: 70px">
         <h2 style="font-size: 40px; color: #388087; font-family: Playfair Display">Reviews</h2>
         <p style="text-align: right; font-size: 30px; color: #FF9900; font-weight: bold; font-family: roboto"> {{this.averageStars()}} OF 5.0 STARS </p>
