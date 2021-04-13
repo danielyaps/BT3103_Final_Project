@@ -1,14 +1,14 @@
 <template>
-  <div class="chart">
-    <chart :chartdata="this.chartdata"></chart>
+  <div>
+    <barchart v-bind:chartdata="this.chartdata"></barchart>
   </div>
 </template>
 
 <script>
-import Chart from "./BarChart.js";
+import BarChart from "./BarChart.js";
 export default {
     components: {
-        Chart
+        'barchart':BarChart,
     },
     props: {
         chartdata: {

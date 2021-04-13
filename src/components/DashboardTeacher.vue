@@ -1,13 +1,20 @@
 <template>
     <div>
         <Header></Header>
-        <div>
-            <ul>
-                <li>Number of lessons per week: {{numLessons}}</li> 
-                <li>Weekly Earnings: {{earnings}}</li>
-            </ul>
-            <Barchart :chartdata="this.chartdata"></Barchart>
-        </div>
+        ANALYTICS
+        <br><br>
+        <ul>
+            <li>My Lessons per Week: 
+                    <p>{{numLessons}}</p>
+                 </li> 
+                <li>My Weekly Earnings: 
+                    <p>{{earnings}}</p>
+                </li>
+                <li>My Rates: 
+                    <p>{{rates}}</p>
+                </li>
+        </ul>
+        <Barchart v-bind:chartdata="this.chartdata" v-if="this.chartdata"></Barchart>
     </div>
 </template>
 
@@ -27,7 +34,7 @@ export default {
             teachernumLessons:0,
             teacherRates:0,
             teacherEarnings:0,
-            chartdata: {},
+            chartdata: null,
         }
     },
 
@@ -35,45 +42,53 @@ export default {
         prepare:function() {
             firebaseApp.firestore().collection("users").doc(this.uid).collection("applicationsConfirmed").get()
             .then((querySnapshot) => {
+                this.numLessons = querySnapshot.size;
                 querySnapshot.forEach((doc) => {
-                    if (doc.id != null){
-                        this.numLessons += 1;
-                        this.earnings += (doc.durationA * doc.rateA);
-                        this.rates += doc.rateA;
+                    if (doc.id != "null"){
+                        var user = doc.data();
+                        var rates = parseInt(user.rateA, 10)
+                        var duration = parseInt(user.durationA, 10)
+                        this.earnings += (duration * rates);
+                        this.rates += rates;
                     }
                 });
             });
             firebaseApp.firestore().collectionGroup("applicationsConfirmed").get().then((querySnapshot) => {
+                this.teachernumLessons = querySnapshot.size;
                 querySnapshot.forEach((doc) => {
-                    if (doc.id != null){
-                        this.teachernumLessons += 1;
-                        this.teacherRates += doc.rateA;
-                        this.teacherEarnings += (doc.durationA * doc.rateA);
+                    if (doc.id != "null"){
+                        var user = doc.data();
+                        var rates = parseInt(user.rateA, 10)
+                        var duration = parseInt(user.durationA, 10)
+                        this.teacherRates += rates;
+                        this.teacherEarnings += (duration * rates);
                     }
                 });
             });
             firebaseApp.firestore().collection("users").where("type", "==", "Tutor").get().then((querySnapshot) => {
-                querySnapshot.forEach((doc) => {
-                    if (doc.id != null){
-                        this.numTeacher += 1;
-                    }
-                });
+                this.numTeacher = querySnapshot.size;
             });
         },
 
         average:function() {
-            this.teachernumLessons = this.teachernumLessons/this.numTeacher;
-            this.teacherRates = this.teacherRates/this.numTeacher;
-            this.teacherEarnings = this.teacherEarnings/this.numTeacher;
+            this.prepare();
+            setTimeout(() => {
+                this.rates = this.rates/this.numLessons;
+                this.teacherRates = this.teacherRates/this.teachernumLessons;
+                this.teachernumLessons = this.teachernumLessons/this.numTeacher;
+                this.teacherEarnings = this.teacherEarnings/this.numTeacher;
+                this.prepChart();
+            }, 2000);
+            
+            
         },
 
         prepChart:function() {
-            this.chartdata.numLessons = this.numLessons;
-            this.chartdata.teachernumLessons = this.teachernumLessons;
-            this.chartdata.rates = this.rates;
-            this.chartdata.teacherRates = this.teacherRates;
-            this.chartdata.earnings = this.earnings;
-            this.chartdata.teacherEarnings = this.teacherEarnings;
+            this.chartdata = {};
+            this.chartdata.label = ["My Number of Lessons", "Average Number of Lessons", "My Rates", "Average Rates", "My Earnings", "Average Earnings"];
+            this.chartdata.data = [this.numLessons, this.teachernumLessons, this.rates, this.teacherRates, this.earnings, this.teacherEarnings];
+            this.chartdata.name = "My Performance!";
+            this.chartdata.color = ["Blue","Black","Blue","Black","Blue","Black"]
         },
 
     },
@@ -84,11 +99,7 @@ export default {
     },
 
     created(){
-        this.prepare();
         this.average();
-        this.prepChart();
-        console.log(this.numLessons);
-        console.log(this.numTeacher);
     }
 
 
@@ -96,4 +107,32 @@ export default {
 </script>
 
 <style scoped>
+    div {
+        color: black;
+        font-weight: bold;
+        text-align: center;
+        font-size: 48px;
+
+    }
+    ul {
+        display: flex;
+        flex-wrap: wrap;
+        list-style-type: none;
+        text-align: center;
+        font-size: 30px;
+    }
+    li {
+        flex-grow:1;
+        flex-basis:300px;
+        text-align: center;
+        padding: 10px;
+        color: #388087;
+    }
+    p {
+        font-weight: bold;
+        text-decoration: underline;
+        color:black;
+        text-align: center;
+        font-size: 36px;
+    }
 </style>

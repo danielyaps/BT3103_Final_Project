@@ -8,18 +8,19 @@
             <p id="aboutUs">About Us</p> 
         </div>
         
-        <p style="text-decoration: underline;">Who We Are</p>
+        <p style="font-weight: bold;">Who We Are?</p>
         <p style="font-size: 30px; color: black;">Classy & Fabulous Tutors is a tuition matching platform allowing for centralised tuition sourcing.</p>
         
         <br>
+        <br>
 
-        <p style="color: #388087; font-size: 50px; text-decoration: underline">Our Students/Tutors Testimonials</p>
+        <p style="color: #388087; font-weight: bold;">Our Students/Tutors Testimonials..</p>
         <ul>
             <li><img src="https://images.theconversation.com/files/304864/original/file-20191203-67028-qfiw3k.jpeg?ixlib=rb-1.1.0&rect=638%2C2%2C795%2C745&q=45&auto=format&w=496&fit=clip">
                 "Mr McDonald has helped my grades improve from a C5 to an A1 over the span of 3 months! 
                 Thank you Classy & Fabulous tutors for connecting us!"
             </li> 
-            Bean, 2021
+            Bean, 2021 <br><br>
             <li><img src=https://d21xzygesx9h0w.cloudfront.net/TUTOROO-connects-you-with-Shailly,-English-tutor-in-Singapore-5ec7c8032a1f3>
                 "With Classy & Fabulous tutors, I'm now able to earn a stable stream of income from tutoring.
                 The platform is easy to use and helps me stay organised with the multiple tutoring sessions I have so that I can better manage my time.
@@ -29,8 +30,8 @@
         </ul>
 
         <br>
-
-    <DashboardHome></DashboardHome>
+        <br>
+        <DashboardHome></DashboardHome>
     </div>
 </template>
 
@@ -83,16 +84,14 @@ import DashboardHome from './DashboardHome.vue'
         width: 80%;
         display: table;
         margin: 0 auto;
-        font-size: 30px;
+        font-size: 24px;
         color:black;
         font-weight: bold;
     }
     li {
         flex-grow:1;
         display: flex;
-        text-align: left;
-        padding: 10px;
-        margin: 10px;
+        text-align: justify;
         font-size: 30px;
         color:black;
         font-weight: normal;
