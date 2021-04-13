@@ -4,7 +4,7 @@
     <MenuBarTutors v-bind:uid="uid"></MenuBarTutors>
     <br />
     <H1>Student Applications</H1>
-    <v-card color="#6FB3B8" elevation="16" max-width="1200" class="mx-auto">
+    <v-card color="#6FB3B8" elevation="16" max-width="1500" class="mx-auto">
       <v-virtual-scroll :items="studentapps" :item-height="100" height="500">
         <template v-slot="{ item }">
           <v-list-item class="listItem">
@@ -13,23 +13,24 @@
             </v-list-item-avatar>
 
             <v-list-item-content class="listContent">
-              <v-list-item-title> {{ item.stuName }}</v-list-item-title>
-              
-              <v-list-item-subtitle class="leftDetails"
-                >Subject: {{ item.subjectA }}</v-list-item-subtitle
+              <v-list-item-title class="font-weight-bold"> {{ item.stuName }}</v-list-item-title>
+              <v-col cols="6">
+              <v-list-item-subtitle class="leftDetails" font-size="20px"
+                > Subject: {{ item.subjectA }}</v-list-item-subtitle
               >
               <v-list-item-subtitle class="leftDetails"
                 >Current Grade: {{ item.currGradeA }}</v-list-item-subtitle
               >
               <v-list-item-subtitle class="leftDetails"
                 >Day: {{ item.dayA }}</v-list-item-subtitle
-              >
+              ></v-col>
+              <v-col cols="6">
               <v-list-item-subtitle class="rightDetails"
                 >Rate: S${{ item.rateA }}</v-list-item-subtitle
               >
               <v-list-item-subtitle class="rightDetails"
                 >Location: {{ item.locationA }}</v-list-item-subtitle
-              >
+              ></v-col>
               
             </v-list-item-content>
 
@@ -159,6 +160,22 @@ export default {
 <style scoped>
 .listContent {
   padding: 20px;
+  font-size: 14px;
+}
+p{
+  font-size: 1.2rem;
+  font-weight: medium;
+  padding: 2px;
+
+}
+.leftDetails, .rightDetails{
+  font-size: 1rem !important;
+  padding: 2px;
+}
+.font-weight-bold {
+  font-size: 1.2rem !important;
+  font-weight: bold;
+  margin-left: 15px;
 }
 
 .actions {
@@ -183,6 +200,7 @@ H1 {
   font-weight: 900;
   color: #388087;
   text-align: left;
+  margin-left: 20px;
 }
 
 .listItem:hover{
