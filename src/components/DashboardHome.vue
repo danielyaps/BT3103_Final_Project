@@ -46,10 +46,9 @@ export default {
 
             firebaseApp.firestore().collectionGroup("applicationsConfirmed").get().then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
-                    if(doc) {
-                        
-                    }
-                    
+                    if (doc) {
+                        this.confirmedApplication += 1;
+                    }     
                 });
             });
 
