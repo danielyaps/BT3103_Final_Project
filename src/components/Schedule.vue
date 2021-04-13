@@ -332,14 +332,14 @@ export default {
       this.currentlyEditing = ev.id
     },
     async updateEvent (ev) {
-      await db.collection('calEvent').doc(this.currentlyEditing).update({
+      await db.collection('users').doc(this.uid).collection('calEvent').doc(this.currentlyEditing).update({
         details: ev.details
       })
       this.selectedOpen = false,
       this.currentlyEditing = null
     },
     async deleteEvent (ev) {
-      await db.collection("calEvent").doc(ev).delete()
+      await db.collection('users').doc(this.uid).collection("calEvent").doc(ev).delete()
       this.selectedOpen = false,
       this.getEvents()
     },
