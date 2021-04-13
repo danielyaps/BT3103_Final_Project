@@ -3,8 +3,7 @@
     <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" v-on:click="closeNav">&times;</a>
     <router-link :to="{ name: 'profile', params: { uid: uid, type: 'Student' }}">My Profile</router-link>
-    <a href="#">Chats</a>
-    <router-link :to="{ name: 'leaveReview', params: { uid: uid }}">Leave A Review</router-link>
+    <router-link :to="{ name: 'viewChats', params: {uid: uid, type: 'Student' }}">Chats</router-link>
     </div>
     <span style="font-size:30px; cursor:pointer; color: #388087" v-on:click="openNav">&#9776; Menu</span>
 </div>

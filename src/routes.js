@@ -14,6 +14,7 @@ import Schedule from './components/Schedule'
 import StudentApp from './components/StudentApp'
 import Reviews from './components/Reviews'
 import DashboardTeacher from './components/DashboardTeacher'
+import ViewChats from './components/ViewChats'
 
 
 export default [
@@ -30,9 +31,10 @@ export default [
     { name: 'schedule', path: '/schedule/:uid', component: Schedule, props: true},
     { name: 'applyNow', path: '/applyNow/:uid', component: ApplyNow},
     { name: 'studentApp', path: '/studentapp/:uid', component: StudentApp},
-    { path: '/leaveReview/:uid', name: 'leaveReview', component: LeaveReview},
+    { path: '/leaveReview/:uid', name: 'leaveReview', component: LeaveReview, props:true},
     { path: '/reviews/:uid', name: 'reviews', component: Reviews, props:true},
-    { path: '/analytics/:uid', name: 'dashboardtutor', component: DashboardTeacher, props:true}
+    { path: '/analytics/:uid', name: 'dashboardtutor', component: DashboardTeacher, props:true},
+    { path: '/viewChats/:uid', name: 'viewChats', component: ViewChats, props: true }
 ]
 
 

@@ -1,15 +1,15 @@
 <template>
 <div class="page">
-    <MenuBarTutors></MenuBarTutors>
+    <MenuBarTutors v-bind:uid="uid"></MenuBarTutors>
     <div style="position: absolute; left: 70px; top: 70px">
         <h2 style="font-size: 40px; color: #388087; font-family: Playfair Display">Reviews</h2>
         <p style="text-align: right; font-size: 30px; color: #FF9900; font-weight: bold; font-family: roboto"> {{this.averageStars()}} OF 5.0 STARS </p>
         <ul id="box">
             <li v-for="review in reviews" v-bind:key=review.id>
                     <div class="review">
-                        <img v-bind:src="review.photo" style="width: 150px; height: 150px; position: relative; float: left; left: 20px">
-                        <span style="position: relative; border-style: solid; height: 150px; width: 900px; left: 50px; padding: 20px">{{review.Review}} <br>
-                            <p style="position: absolute; bottom: 10px; right: 10px">- {{review.studentName}} </p>
+                        <img v-bind:src="review.image" style="width: 150px; height: 150px; position: relative; float: left; left: 20px">
+                        <span style="position: relative; border-style: solid; height: 150px; width: 900px; left: 50px; padding: 20px">{{review.review}} <br>
+                            <p style="position: absolute; bottom: 10px; right: 10px">- {{review.studentUserName}} </p>
                         </span>
                         
                     </div>
@@ -31,6 +31,7 @@ export default {
     data() {
         return {
             uid: this.$route.params.uid,
+            studentId: "",
             reviews: [],
             description: "",
             photo: null,
@@ -41,17 +42,16 @@ export default {
 
     methods: {
         fetchItems: function() {
-            firebaseApp.firestore().collection('users').doc(this.uid).collection('reviews').get().then((querySnapShot) => {
+            firebaseApp.firestore().collection('users').doc(this.uid).collection('reviews').onSnapshot((querySnapShot) => {
                 let review={}
                 querySnapShot.forEach(doc => {
                     review = doc.data()
-                    review.id=doc.id
                     this.reviews.push(review)
-                    this.numStars += review.Stars
-                    this.numReviews += 1
+                    this.numStars += review.stars
+                    this.numReviews += 1         
                 })
+                console.log(this.reviews)
             })
-            console.log(this.reviews)
         },
 
         averageStars: function() {
@@ -83,10 +83,12 @@ export default {
 .review{
     height: 200px;
     width: 1200px;
-    background-color: #474747;
+    background-color: #388087;
     color: #FFFFFF;
     display: flex;
     align-items: center;
     margin-top: 50px;
+    border-radius: 15px;
+    font-size: 20px;
 }
 </style>

@@ -2,11 +2,11 @@
   <div class="page">
     <Header></Header>
     <div class="nav" v-if="this.type === 'Student'">
-      <MenuBarStudents></MenuBarStudents>
+      <MenuBarStudents v-bind:uid="uid"></MenuBarStudents>
     </div>
 
     <div class="nav" v-else>
-      <MenuBarTutors></MenuBarTutors>
+      <MenuBarTutors v-bind:uid="uid"></MenuBarTutors>
     </div>
     <br />
     <br />
