@@ -73,8 +73,19 @@ export default {
       stuid: "",
       studentapps: [],
       currApp: [],
+      startDate: "", 
+      days: [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday",
+      ],
     };
   },
+
   methods: {
     fetchItems: function () {
       firebaseApp
@@ -111,6 +122,17 @@ export default {
         });
     },
 
+    generateDate: function (dayA) {
+        var currDate = new Date();
+        
+        while (this.days[currDate.getDay()] != dayA) {
+          currDate.setDate(currDate.getDate() + 1);
+          
+        }
+        this.startDate = currDate;
+        console.log(this.startDate)
+    },
+
     goChat: function (event) {
       console.log(event.currentTarget.getAttribute("stuid"));
       this.stuid = event.currentTarget.getAttribute("stuid");
@@ -125,19 +147,32 @@ export default {
     },
 
     confirmApp: function (event) {
+      console.log("wts")
       this.stuid = event.target.getAttribute("stuid");
       let docref = firebaseApp.firestore().collection("users").doc(this.uid);
-
+      console.log(docref);
       let appDetails = [];
       for (let i = 0; i < Object.values(this.studentapps).length; i++) {
         if (this.studentapps[i].id == this.stuid) {
           appDetails = this.studentapps[i];
+          console.log("wts2")
         }
       }
-      docref
-        .collection("applicationsConfirmed")
+      this.generateDate(appDetails.dayA)
+      console.log("wts2")
+      docref.collection("applicationsConfirmed")
         .doc(this.stuid)
-        .set(appDetails);
+        .set(appDetails).then();
+      
+      docref.collection("calEvent")
+        .doc(this.stuid)
+        .set({
+          color: "#1976D2",
+          details: "test",
+          end: this.startDate,
+          name: appDetails.stuName,
+          start: this.startDate,
+        });
 
       docref
         .collection("applicationsNew")
@@ -147,6 +182,7 @@ export default {
           location.reload();
         });
 
+      
       alert("Application Confirmed");
     },
   },
