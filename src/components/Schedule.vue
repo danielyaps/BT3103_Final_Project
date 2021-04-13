@@ -2,7 +2,7 @@
   <v-app>
     <v-main>
         <Header></Header>
-        <MenuBarTutors v-bind:uid="uid"></MenuBarTutors>
+        <MenuBarTutors></MenuBarTutors>
       <Calendar></Calendar>
       
     </v-main>
@@ -15,8 +15,6 @@ import Header from './Header.vue'
 import MenuBarTutors from './MenuBarTutors.vue';
 
 export default {
-  name: 'App',
-
   components: {
     Calendar,Header,
     MenuBarTutors

@@ -30,7 +30,7 @@ export default [
     { name: 'schedule', path: '/schedule/:uid', component: Schedule, props: true},
     { name: 'applyNow', path: '/applyNow/:uid', component: ApplyNow},
     { name: 'studentApp', path: '/studentapp/:uid', component: StudentApp},
-    { path: '/leaveReview/:uid', name: 'leaveReview', component: LeaveReview},
+    { path: '/leaveReview/:uid', name: 'leaveReview', component: LeaveReview, props:true},
     { path: '/reviews/:uid', name: 'reviews', component: Reviews, props:true},
     { path: '/analytics/:uid', name: 'dashboardtutor', component: DashboardTeacher, props:true}
 ]

@@ -7,8 +7,8 @@
     <br />
 
     <form id="inputs">
-      <span>Tutor Username: </span>
-      <input type="text" v-model="tutorUsername" required>
+      <span>Final Grade: </span>
+      <input type="text" v-model="finalGrade" required>
       <br /><br>
       
       Rating:<br />
@@ -30,7 +30,7 @@
       <div id="b">
         <button
           type="submit"
-          v-on:click.prevent="complete(tutorUsername, stars, review)"
+          v-on:click.prevent="submitReview"
           style="color: white"
         > Submit </button>
         <button id="cancelb" v-on:click="cancel()">Cancel</button>
@@ -51,10 +51,11 @@ export default {
   },
   data() {
     return {
-      tutorUsername: "",
+      finalGrade: "",
       stars: 0,
       review: "",
-      uid: this.$route.params.uid
+      uid: this.$route.params.uid,
+      tutorId: this.$route.params.tutorId
     }
   },
 
@@ -63,12 +64,28 @@ export default {
       this.stars = value
     },
 
-    complete: function(tutor, stars, review) {
-      if (tutor == "" || stars == 0 || review == "") {
+    submitReview: function() {
+      if (this.finalGrade == "" || this.stars == 0 || this.review == "") {
         alert("Incomplete Submission")
       } else {
         alert("Submitted")
-        const rating = {Stars: stars, Review: review}
+        let rating = { stars: this.stars, review: this.review, finalGrade: this.finalGrade}
+        var storageRef = firebaseApp.storage().ref();
+        storageRef
+          .child("images/" + this.uid)
+          .getDownloadURL()
+          .then((url) => {
+            rating.image = url
+          }).then(() => {
+            firebaseApp.firestore().collection('users').doc(this.uid).get().then((docRef) => {
+              rating.studentUserName = docRef.data().username
+            }).then(() => {
+              firebaseApp.firestore().collection('users').doc(this.tutorId).collection('reviews').doc(this.uid).set(rating)
+            })
+          })
+
+        /*
+        const rating = {Stars: this.stars, Review: this.review}
         firebaseApp.firestore().collection('users').where('username', '==', this.tutorUsername).get().then(snapshot => {
           snapshot.docs.forEach(doc => {
             var tutorId = doc.id
@@ -92,6 +109,7 @@ export default {
               })
           })
         })
+        */
 
       }
     },

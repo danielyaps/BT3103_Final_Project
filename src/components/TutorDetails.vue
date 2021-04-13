@@ -34,6 +34,8 @@
             </v-card>
           </v-flex>
         </v-card>
+        <br><br>
+        <button id="reviewBtn" v-on:click="reviewBtn()">Write A Review</button>
       </v-col>
     </v-container>
     <img
@@ -103,10 +105,17 @@ export default {
     chatBtn: function () {
       this.$router.push({
         name: "chat",
-        params: { uid: this.uid, otherId: this.tutor_id },
+        params: { uid: this.uid, otherid: this.tutor_id },
         props: true,
       });
     },
+    reviewBtn: function() {
+      this.$router.push({
+        name: "leaveReview",
+        params: { uid: this.uid, tutorId: this.tutor_id },
+        props: true
+      });
+    }
   },
   props: {
     tutorid: {
@@ -128,5 +137,13 @@ img {
   position: absolute;
   right: 0px;
   bottom: 0px;
+}
+
+#reviewBtn {
+  color: white;
+  background-color: #388087;
+  border-radius: 5px;
+  height: 30px;
+  padding: 10px;
 }
 </style>

@@ -8,13 +8,17 @@
         <template v-slot="{ item }">
           <v-list-item class="listItem">
             <v-list-item-avatar size="62">
-              <v-img :src="item.stuImg"></v-img>
+              <v-img :src="item.stuImg" ></v-img>
             </v-list-item-avatar>
 
             <v-list-item-content class="listContent">
               <v-list-item-title> {{ item.stuName }}</v-list-item-title>
+              
               <v-list-item-subtitle class="leftDetails"
                 >Subject: {{ item.subjectA }}</v-list-item-subtitle
+              >
+              <v-list-item-subtitle class="leftDetails"
+                >Current Grade: {{ item.currGradeA }}</v-list-item-subtitle
               >
               <v-list-item-subtitle class="leftDetails"
                 >Day: {{ item.dayA }}</v-list-item-subtitle
@@ -25,6 +29,7 @@
               <v-list-item-subtitle class="rightDetails"
                 >Location: {{ item.locationA }}</v-list-item-subtitle
               >
+              
             </v-list-item-content>
 
             <v-list-item-action class="actions">
@@ -81,7 +86,6 @@ export default {
             app = doc.data();
             app.id = doc.id;
             let post = {};
-
             firebaseApp
               .firestore()
               .collection("users")
@@ -91,27 +95,30 @@ export default {
                 post = snapshot.data();
                 app.stuName = post.firstName + " " + post.lastName;
               });
-            firebaseApp
-              .storage()
-              .ref()
+            var storageRef = firebaseApp.storage().ref();
+            storageRef
               .child("images/" + app.id)
               .getDownloadURL()
               .then((url) => {
                 app.stuImg = url;
-              });
-            console.log(this.studentapps);
+                console.log(app.stuImg);
+              }); 
             this.studentapps.push(app);
           });
         });
     },
 
     goChat: function (event) {
-      this.stuid = event.target.getAttribute("stuid");
-      this.$router.push({
-        name: "chat",
-        params: { uid: this.uid, otherid: this.stuid },
-        props: true,
-      });
+      console.log(event.currentTarget.getAttribute("stuid"));
+      this.stuid = event.currentTarget.getAttribute("stuid");
+      if (this.stuid != null) {
+          this.$router.push({
+            name: "chat",
+            params: { uid: this.uid, otherid: this.stuid },
+            props: true,
+          });
+      }
+      
     },
 
     confirmApp: function (event) {
