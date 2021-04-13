@@ -2,11 +2,11 @@
   <div class="page">
     <Header></Header>
     <div class="nav" v-if="this.type === 'Student'">
-            <MenuBarStudents></MenuBarStudents>
+            <MenuBarStudents v-bind:uid="uid"></MenuBarStudents>
             </div>
 
             <div class="nav" v-else>
-                <MenuBarTutors></MenuBarTutors></div> 
+                <MenuBarTutors v-bind:uid="uid"></MenuBarTutors></div> 
     <div id="title">Chats</div>
     <div id="chatuser">
       <img :src="this.image" id="userimg"/>
@@ -74,7 +74,6 @@ export default {
         .getDownloadURL()
         .then((url) => {
           this.image = url;
-          console.log(this.image);
         });
 
       firebaseApp
@@ -84,10 +83,18 @@ export default {
         .get()
         .then((snapshot) => {
           this.datapacket = snapshot.data();
-          this.type = this.datapacket.type;
           this.name =
             this.datapacket.firstName + " " + this.datapacket.lastName;
         });
+      
+      firebaseApp
+        .firestore()
+        .collection("users")
+        .doc(this.uid)
+        .get()
+        .then((snapshot) => {
+          this.type = snapshot.data().type;
+        })
     },
 
     sendMsg: function() {
@@ -102,6 +109,8 @@ export default {
           let chatt = {}
           chatt.messages = this.messages
           chatt.otherID = this.otherId
+          chatt.name = this.name
+          chatt.image = this.image
           firebaseApp.firestore().collection('users').doc(this.uid).collection('chats').add(chatt)
         } else {
           thing.ref.update({messages: this.messages})
@@ -116,7 +125,29 @@ export default {
           let chatt={}
           chatt.messages = [Msg]
           chatt.otherID = this.uid
-          firebaseApp.firestore().collection('users').doc(this.otherId).collection('chats').add(chatt)
+
+          var storageRef = firebaseApp.storage().ref();
+          storageRef
+            .child("images/" + this.uid)
+            .getDownloadURL()
+            .then((url) => {
+              chatt.image = url;
+            }).then(() => {
+              firebaseApp
+                .firestore()
+                .collection("users")
+                .doc(this.uid)
+                .get()
+                .then((snapshot) => {
+                  this.datapacket = snapshot.data();
+                  this.type = this.datapacket.type;
+                  chatt.name =
+                    this.datapacket.firstName + " " + this.datapacket.lastName;
+                })
+                .then(() => {
+                  firebaseApp.firestore().collection('users').doc(this.otherId).collection('chats').add(chatt)
+                })
+            })      
         } else {
           var Messages = thing.data().messages
           Messages.push(Msg)
@@ -206,7 +237,7 @@ export default {
 }
 
 .senderMessageDesign {
-  background-color: #388087;
+  background-color: #D7A9E3FF;
   list-style-type: none;
   position: relative;
   color: white;
@@ -218,7 +249,7 @@ export default {
 }
 
 .recipientMessageDesign {
-  background-color: purple;
+  background-color: #8BBEE8FF;
   list-style-type: none;
   position: relative;
   color: white;

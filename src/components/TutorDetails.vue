@@ -1,7 +1,7 @@
 <template>
   <div>
     <Header></Header>
-    <MenuBarStudents></MenuBarStudents>
+    <MenuBarStudents v-bind:uid="uid"></MenuBarStudents>
     <v-container grid-list-md text-md-center fluid fill-height>
       <v-col md="5">
         <v-card dark tile flat color="#388087">

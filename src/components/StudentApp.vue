@@ -1,6 +1,7 @@
 <template>
   <div>
     <Header></Header>
+    <MenuBarTutors v-bind:uid="uid"></MenuBarTutors>
     <br />
     <H1>Student Applications</H1>
     <v-card color="#6FB3B8" elevation="16" max-width="1200" class="mx-auto">
@@ -59,10 +60,11 @@
 <script>
 import Header from "./Header.vue";
 import firebaseApp from "../firebase.js";
+import MenuBarTutors from './MenuBarTutors.vue'
 
 export default {
   components: {
-    Header: Header,
+    Header, MenuBarTutors
   },
   data() {
     return {

@@ -2,7 +2,7 @@
   <v-app>
     <v-main>
         <Header></Header>
-        <MenuBarTutors></MenuBarTutors>
+        <MenuBarTutors v-bind:uid="uid"></MenuBarTutors>
       <Calendar></Calendar>
       
     </v-main>
