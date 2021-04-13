@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header id="header"></Header>
+    <Header v-bind:loginPage="true"></Header>
     <div class="container">
       <div class="left">
         <h1>Welcome Back!</h1>

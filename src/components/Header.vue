@@ -30,7 +30,7 @@
             <router-link to="/FAQ" exact>FAQ</router-link>
           </li>
         </ul>
-        <v-btn id="login" v-on:click="goLogin()">Login?</v-btn>
+        <v-btn id="login" v-if="!this.loginPage" v-on:click="goLogin()">Login?</v-btn>
       </div>
     </nav>
   </div>
@@ -44,6 +44,10 @@ export default {
       type: String,
       default: "black",
     },
+    loginPage: {
+      type: Boolean,
+      default: false,
+    }
   },
   data() {
     return {

@@ -24,8 +24,9 @@ export default {
         getNumbers:function() {
             firebaseApp.firestore().collection("users").where("type", "==", "Tutor").get().then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
-                    console.log(doc.id);
-                    this.numTutor += 1;
+                    if (doc) {
+                        this.numTutor += 1;
+                    }
                 });
             })
             .catch((error) => {
@@ -34,8 +35,9 @@ export default {
 
             firebaseApp.firestore().collection("users").where("type", "==", "Student").get().then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
-                    console.log(doc.id);
-                    this.numStudent += 1;
+                    if (doc) {
+                        this.numStudent += 1;
+                    }
                 });
             })
             .catch((error) => {
@@ -44,8 +46,10 @@ export default {
 
             firebaseApp.firestore().collectionGroup("applicationsConfirmed").get().then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
-                    console.log(doc.id);
-                    this.confirmedApplication += 1;
+                    if(doc) {
+                        
+                    }
+                    
                 });
             });
 

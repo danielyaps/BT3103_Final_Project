@@ -42,41 +42,23 @@ export default {
                         this.rates += doc.rateA;
                     }
                 });
-                return true;
-            }).then((x) => {
-                if (x){
-                    firebaseApp.firestore().collectionGroup("applicationsConfirmed").get().then((querySnapshot) => {
-                        querySnapshot.forEach((doc) => {
-                            if (doc.id != null){
-                                this.teachernumLessons += 1;
-                                this.teacherRates += doc.rateA;
-                                this.teacherEarnings += (doc.durationA * doc.rateA);
-                            }
-                        });
-                        return true;
-                    });
-                }
-            }).then((x) => {
-                if (x) {
-                    firebaseApp.firestore().collection("users").where("type", "==", "Tutor").get().then((querySnapshot) => {
-                        querySnapshot.forEach((doc) => {
-                            if (doc.id != null){
-                                this.numTeacher += 1;
-                            }
-                        });
-                        return true;
-                    });
-                }
-            }).then((x) => {
-                if(x) {
-                    this.average();
-                    this.prepChart();
-                    console.log(this.numLessons);
-                    console.log(this.numTeacher);
-                }
-
             });
-
+            firebaseApp.firestore().collectionGroup("applicationsConfirmed").get().then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    if (doc.id != null){
+                        this.teachernumLessons += 1;
+                        this.teacherRates += doc.rateA;
+                        this.teacherEarnings += (doc.durationA * doc.rateA);
+                    }
+                });
+            });
+            firebaseApp.firestore().collection("users").where("type", "==", "Tutor").get().then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    if (doc.id != null){
+                        this.numTeacher += 1;
+                    }
+                });
+            });
         },
 
         average:function() {
@@ -103,6 +85,10 @@ export default {
 
     created(){
         this.prepare();
+        this.average();
+        this.prepChart();
+        console.log(this.numLessons);
+        console.log(this.numTeacher);
     }
 
 
@@ -111,8 +97,3 @@ export default {
 
 <style scoped>
 </style>
-
-Dashboard (Teachers)
-- average no. of lessons/mth
-- average ratings (graph to show if improvement)
-- Earnings, yearly
