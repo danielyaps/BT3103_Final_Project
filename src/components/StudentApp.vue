@@ -129,8 +129,8 @@ export default {
           currDate.setDate(currDate.getDate() + 1);
           
         }
-        this.startDate = currDate;
-        console.log(this.startDate)
+        this.startDate = currDate.toISOString().substr(0, 10);
+        console.log(currDate.toISOString().substr(0, 10))
     },
 
     goChat: function (event) {
@@ -163,6 +163,7 @@ export default {
       docref.collection("applicationsConfirmed")
         .doc(this.stuid)
         .set(appDetails).then();
+
       
       docref.collection("calEvent")
         .doc(this.stuid)
@@ -173,6 +174,8 @@ export default {
           name: appDetails.stuName,
           start: this.startDate,
         });
+
+
 
       docref
         .collection("applicationsNew")

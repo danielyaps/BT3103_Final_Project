@@ -9,22 +9,19 @@
         id="inputboxname"
         placeholder="Name"
         type="text"
-        v-model.lazy.trim="inputname"
-        name="inputname"
+        v-model.trim="inputname"
       />
 
       <input
         id="inputboxemail"
         placeholder="Email"
         type="email"
-        v-model.lazy.trim="inputemail"
-        name="inputemail"
+        v-model.trim="inputemail"
       /><br /><br />
       <textarea
         id="msgbox"
         placeholder="Message"
-        v-model.lazy.trim="inputmsg"
-        name="inputmsg"
+        v-model.trim="inputmsg"
         rows="5"
         cols="40"
       ></textarea
@@ -33,7 +30,7 @@
         id="submitbtn"
         type="submit"
         value="Submit"
-        v-on:click="complete()"
+        v-on:click.prevent="complete()"
       >
         Submit
       </button>
@@ -61,17 +58,20 @@ export default {
   },
 
   methods: {
-    complete: function () {
-      if (this.inputname == "" || this.inputemail == "" || this.inputmsg == "") {
+    complete: function (value1, value2, value3) {
+      if (value1 == "" || value2 == "" || value3 == "") {
         alert("Incomplete submission, please fill in all fields");
       } else {
         alert("Your response has been submitted");
         let question = {name: this.inputname, email: this.inputemail, msg: this.inputmsg}
-        firebaseApp.firestore().collection('questions').add(question).then(location.reload())
+        console.log(question)
+        firebaseApp.firestore().collection('questions').add(question).then(setTimeout(function() {
+                location.reload()
+              }, 3000))
       }
     },
-  },
-};
+  }
+}
 </script>
 
 <style scoped>
