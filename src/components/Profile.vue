@@ -230,7 +230,7 @@ export default {
       reader.readAsDataURL(image);
       reader.onload = (e) => {
         this.image = e.target.result;
-        this.change = true;
+        this.changeImage = true;
       };
     },
 
@@ -251,7 +251,9 @@ export default {
               this.details[key] = value;
             });
           }
-
+          if (this.changeImage) {
+            this.updateImage(this.image);
+          }
           firebaseApp
             .firestore()
             .collection("users")
