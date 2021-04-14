@@ -33,7 +33,7 @@
         id="submitbtn"
         type="submit"
         value="Submit"
-        v-on:click="complete()"
+        v-on:click="complete(inputname, inputemail, inputmsg)"
       >
         Submit
       </button>
@@ -61,17 +61,16 @@ export default {
   },
 
   methods: {
-    complete: function () {
-      if (this.inputname == "" || this.inputemail == "" || this.inputmsg == "") {
+    complete: function (value1, value2, value3) {
+      if (value1 == "" || value2 == "" || value3 == "") {
         alert("Incomplete submission, please fill in all fields");
       } else {
         alert("Your response has been submitted");
-        let question = {name: this.inputname, email: this.inputemail, msg: this.inputmsg}
-        firebaseApp.firestore().collection('questions').add(question).then(location.reload())
+        firebaseApp.firestore().collection('questions').add({name: value1, email: value2, message: value3});
       }
     },
-  },
-};
+  }
+}
 </script>
 
 <style scoped>
