@@ -58,8 +58,8 @@ export default {
   },
 
   methods: {
-    complete: function () {
-      if (this.inputname == "" || this.inputemail == "" || this.inputmsg == "") {
+    complete: function (value1, value2, value3) {
+      if (value1 == "" || value2 == "" || value3 == "") {
         alert("Incomplete submission, please fill in all fields");
       } else {
         alert("Your response has been submitted");
@@ -70,8 +70,8 @@ export default {
               }, 3000))
       }
     },
-  },
-};
+  }
+}
 </script>
 
 <style scoped>
