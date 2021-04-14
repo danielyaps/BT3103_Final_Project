@@ -68,7 +68,6 @@ export default {
       if (this.gradeImprovement == null || this.stars == 0 || this.review == "") {
         alert("Incomplete Submission")
       } else {
-        alert("Submitted")
         let rating = { stars: this.stars, review: this.review, gradeImprovement: this.gradeImprovement}
         var storageRef = firebaseApp.storage().ref();
         storageRef
@@ -81,10 +80,10 @@ export default {
               rating.studentUserName = docRef.data().username
             }).then(() => {
               firebaseApp.firestore().collection('users').doc(this.tutorId).collection('reviews').doc(this.uid).set(rating)
-            }).then(setTimeout(function() {
-                location.reload()
-              }, 3000));
-          })
+            })
+          });
+          alert("Submitted");
+          this.$router.push({name: 'tutorDetails', params: {uid: this.uid, tutorid: this.tutorId}});
       }
     }
   },

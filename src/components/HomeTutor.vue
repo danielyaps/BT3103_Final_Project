@@ -10,6 +10,8 @@
     <div id="scheduleContainer" v-on:click="goSchedule()">
         <p class="imgTxtS">View Your Schedule</p>
     </div>
+    <br>
+    <br>
 </div>
 </template>
 
