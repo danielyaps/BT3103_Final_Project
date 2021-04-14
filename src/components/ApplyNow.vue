@@ -12,8 +12,7 @@
             <h4>Subject:</h4>
             <v-text-field placeholder="Subject" v-model="subjectA" ></v-text-field>
             <h4>Current Grade:</h4>
-            <v-autocomplete ref="grades" :items="grades" v-model="currGradeA"
-              label="Grade" required solo-inverted></v-autocomplete>
+            <v-text-field placeholder="Recent exam grade" v-model="currGradeA" ></v-text-field>
             <h4>Day:</h4>
             <v-autocomplete ref="day" :items="days" v-model="dayA"
               label="Day" required solo-inverted></v-autocomplete>
@@ -90,17 +89,6 @@ export default {
         "Friday",
         "Saturday",
         "Sunday",
-      ],
-      grades: [
-        "A1",
-        "A2",
-        "B3",
-        "B4",
-        "C5",
-        "C6",
-        "D7",
-        "E8",
-        "F9"
       ],
       formHasErrors: false,
       error: false,

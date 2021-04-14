@@ -4,7 +4,7 @@
     <MenuBarTutors v-bind:uid="uid"></MenuBarTutors>
     <br />
     <H1>Student Applications</H1>
-    <v-card color="#6FB3B8" elevation="16" max-width="1200" class="mx-auto">
+    <v-card color="#6FB3B8" elevation="16" max-width="1500" class="mx-auto">
       <v-virtual-scroll :items="studentapps" :item-height="100" height="500">
         <template v-slot="{ item }">
           <v-list-item class="listItem">
@@ -13,23 +13,24 @@
             </v-list-item-avatar>
 
             <v-list-item-content class="listContent">
-              <v-list-item-title> {{ item.stuName }}</v-list-item-title>
-              
-              <v-list-item-subtitle class="leftDetails"
-                >Subject: {{ item.subjectA }}</v-list-item-subtitle
+              <v-list-item-title class="font-weight-bold"> {{ item.stuName }}</v-list-item-title>
+              <v-col cols="6">
+              <v-list-item-subtitle class="leftDetails" font-size="20px"
+                > Subject: {{ item.subjectA }}</v-list-item-subtitle
               >
               <v-list-item-subtitle class="leftDetails"
                 >Current Grade: {{ item.currGradeA }}</v-list-item-subtitle
               >
               <v-list-item-subtitle class="leftDetails"
                 >Day: {{ item.dayA }}</v-list-item-subtitle
-              >
+              ></v-col>
+              <v-col cols="6">
               <v-list-item-subtitle class="rightDetails"
                 >Rate: S${{ item.rateA }}</v-list-item-subtitle
               >
               <v-list-item-subtitle class="rightDetails"
                 >Location: {{ item.locationA }}</v-list-item-subtitle
-              >
+              ></v-col>
               
             </v-list-item-content>
 
@@ -72,8 +73,19 @@ export default {
       stuid: "",
       studentapps: [],
       currApp: [],
+      startDate: "", 
+      days: [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday",
+      ],
     };
   },
+
   methods: {
     fetchItems: function () {
       firebaseApp
@@ -110,6 +122,17 @@ export default {
         });
     },
 
+    generateDate: function (dayA) {
+        var currDate = new Date();
+        
+        while (this.days[currDate.getDay()] != dayA) {
+          currDate.setDate(currDate.getDate() + 1);
+          
+        }
+        this.startDate = currDate;
+        console.log(this.startDate)
+    },
+
     goChat: function (event) {
       console.log(event.currentTarget.getAttribute("stuid"));
       this.stuid = event.currentTarget.getAttribute("stuid");
@@ -124,19 +147,32 @@ export default {
     },
 
     confirmApp: function (event) {
+      console.log("wts")
       this.stuid = event.target.getAttribute("stuid");
       let docref = firebaseApp.firestore().collection("users").doc(this.uid);
-
+      console.log(docref);
       let appDetails = [];
       for (let i = 0; i < Object.values(this.studentapps).length; i++) {
         if (this.studentapps[i].id == this.stuid) {
           appDetails = this.studentapps[i];
+          console.log("wts2")
         }
       }
-      docref
-        .collection("applicationsConfirmed")
+      this.generateDate(appDetails.dayA)
+      console.log("wts2")
+      docref.collection("applicationsConfirmed")
         .doc(this.stuid)
-        .set(appDetails);
+        .set(appDetails).then();
+      
+      docref.collection("calEvent")
+        .doc(this.stuid)
+        .set({
+          color: "#1976D2",
+          details: "test",
+          end: this.startDate,
+          name: appDetails.stuName,
+          start: this.startDate,
+        });
 
       docref
         .collection("applicationsNew")
@@ -146,6 +182,7 @@ export default {
           location.reload();
         });
 
+      
       alert("Application Confirmed");
     },
   },
@@ -159,6 +196,22 @@ export default {
 <style scoped>
 .listContent {
   padding: 20px;
+  font-size: 14px;
+}
+p{
+  font-size: 1.2rem;
+  font-weight: medium;
+  padding: 2px;
+
+}
+.leftDetails, .rightDetails{
+  font-size: 1rem !important;
+  padding: 2px;
+}
+.font-weight-bold {
+  font-size: 1.2rem !important;
+  font-weight: bold;
+  margin-left: 15px;
 }
 
 .actions {
@@ -183,6 +236,7 @@ H1 {
   font-weight: 900;
   color: #388087;
   text-align: left;
+  margin-left: 20px;
 }
 
 .listItem:hover{

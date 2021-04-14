@@ -33,7 +33,7 @@
         id="submitbtn"
         type="submit"
         value="Submit"
-        v-on:click="complete(inputname, inputemail, inputmsg)"
+        v-on:click="complete()"
       >
         Submit
       </button>
@@ -46,6 +46,7 @@
 
 <script>
 import Header from "./Header.vue";
+import firebaseApp from '../firebase.js'
 
 export default {
   components: {
@@ -60,11 +61,13 @@ export default {
   },
 
   methods: {
-    complete: function (value1, value2, value3) {
-      if (value1 == "" || value2 == "" || value3 == "") {
+    complete: function () {
+      if (this.inputname == "" || this.inputemail == "" || this.inputmsg == "") {
         alert("Incomplete submission, please fill in all fields");
       } else {
         alert("Your response has been submitted");
+        let question = {name: this.inputname, email: this.inputemail, msg: this.inputmsg}
+        firebaseApp.firestore().collection('questions').add(question).then(location.reload())
       }
     },
   },
