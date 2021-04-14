@@ -30,11 +30,7 @@
         id="submitbtn"
         type="submit"
         value="Submit"
-<<<<<<< HEAD
-        v-on:click="complete(inputname, inputemail, inputmsg)"
-=======
         v-on:click.prevent="complete()"
->>>>>>> e325280778669e17267496e3b08877542514cecf
       >
         Submit
       </button>
@@ -67,15 +63,11 @@ export default {
         alert("Incomplete submission, please fill in all fields");
       } else {
         alert("Your response has been submitted");
-<<<<<<< HEAD
-        firebaseApp.firestore().collection('questions').add({name: value1, email: value2, message: value3});
-=======
         let question = {name: this.inputname, email: this.inputemail, msg: this.inputmsg}
         console.log(question)
         firebaseApp.firestore().collection('questions').add(question).then(setTimeout(function() {
                 location.reload()
               }, 3000))
->>>>>>> e325280778669e17267496e3b08877542514cecf
       }
     },
   }
