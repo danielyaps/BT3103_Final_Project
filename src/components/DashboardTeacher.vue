@@ -1,18 +1,20 @@
 <template>
     <div>
         <Header></Header>
-        ANALYTICS
+        <MenuBarTutors></MenuBarTutors>
+        <p id="title">ANALYTICS</p>
         <br><br>
         <ul>
             <li>My Lessons per Week: 
-                    <p>{{numLessons}}</p>
-                 </li> 
-                <li>My Weekly Earnings: 
-                    <p>{{earnings}}</p>
-                </li>
-                <li>My Rates: 
-                    <p>{{rates}}</p>
-                </li>
+                <p>{{numLessons}}</p>
+            </li> 
+            <li>My Average Rates: 
+                <p>{{rates}}</p>
+            </li>    
+            <li>My Weekly Earnings: 
+                <p>{{earnings}}</p>
+            </li>
+
         </ul>
         <Barchart v-bind:chartdata="this.chartdata" v-if="this.chartdata"></Barchart>
     </div>
@@ -22,6 +24,7 @@
 import firebaseApp from '../firebase.js'
 import Header from './Header.vue'
 import Barchart from './Charts/BarChart.vue'
+import MenuBarTutors from './MenuBarTutors.vue'
 
 export default {
     data() {
@@ -88,7 +91,7 @@ export default {
             this.chartdata.label = ["My Number of Lessons", "Average Number of Lessons", "My Rates", "Average Rates", "My Earnings", "Average Earnings"];
             this.chartdata.data = [this.numLessons, this.teachernumLessons, this.rates, this.teacherRates, this.earnings, this.teacherEarnings];
             this.chartdata.name = "My Performance!";
-            this.chartdata.color = ["Blue","Black","Blue","Black","Blue","Black"]
+            this.chartdata.color = ["#4287f5","#064bb9","#ff4ccf","#b90689","#4cffed","#68bdb4"]
         },
 
     },
@@ -96,6 +99,8 @@ export default {
     components:{
         'Header': Header,
         'Barchart': Barchart,
+        'MenuBarTutors': MenuBarTutors,
+
     },
 
     created(){
@@ -107,7 +112,7 @@ export default {
 </script>
 
 <style scoped>
-    div {
+    #title {
         color: black;
         font-weight: bold;
         text-align: center;

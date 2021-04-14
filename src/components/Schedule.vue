@@ -2,7 +2,7 @@
   <v-app>
     <v-main>
       <Header></Header>
-      <MenuBarTutors></MenuBarTutors>
+      <MenuBarTutors v-bind:uid="uid"></MenuBarTutors>
       <v-row class="fill-height">
         <v-col>
           <v-sheet height="64">
