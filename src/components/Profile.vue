@@ -275,7 +275,7 @@ export default {
           this.$router.push({ name: x, params: { uid: this.uid } });
         })
         .catch(function () {
-          alert("Password is invalid!");
+          alert("Require Current Password!");
         });
     },
   },
