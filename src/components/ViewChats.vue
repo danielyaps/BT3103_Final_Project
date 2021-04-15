@@ -5,7 +5,7 @@
     <MenuBarStudents v-bind:uid="uid" v-else></MenuBarStudents>
     <div id="chatPart">
         <h2 id="title">Chats</h2>
-        <ul id>
+        <ul >
             <li v-for="chat in chats" v-bind:key=chat.otherID v-on:click="goToChat(chat.otherID)" style="list-style-type: none">
                 <div id="container">
                     <img v-bind:src="chat.image" class="images">
@@ -75,7 +75,7 @@ export default {
 
 #container {
     height: 200px;
-    width: 1200px;
+    width: 100%;
     background-color: #388087;
     color: #FFFFFF;
     display: flex;
@@ -90,16 +90,17 @@ export default {
     height: 150px; 
     position: relative; 
     float: left; 
-    left: 20px
+    left: 5px;
+    border-radius: 50%;
 }
 
 .lastMsg {
-    position: relative; 
     border-style: solid; 
     height: 150px; 
-    width: 900px; 
-    left: 50px; 
-    padding: 20px
+    width: 80%; 
+    padding: 20px;
+    position: relative;
+    left: 12px;
 }
 
 #title {
@@ -109,7 +110,13 @@ export default {
 }
 
 #chatPart {
-    position: absolute;
-    left: 50px;
+    border: 3px solid #fff;
+  padding: 10px;
+  background-color: #FFFFFF;
+  height: 100vh;
+}
+
+#container:hover{
+    background: #6FB3B8;
 }
 </style>
