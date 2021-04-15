@@ -37,25 +37,18 @@
       <input
         type="text"
         id="fname"
-        v-model="updatedDetails.firstname"
+        v-model="updatedDetails.firstName"
         :placeholder="this.details.firstName"
       />
       &nbsp;
       <input
         type="text"
         id="lname"
-        v-model="updatedDetails.lastname"
+        v-model="updatedDetails.lastName"
         :placeholder="this.details.lastName"
       />
       <br />
-      <label>Email: </label>
-      <input
-        type="email"
-        id="email"
-        v-model="updatedDetails.email"
-        :placeholder="this.details.email"
-      />
-      <br />
+    
       <label>Current Password: </label>
       <input
         type="password"
@@ -103,23 +96,15 @@
       <input
         type="text"
         id="fname"
-        v-model="updatedDetails.firstname"
+        v-model="updatedDetails.firstName"
         :placeholder="this.details.firstName"
       />
       &nbsp;
       <input
         type="text"
         id="lname"
-        v-model="updatedDetails.lastname"
+        v-model="updatedDetails.lastName"
         :placeholder="this.details.lastName"
-      />
-      <br />
-      <label> Email: </label>
-      <input
-        type="email"
-        id="email"
-        v-model="updatedDetails.email"
-        :placeholder="this.details.email"
       />
       <br />
       <label>Current Password: </label>
@@ -340,18 +325,6 @@ input[type="radio"] {
 
 input[type="text"],
 input[type="password"] {
-  background-color: white;
-  border: none;
-  border-bottom: 2px solid #888888;
-  padding: 18px;
-  height: 32px;
-  font-family: Roboto;
-  font-size: 14px;
-  width: 300px;
-  left: 0px;
-}
-
-#email {
   background-color: white;
   border: none;
   border-bottom: 2px solid #888888;
