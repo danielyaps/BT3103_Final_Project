@@ -1,5 +1,6 @@
 <template>
 <div class="page">
+    <Header></Header>
     <MenuBarTutors v-bind:uid="uid"></MenuBarTutors>
     <div style="position: absolute; left: 70px; top: 70px">
         <h2 style="font-size: 40px; color: #388087; font-family: Playfair Display">Reviews</h2>
@@ -21,11 +22,12 @@
 
 <script>
 import MenuBarTutors from './MenuBarTutors.vue'
+import Header from './Header.vue'
 import firebaseApp from '../firebase.js'
 
 export default {
     components: {
-        MenuBarTutors
+        MenuBarTutors, Header
     },
 
     data() {
