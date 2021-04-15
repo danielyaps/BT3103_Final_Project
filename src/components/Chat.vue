@@ -17,7 +17,7 @@
       <ul>
         <li v-for="message in messages" v-bind:key="message.content" v-bind:class="{alignRight: message.myself}">
           <span v-bind:class="message.myself ? 'senderMessageDesign' : 'recipientMessageDesign'">{{message.content}}</span>
-          <span style="color: white; font-size: 10px">{{message.timestamp.day}}/{{message.timestamp.month}}/{{message.timestamp.year}}, {{message.timestamp.hours}}:{{message.timestamp.minutes}}</span>
+          <span style="color: white; font-size: 10px; padding: 5px">{{message.timestamp.day}}/{{message.timestamp.month}}/{{message.timestamp.year}}, {{message.timestamp.hours}}:{{message.timestamp.minutes}}</span>
         </li>
       </ul>
     </div>
@@ -169,10 +169,6 @@ export default {
 <style scoped>
 .page {
   background-color: white;
-  overflow-y: scroll;
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
 }
 
 #title {
@@ -207,7 +203,11 @@ export default {
   position: relative;
   top: 50px;
   left: 50px;
-  width: 1300px;
+  width: 80%;
+}
+
+#chatbox::-webkit-scrollbar {
+  display: none;
 }
 
 #chatmsg {
@@ -215,7 +215,8 @@ export default {
   float: left;
   border-style: solid;
   top: 60px;
-  left: 50px
+  left: 50px;
+  width: 80%;
 }
 
 #submitb {
