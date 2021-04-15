@@ -1,7 +1,7 @@
 <template>
     <div>
         <Header></Header>
-        <MenuBarTutors></MenuBarTutors>
+        <MenuBarTutors v-bind:uid="uid"></MenuBarTutors>
         <p id="title">ANALYTICS</p>
         <br><br>
         <ul>
