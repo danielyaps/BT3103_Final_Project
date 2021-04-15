@@ -27,13 +27,14 @@
         </v-card>
         <br />
         
-        <v-card dark tile flat color="#388087" height="250" class="justify-center">
-          <v-card-text>Reviews:</v-card-text>
+        <v-card dark tile flat color="#388087" height="250" class="justify-center" >
+          <v-card-text>Reviews:
           <v-list id="listItem" v-for="(item,i) in reviews" :key="i" class ="overflow-y:auto d-flex flex-column" >
             <v-list-item id="item" width="85%" height="100" class="justify-center mt-auto">
+              
               <v-row id="listRow" align="center" light>
               <v-col cols="2">
-                <v-img v-bind:src="item.image" style="width: 60px; height: 60px; position: relative; float: left; left: 20px"></v-img>
+                <v-img v-bind:src="item.image" style="width: 80px; height: 80px; position: relative; float: left; left: 20px; border-radius: 50%"></v-img>
               </v-col>
 
               <v-col class="text" cols="10" >
@@ -43,6 +44,7 @@
               </v-row>
             </v-list-item>
           </v-list>
+          </v-card-text>
         </v-card>
         <br><br>
         <button id="reviewBtn" v-on:click="reviewBtn()">Write A Review</button>
@@ -151,6 +153,16 @@ export default {
   color: black;
 }
 
+.v-card {
+  display: flex !important;
+  flex-direction: column;
+}
+
+.v-card__text {
+  flex-grow: 1;
+  overflow: auto;
+}
+
 #listItem {
   background-color:white;
   display: flex;
@@ -159,14 +171,13 @@ export default {
   padding: 10px;
   margin-right:auto;
   margin-left:auto;
+  outline: 5px solid #388087;
 }
 #item {
   padding: 10px;
+  
 }
-.overflow-y:auto {
-  background-color: white;
-  padding: 5px;
-}
+
 
 img {
   position: absolute;
@@ -181,5 +192,11 @@ img {
   border-radius: 5px;
   height: 30px;
   padding: 10px;
+  text-align: center;
 }
+
+#reviewBtn:hover{
+  background: #6FB3B8;
+}
+
 </style>
