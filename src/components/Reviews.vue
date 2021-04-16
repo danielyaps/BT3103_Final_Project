@@ -11,8 +11,8 @@
             <li v-for="review in reviews" v-bind:key=review.id>
                     <div class="review">
                         <img v-bind:src="review.image" style="width: 150px; height: 150px; position: relative; float: left; left: 20px; border-radius: 50%">
-                        <span style="position: relative; border-style: solid; height: 150px; width: 85%; left: 50px; padding: 20px">{{review.review}} <br>
-                            <p style="position: relative; bottom: -50px; left: 1200px">- {{review.studentUserName}} </p>
+                        <span style="position: relative; border-style: solid; height: 150px; width: 70%; left: 50px; padding: 20px">{{review.review}} <br>
+                            <p style="position: relative; bottom: -50px; left: 70%">- {{review.studentUserName}} </p>
                         </span>
                         
                     </div>
