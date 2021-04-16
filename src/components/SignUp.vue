@@ -107,7 +107,7 @@
         placeholder="Password"
       />
       <br />
-      <input type="text" id="levels" v-model="levels" placeholder="Level" />
+      <input type="text" id="level" v-model="level" placeholder="Level" />
       <br />
       <input
         type="text"
@@ -125,7 +125,7 @@
       <br />
       <br />
       <textarea
-        v-model="desc"
+        v-model="description"
         placeholder="Description"
         cols="37"
         rows="7"
