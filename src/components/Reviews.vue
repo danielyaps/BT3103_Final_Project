@@ -11,8 +11,11 @@
             <li v-for="review in reviews" v-bind:key=review.id>
                     <div class="review">
                         <img v-bind:src="review.image" style="width: 150px; height: 150px; position: relative; float: left; left: 20px; border-radius: 50%">
-                        <span style="position: relative; border-style: solid; height: 150px; width: 70%; left: 50px; padding: 20px">{{review.review}} <br>
-                            <p style="position: relative; bottom: -50px; left: 70%">- {{review.studentUserName}} </p>
+                       
+                        <span style="position: relative; border-style: solid; height: 150px; width: 70%; left: 50px; padding: 20px">
+                            <p style="text-align: right; color: #FF9900"> {{review.stars}} / 5 </p>
+                            <p style="position: relative; text-align: left"> {{review.review}} </p>
+                            <p style="position: relative; bottom: -50px; text-align: right">- {{review.studentUserName}} </p>
                         </span>
                         
                     </div>
