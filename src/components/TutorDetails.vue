@@ -4,7 +4,7 @@
     <MenuBarStudents v-bind:uid="uid"></MenuBarStudents>
     <v-container grid-list-md text-md-center fluid fill-height>
       <v-col md="5">
-        <v-card dark tile flat color="#388087">
+        <v-card dark tile flat color="#388087" height="500" >
           <h2>{{ name }}</h2>
           <v-img
             height="100%"
@@ -19,28 +19,38 @@
         </v-card>
       </v-col>
       <v-col md="7">
-        <v-card dark tile flat color="#388087">
+        <v-card dark tile flat color="#388087" >
           <v-card-text>Subjects Offered: {{ subjects }} </v-card-text
           ><v-divider></v-divider> <v-card-text>Level: {{ level }} </v-card-text
           ><v-divider></v-divider>
           <v-card-text>Rate: S${{ rate }}/hr </v-card-text>
         </v-card>
         <br />
-        <v-card dark tile flat color="#388087">
-          <v-card-text>Reviews:</v-card-text>
-          <v-flex v-for="review in reviews" :key="review.num">
-            <v-card color="gray" dark width="150px">
-              <v-card-text>{{ review.num }}</v-card-text>
-            </v-card>
-          </v-flex>
+        
+        <v-card dark tile flat color="#388087" height="250" class="justify-center" >
+          <v-card-text>Reviews:
+          <v-list id="listItem" v-for="(item,i) in reviews" :key="i" class ="overflow-y:auto d-flex flex-column" >
+            <v-list-item id="item" width="85%" height="100" class="justify-center mt-auto">
+              
+              <v-row id="listRow" align="center" light>
+              <v-col cols="2">
+                <v-img v-bind:src="item.image" style="width: 80px; height: 80px; position: relative; float: left; left: 20px; border-radius: 50%"></v-img>
+              </v-col>
+
+              <v-col class="text" cols="10" >
+                {{ item.review }}
+                <p class="text" style="position: absolute; bottom: 10px; right: 10px">- {{item.studentUserName}} </p>
+              </v-col>
+              </v-row>
+            </v-list-item>
+          </v-list>
+          </v-card-text>
         </v-card>
         <br><br>
         <button id="reviewBtn" v-on:click="reviewBtn()">Write A Review</button>
       </v-col>
     </v-container>
-    <img
-      src="https://pbs.twimg.com/media/EyqjfCLU8AIpFHi?format=png&name=360x360"
-    />
+
   </div>
 </template>
 
@@ -84,7 +94,17 @@ export default {
           this.subjects = this.datapacket.subjects;
           this.level = this.datapacket.level;
           this.rate = this.datapacket.rates;
+          console.log("got details");
         });
+
+      firebaseApp.firestore().collection('users').doc(id).collection('reviews').onSnapshot((querySnapShot) => {
+                let review={}
+                querySnapShot.forEach(doc => {
+                    review = doc.data()
+                    this.reviews.push(review)       
+                })
+                console.log(this.reviews)
+            })
       firebaseApp
         .storage()
         .ref()
@@ -129,9 +149,35 @@ export default {
 </script>
 
 <style scoped>
-.v-card__text {
-  color: white;
+.text{
+  color: black;
 }
+
+.v-card {
+  display: flex !important;
+  flex-direction: column;
+}
+
+.v-card__text {
+  flex-grow: 1;
+  overflow: auto;
+}
+
+#listItem {
+  background-color:white;
+  display: flex;
+  color: #FFFFFF;
+  width: 90%;
+  padding: 10px;
+  margin-right:auto;
+  margin-left:auto;
+  outline: 5px solid #388087;
+}
+#item {
+  padding: 10px;
+  
+}
+
 
 img {
   position: absolute;
@@ -139,11 +185,18 @@ img {
   bottom: 0px;
 }
 
+
 #reviewBtn {
   color: white;
   background-color: #388087;
   border-radius: 5px;
   height: 30px;
   padding: 10px;
+  text-align: center;
 }
+
+#reviewBtn:hover{
+  background: #6FB3B8;
+}
+
 </style>

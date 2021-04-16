@@ -5,15 +5,11 @@
     <br />
     <H1>Student Applications</H1>
     <v-card color="#6FB3B8" elevation="16" max-width="1500" class="mx-auto">
-      <v-virtual-scroll :items="studentapps" :item-height="100" height="500">
-        <template v-slot="{ item }">
+      <v-list class="list" v-for="(item,i) in studentapps" :key="i" item-height="100" height="500">
           <v-list-item class="listItem">
-            <v-list-item-avatar size="62">
-              <v-img :src="item.stuImg" ></v-img>
-            </v-list-item-avatar>
+            <h4> {{ item.stuName }}</h4><br><br>
+            <v-img :src="item.stuImg" style="width: 80px; height: 80px"></v-img>
 
-            <v-list-item-content class="listContent">
-              <v-list-item-title class="font-weight-bold"> {{ item.stuName }}</v-list-item-title>
               <v-col cols="6">
               <v-list-item-subtitle class="leftDetails" font-size="20px"
                 > Subject: {{ item.subjectA }}</v-list-item-subtitle
@@ -31,29 +27,26 @@
               <v-list-item-subtitle class="rightDetails"
                 >Location: {{ item.locationA }}</v-list-item-subtitle
               ></v-col>
-              
-            </v-list-item-content>
 
-            <v-list-item-action class="actions">
+            <div class="actions">
               <v-btn
                 id="confirmBtn"
                 v-bind:stuid="item.id"
                 v-on:click="confirmApp($event)"
                 >Confirm</v-btn
-              >
-              <br />
+              ><br><br>
               <v-btn
                 id="chatBtn"
                 v-bind:stuid="item.id"
                 v-on:click="goChat($event)"
                 >Chat</v-btn
               >
-            </v-list-item-action>
+            </div>
+
           </v-list-item>
 
           <v-divider></v-divider>
-        </template>
-      </v-virtual-scroll>
+      </v-list>
     </v-card>
   </div>
 </template>
@@ -197,9 +190,9 @@ export default {
 </script>
 
 <style scoped>
-.listContent {
-  padding: 20px;
-  font-size: 14px;
+
+.list {
+  background-color: #388087;
 }
 p{
   font-size: 1.2rem;
@@ -219,7 +212,7 @@ p{
 
 .actions {
   position: absolute;
-  right: 10px;
+  right: 30px;
 }
 
 .mx-auto {
@@ -228,7 +221,7 @@ p{
 }
 #confirmBtn,
 #chatBtn {
-  position: "absolute";
+  position: relative;
   text-align: center;
   border-radius: 10px;
   background-color: #388087;
@@ -244,6 +237,11 @@ H1 {
 
 .listItem:hover{
   background: #BADFE7;
+  padding: 20px;
+}
+.listItem {
+  padding: 20px;
+
 }
 
 </style>

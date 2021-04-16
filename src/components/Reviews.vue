@@ -2,15 +2,17 @@
 <div class="page">
     <Header></Header>
     <MenuBarTutors v-bind:uid="uid"></MenuBarTutors>
-    <div style="position: absolute; left: 70px; top: 70px">
-        <h2 style="font-size: 40px; color: #388087; font-family: Playfair Display">Reviews</h2>
-        <p style="text-align: right; font-size: 30px; color: #FF9900; font-weight: bold; font-family: roboto"> {{this.averageStars()}} OF 5.0 STARS </p>
+    <h2 style="font-size: 40px; color: #388087; font-family: Playfair Display; position: relative; top: 50px; left: 20px;">Reviews</h2>
+        <p style="text-align: right; font-size: 30px; color: #FF9900; font-weight: bold; font-family: roboto; position: relative; top: 50px; right: 50px"> {{this.averageStars()}} OF 5.0 STARS </p>
+    
+    
+    <div style="position: relative; left: 70px; top: 70px; overflow: scroll; height: 100%; width: 100%">
         <ul id="box">
             <li v-for="review in reviews" v-bind:key=review.id>
                     <div class="review">
-                        <img v-bind:src="review.image" style="width: 150px; height: 150px; position: relative; float: left; left: 20px">
-                        <span style="position: relative; border-style: solid; height: 150px; width: 900px; left: 50px; padding: 20px">{{review.review}} <br>
-                            <p style="position: absolute; bottom: 10px; right: 10px">- {{review.studentUserName}} </p>
+                        <img v-bind:src="review.image" style="width: 150px; height: 150px; position: relative; float: left; left: 20px; border-radius: 50%">
+                        <span style="position: relative; border-style: solid; height: 150px; width: 70%; left: 50px; padding: 20px">{{review.review}} <br>
+                            <p style="position: relative; bottom: -50px; left: 70%">- {{review.studentUserName}} </p>
                         </span>
                         
                     </div>
@@ -73,7 +75,6 @@ export default {
 .page {
     background-color: white;
     overflow-y: scroll;
-    position: fixed;
     width: 100vw;
     height: 100vh;
 }
@@ -84,7 +85,6 @@ export default {
 
 .review{
     height: 200px;
-    width: 1200px;
     background-color: #388087;
     color: #FFFFFF;
     display: flex;
@@ -92,5 +92,6 @@ export default {
     margin-top: 50px;
     border-radius: 15px;
     font-size: 20px;
+    width: 90%;
 }
 </style>
