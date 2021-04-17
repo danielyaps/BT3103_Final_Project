@@ -146,10 +146,19 @@ export default {
 
     generateDate: function (dayA) {
         var currDate = new Date();
-        console.log(this.days[currDate.getDay()])
+        console.log(dayA)
+        var count = 0
         while (this.days[currDate.getDay()] != dayA) {
           currDate.setDate(currDate.getDate() + 1);
-          console.log(currDate.getDay())
+          console.log(this.days[currDate.getDay()])
+          count++;
+          if (this.days[currDate.getDay()] == dayA) {
+            break;
+          }
+          if (count > 10) {
+            alert("no date");
+            break; 
+          }
         }
         console.log(currDate)
         console.log(currDate.toISOString())
@@ -170,19 +179,19 @@ export default {
     },
 
     confirmApp: function (event) {
-      console.log("wts");
-      this.stuid = event.target.getAttribute("stuid");
+      this.stuid = event.currentTarget.getAttribute("stuid");
+      console.log(event.target.getAttribute("stuid"))
       let docref = firebaseApp.firestore().collection("users").doc(this.uid);
       let appDetails = [];
       for (let i = 0; i < Object.values(this.studentapps).length; i++) {
         if (this.studentapps[i].id == this.stuid) {
           appDetails = this.studentapps[i];
-          console.log("wts2");
-        }
+          console.log("wts2");        
+          }
       }
+      console.log(appDetails)
       this.generateDate(appDetails.dayA)
-      console.log("wts2")
-      
+       
       docref.collection("applicationsConfirmed")
         .doc(this.stuid)
         .set(appDetails);
@@ -207,6 +216,7 @@ export default {
         .then(() => {
           location.reload();
         });
+
         console.log("deleted from new apps")
       
       alert("Application Confirmed");
