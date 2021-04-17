@@ -5,12 +5,11 @@
     <br />
     <H1>Student Applications</H1>
     <v-card color="#6FB3B8" elevation="16" max-width="1500" class="mx-auto">
+      <div class="wholeList">
       <v-list
         class="list"
         v-for="(item, i) in studentapps"
         :key="i"
-        item-height="100"
-        height="100%"
       >
         <v-list-item class="listItem">
           <h4 style="color: #388087">{{ item.stuName }}</h4>
@@ -71,6 +70,7 @@
 
         <v-divider></v-divider>
       </v-list>
+      </div>
     </v-card>
   </div>
 </template>
@@ -230,6 +230,18 @@ export default {
 </script>
 
 <style scoped>
+.wholeList{
+  background: #388087;
+  border-radius: 35px;
+  height: 700px;
+  width: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.wholeList::-webkit-scrollbar {
+  display: none;
+}
 .list {
   background-color: #388087;
 }
@@ -280,7 +292,10 @@ H1 {
 }
 .listItem {
   padding: 20px;
-  border: 5px solid #388087;
+  border: none;
+  border-right: 5px solid #388087;
+  border-left: 5px solid #388087;
   background: white;
+  border-radius: 15px;
 }
 </style>
