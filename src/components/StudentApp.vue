@@ -145,15 +145,6 @@ export default {
     },
 
     generateDate: function (dayA) {
-<<<<<<< HEAD
-      var currDate = new Date();
-
-      while (this.days[currDate.getDay()] != dayA) {
-        currDate.setDate(currDate.getDate() + 1);
-      }
-      this.startDate = currDate.toISOString().substr(0, 10);
-      console.log(currDate.toISOString().substr(0, 10));
-=======
         var currDate = new Date();
         console.log(this.days[currDate.getDay()])
         while (this.days[currDate.getDay()] != dayA) {
@@ -164,7 +155,6 @@ export default {
         console.log(currDate.toISOString())
         this.startDate = currDate.toISOString().substr(0, 10);
         console.log(currDate.toISOString().substr(0, 10))
->>>>>>> 9b7c2a2... change student app
     },
 
     goChat: function (event) {
@@ -187,26 +177,7 @@ export default {
       for (let i = 0; i < Object.values(this.studentapps).length; i++) {
         if (this.studentapps[i].id == this.stuid) {
           appDetails = this.studentapps[i];
-<<<<<<< HEAD
           console.log("wts2");
-        }
-      }
-      this.generateDate(appDetails.dayA);
-      console.log("wts2");
-      docref
-        .collection("applicationsConfirmed")
-        .doc(this.stuid)
-        .set(appDetails)
-        .then();
-
-      docref.collection("calEvent").doc(this.stuid).set({
-        color: "#1976D2",
-        details: "test",
-        end: this.startDate,
-        name: appDetails.stuName,
-        start: this.startDate,
-      });
-=======
         }
       }
       this.generateDate(appDetails.dayA)
@@ -228,7 +199,6 @@ export default {
         });
 
       console.log("added to cal")
->>>>>>> 9b7c2a2... change student app
 
       docref
         .collection("applicationsNew")
@@ -237,12 +207,8 @@ export default {
         .then(() => {
           location.reload();
         });
-<<<<<<< HEAD
-
-=======
         console.log("deleted from new apps")
       
->>>>>>> 9b7c2a2... change student app
       alert("Application Confirmed");
     },
   },
