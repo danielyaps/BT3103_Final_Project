@@ -98,13 +98,13 @@ export default {
         });
 
       firebaseApp.firestore().collection('users').doc(id).collection('reviews').onSnapshot((querySnapShot) => {
-                let review={}
-                querySnapShot.forEach(doc => {
-                    review = doc.data()
-                    this.reviews.push(review)       
-                })
-                console.log(this.reviews)
-            })
+          let review={}
+          querySnapShot.forEach(doc => {
+            review = doc.data()
+            this.reviews.push(review)       
+          })
+          console.log(this.reviews)
+      })
       firebaseApp
         .storage()
         .ref()

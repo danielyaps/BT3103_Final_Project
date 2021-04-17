@@ -106,42 +106,45 @@ export default {
 
   methods: {
     fetchItems: function () {
-      firebaseApp
-        .firestore()
-        .collection("users")
-        .doc(this.uid)
-        .collection("applicationsNew")
-        .get()
-        .then((snapshot) => {
+      console.log("fetching")
+      console.log(this.uid)
+      firebaseApp.firestore().collection("users").doc(this.uid).collection("applicationsNew").onSnapshot((snapshot) => {
           let app = {};
-          snapshot.docs.forEach((doc) => {
+          snapshot.forEach((doc) => {
+            console.log(this.uid)
             app = doc.data();
             app.id = doc.id;
-            let post = {};
-            firebaseApp
-              .firestore()
-              .collection("users")
-              .doc(app.id)
+            console.log(app)
+            this.studentapps.push(app)
+            console.log(this.studentapps)
+          });
+          
+          for (let i = 0; i < Object.values(this.studentapps).length; i++) {
+            let curr = this.studentapps[i]
+            let currID = curr.id
+            console.log(currID)
+            firebaseApp.firestore().collection("users").doc(curr.id)
               .get()
               .then((snapshot) => {
+                
+                let post = {};
                 post = snapshot.data();
-                app.stuName = post.firstName + " " + post.lastName;
-              })
-              .then(() => {
+                curr.stuName = post.firstName + " " + post.lastName;
+                console.log(curr.stuName)
+                
                 var storageRef = firebaseApp.storage().ref();
                 storageRef
-                  .child("images/" + app.id)
+                  .child("images/" + currID)
                   .getDownloadURL()
                   .then((url) => {
-                    app.stuImg = url;
-                    console.log(app.stuImg);
+                    console.log(currID)
+                    curr.stuImg = url;
+                    console.log(curr)
+                    this.studentapps.splice(i, 1, curr)
                   })
-                  .then(() => {
-                    this.studentapps.push(app);
-                  });
-              });
-          });
-        });
+              })
+          }
+        })
     },
 
     generateDate: function (dayA) {
@@ -213,13 +216,10 @@ export default {
         .collection("applicationsNew")
         .doc(this.stuid)
         .delete()
-        .then(() => {
-          location.reload();
-        });
-
-        console.log("deleted from new apps")
       
+      console.log("deleted from new apps")
       alert("Application Confirmed");
+      this.$router.push({ path: "/homeTutor/:uid" });
     },
   },
 
