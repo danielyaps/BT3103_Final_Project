@@ -51,8 +51,12 @@
             >
             <v-list-item-subtitle class="rightDetails" style="color: #388087"
               >Location: {{ item.locationA }}</v-list-item-subtitle
-            ></v-col
-          >
+            >
+            <v-list-item-subtitle class="rightDetails" style="color: #388087"
+              >Time: {{ item.startHr + "." +  item.startMin + " " + item.startP}}</v-list-item-subtitle
+            >
+          
+          </v-col>
           <div class="actions">
             <v-btn
               id="confirmBtn"
@@ -189,7 +193,6 @@ export default {
       for (let i = 0; i < Object.values(this.studentapps).length; i++) {
         if (this.studentapps[i].id == this.stuid) {
           appDetails = this.studentapps[i];
-          console.log("wts2");        
           }
       }
       console.log(appDetails)
@@ -198,13 +201,13 @@ export default {
       docref.collection("applicationsConfirmed")
         .doc(this.stuid)
         .set(appDetails);
-      console.log("added to apps")
+      console.log("added to applications")
 
       docref.collection("calEvent")
         .doc(this.stuid)
         .set({
           color: "#1976D2",
-          details: "test",
+          details: "Subject: " + appDetails.subjectA + ", " + "Start: " + appDetails.startHr + "." +  appDetails.startMin + " " + appDetails.startP,
           end: this.startDate,
           name: appDetails.stuName,
           start: this.startDate,
