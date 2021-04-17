@@ -8,7 +8,7 @@
       <v-list class="list" v-for="(item,i) in studentapps" :key="i" item-height="100" height="500">
           <v-list-item class="listItem">
             <h4> {{ item.stuName }}</h4><br><br>
-            <v-img :src="item.stuImg" style="width: 80px; height: 80px"></v-img>
+            <v-img v-bind:src="item.stuImg" style="width: 80px; height: 80px"></v-img>
 
               <v-col cols="6">
               <v-list-item-subtitle class="leftDetails" font-size="20px"
@@ -101,18 +101,21 @@ export default {
               .then((snapshot) => {
                 post = snapshot.data();
                 app.stuName = post.firstName + " " + post.lastName;
-              });
-            var storageRef = firebaseApp.storage().ref();
-            storageRef
-              .child("images/" + app.id)
-              .getDownloadURL()
-              .then((url) => {
-                app.stuImg = url;
-                console.log(app.stuImg);
-              }); 
-            this.studentapps.push(app);
-          });
-        });
+              }).then(() => {
+                var storageRef = firebaseApp.storage().ref();
+                storageRef
+                  .child("images/" + app.id)
+                  .getDownloadURL()
+                  .then((url) => {
+                    app.stuImg = url;
+                    console.log(app.stuImg);
+                  })
+                  .then(() => {
+                    this.studentapps.push(app)
+                  })
+              })
+            })
+        })
     },
 
     generateDate: function (dayA) {
