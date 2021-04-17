@@ -10,7 +10,7 @@
         font-weight: bold;
       "
     >
-      CLASSY AND FABULOUS TUTORS
+      TUITION CONNECT
     </p>
     <div class="float-container">
       <div id="left">

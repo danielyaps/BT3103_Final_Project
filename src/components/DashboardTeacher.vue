@@ -91,7 +91,9 @@ export default {
             this.chartdata.label = ["My Number of Lessons", "Average Number of Lessons", "My Rates", "Average Rates", "My Earnings", "Average Earnings"];
             this.chartdata.data = [this.numLessons, this.teachernumLessons, this.rates, this.teacherRates, this.earnings, this.teacherEarnings];
             this.chartdata.name = "My Performance!";
-            this.chartdata.color = ["#4287f5","#064bb9","#ff4ccf","#b90689","#4cffed","#68bdb4"]
+            this.chartdata.color = ["#4287f5","#064bb9","#ff4ccf","#b90689","#4cffed","#68bdb4"];
+            this.chartdata.yaxisname = ""
+            this.chartdata.xaxisname = ""
         },
 
     },
