@@ -1,7 +1,7 @@
 <template>
     <div>
         <Header v-bind:color="color"></Header>
-        <p style="font-weight: bold;">CLASSY AND FABULOUS TUTORS</p>
+        <p style="font-weight: bold;">TUITION CONNECT</p>
         
         <div class="imageContainer"> 
             <img id="tutorImg">
@@ -9,7 +9,7 @@
         </div>
         
         <p style="font-weight: bold;">Who We Are?</p>
-        <p style="font-size: 30px; color: black;">Classy & Fabulous Tutors is a tuition matching platform allowing for centralised tuition sourcing.</p>
+        <p style="font-size: 30px; color: black;">Tuition Connect is a tuition matching platform allowing for centralised tuition sourcing.</p>
         
         <br>
         <br>
@@ -18,13 +18,13 @@
         <ul>
             <li><img src="https://images.theconversation.com/files/304864/original/file-20191203-67028-qfiw3k.jpeg?ixlib=rb-1.1.0&rect=638%2C2%2C795%2C745&q=45&auto=format&w=496&fit=clip">
                 "Mr McDonald has helped my grades improve from a C5 to an A1 over the span of 3 months! 
-                Thank you Classy & Fabulous tutors for connecting us!"
+                Thank you Tuition Connect for connecting us!"
             </li> 
             Bean, 2021 <br><br>
             <li><img src=https://d21xzygesx9h0w.cloudfront.net/TUTOROO-connects-you-with-Shailly,-English-tutor-in-Singapore-5ec7c8032a1f3>
-                "With Classy & Fabulous tutors, I'm now able to earn a stable stream of income from tutoring.
+                "With Tution Connect tutors, I'm now able to earn a stable stream of income from tutoring.
                 The platform is easy to use and helps me stay organised with the multiple tutoring sessions I have so that I can better manage my time.
-                Thank you Classy & Fabulous tutors!"
+                Thank you Tuition Connect tutors!"
             </li>
             Shailly, 2021
         </ul>

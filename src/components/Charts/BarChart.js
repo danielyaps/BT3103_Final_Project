@@ -26,8 +26,19 @@ export default {
 						},
 						gridLines: {
 							display: true
-						}
+						},
+                        scaleLabel:{
+                            display: true,
+                            labelString: ""
+                        }
 					}],
+
+                    xAxes:[{
+                        scaleLabel:{
+                            display: true,
+                            labelString: ""
+                        }
+                    }],
                 },
                 legend: { display: false },
                 title: {
@@ -51,6 +62,8 @@ export default {
                     console.log(val);
                 });
                 this.options.title.text = this.chartdata.name;
+                this.options.scales.yAxes[0].scaleLabel.labelString = this.chartdata.yaxisname;
+                this.options.scales.xAxes[0].scaleLabel.labelString = this.chartdata.xaxisname;
                 this.datacollection.datasets[0].backgroundColor = this.chartdata.color;
             }, 1000);
 
