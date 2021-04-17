@@ -207,7 +207,9 @@ export default {
         .doc(this.stuid)
         .set({
           color: "#1976D2",
-          details: "Subject: " + appDetails.subjectA + ", " + "Start: " + appDetails.startHr + "." +  appDetails.startMin + " " + appDetails.startP,
+          details: "Subject: " + appDetails.subjectA + ", " 
+            + "Start Time: " + appDetails.startHr + "." +  appDetails.startMin + " " + appDetails.startP + ", "
+            + "Location: " + appDetails.locationA,
           end: this.startDate,
           name: appDetails.stuName,
           start: this.startDate,
