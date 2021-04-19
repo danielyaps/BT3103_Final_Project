@@ -97,14 +97,14 @@ export default {
           console.log("got details");
         });
 
-      firebaseApp.firestore().collection('users').doc(id).collection('reviews').onSnapshot((querySnapShot) => {
-                let review={}
-                querySnapShot.forEach(doc => {
-                    review = doc.data()
-                    this.reviews.push(review)       
-                })
-                console.log(this.reviews)
-            })
+      firebaseApp.firestore().collection('users').doc(id).collection('reviews').get().then((querySnapShot) => {
+          let review={}
+          querySnapShot.forEach(doc => {
+            review = doc.data()
+            this.reviews.push(review)       
+          })
+          console.log(this.reviews)
+      })
       firebaseApp
         .storage()
         .ref()

@@ -10,7 +10,7 @@
         color: #388087;
       "
     >
-      CLASSY AND FABULOUS TUTORS
+      TUITION CONNECT
     </p>
     <p
       style="

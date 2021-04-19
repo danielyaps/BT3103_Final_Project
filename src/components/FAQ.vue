@@ -11,7 +11,7 @@
     <div id="questions">
       <h3 id="q">How does this platform work?</h3>
       <p id="a">
-        Classy Tutors serves as a platform for Tutors and Students to connect
+        Tuition Connect serves as a platform for Tutors and Students to connect
         easily, allowing for easy communication between both parties. Students
         can scroll through the profiles of Tutors and find the best suited tutor
         for them. Our site also allows students to review the tutors, allowing
@@ -20,7 +20,7 @@
       <br />
       <h3 id="q">Do we make payment for lessons through this site?</h3>
       <p id="a">
-        At the moment, Classy Tutors are not accepting any payment through this
+        At the moment, Tuition Connect are not accepting any payment through this
         site. In the future, we are looking into offering more functions for our
         users.
       </p>

@@ -20,11 +20,11 @@
             <div class="oye-timepicker">
             
                 <div class="p-1">
-                    <v-text-field v-model="startHr" name="" id="" type="number"></v-text-field>
+                    <v-text-field v-model="startHr" name="" id="" type="number" :rules="timeHRules"></v-text-field>
                 </div>
                 <div class="p-1">:</div>
                 <div class="p-1">
-                    <v-text-field name="" v-model="startMin" id="" type="number"></v-text-field>
+                    <v-text-field name="" v-model="startMin" id="" type="number" :rules="timeMRules"></v-text-field>
                 </div> 
 
                 <div class="p-1">
@@ -59,11 +59,12 @@
 <script>
 import Header from "./Header.vue";
 import firebaseApp from "../firebase.js";
-import MenuBarStudents from './MenuBarStudents.vue';
+import MenuBarStudents from "./MenuBarStudents.vue";
 
 export default {
   components: {
-    Header, MenuBarStudents
+    Header,
+    MenuBarStudents,
   },
   data() {
     return {
@@ -74,7 +75,7 @@ export default {
       locationA: null,
       durationA: null,
       AP: ["AM", "PM"],
-      rateA: null, 
+      rateA: null,
       currGradeA: "",
       datapacket: [],
       startP: "",
@@ -92,6 +93,16 @@ export default {
       ],
       formHasErrors: false,
       error: false,
+      timeHRules: [
+        (v) => !!v || "This field is required",
+        (v) => (v && v >= 0) || "Please key in a valid time",
+        (v) => (v && v <= 12) || "Please key in a valid time",
+      ],
+      timeMRules: [
+        (x) => !!x || "This field is required",
+        (x) => (x && x >= 0) || "Please key in a valid time",
+        (x) => (x && x <= 59) || "Please key in a valid time",
+      ],
     };
   },
   computed: {
@@ -105,7 +116,7 @@ export default {
         startP: this.startP,
         durationA: this.durationA,
         rateA: this.rateA,
-        currGradeA: this.currGradeA
+        currGradeA: this.currGradeA,
       };
     },
   },
@@ -139,14 +150,9 @@ export default {
 
       if (this.error == false) {
         var id = this.$route.params.tutorid;
-        console.log(this.uid)
-        let docref = firebaseApp
-          .firestore()
-          .collection("users")
-          .doc(id)
-        docref.collection("applicationsNew")
-          .doc(this.uid)
-          .set(this.form);
+        console.log(this.uid);
+        let docref = firebaseApp.firestore().collection("users").doc(id);
+        docref.collection("applicationsNew").doc(this.uid).set(this.form);
         alert("Application Submitted");
         this.$router.push({ path: "/homeStudent/:uid" });
       }
@@ -195,10 +201,10 @@ h1 {
 }
 
 .theme--light.v-btn.v-btn--has-bg {
-    background-color: #388087;
+  background-color: #388087;
 }
 
 .theme--light.v-btn {
-    color: white;
+  color: white;
 }
 </style>

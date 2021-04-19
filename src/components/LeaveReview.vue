@@ -80,10 +80,13 @@ export default {
               rating.studentUserName = docRef.data().username
             }).then(() => {
               firebaseApp.firestore().collection('users').doc(this.tutorId).collection('reviews').doc(this.uid).set(rating)
+            }).then(() => {
+              alert("Submitted");
+              setTimeout(()=> {
+                this.$router.push({name: 'tutorDetails', params: {uid: this.uid, tutorid: this.tutorId}});
+              }, 1000);
             })
           });
-          alert("Submitted");
-          this.$router.push({name: 'tutorDetails', params: {uid: this.uid, tutorid: this.tutorId}});
       }
     }
   },

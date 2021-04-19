@@ -2,7 +2,7 @@
     <div>
         Our Performance!
         <ul>
-            <li>We have over {{numTutor}} of Tutors AVAILABLE!</li> 
+            <li>We have over {{numTutor}} Tutors AVAILABLE!</li> 
             <li>With {{numStudent}} students and growing!</li>
             <li>We have bridged over {{confirmedApplication}} successful connections! </li>
         </ul>
@@ -66,6 +66,8 @@ export default {
                 this.chartdata.data = data;
                 this.chartdata.name = "Grades Improvements!";
                 this.chartdata.color = "Green";
+                this.chartdata.yaxisname = "Number of Students"
+                this.chartdata.xaxisname = "Number of Grades Improved"
             }, 500);
             
             

@@ -5,48 +5,76 @@
     <br />
     <H1>Student Applications</H1>
     <v-card color="#6FB3B8" elevation="16" max-width="1500" class="mx-auto">
-      <v-list class="list" v-for="(item,i) in studentapps" :key="i" item-height="100" height="500">
-          <v-list-item class="listItem">
-            <h4> {{ item.stuName }}</h4><br><br>
-            <v-img :src="item.stuImg" style="width: 80px; height: 80px"></v-img>
+      <div class="wholeList">
+      <v-list
+        class="list"
+        v-for="(item, i) in studentapps"
+        :key="i"
+      >
+        <v-list-item class="listItem">
+          <h4 style="color: #388087">{{ item.stuName }}</h4>
+          <br /><br />
+          <v-img
+            v-bind:src="item.stuImg"
+            style="
+              width: 80px;
+              height: 80px;
+              border-radius: 50%;
+              position: relative;
+              left: 10px;
+            "
+          ></v-img>
 
-              <v-col cols="6">
-              <v-list-item-subtitle class="leftDetails" font-size="20px"
-                > Subject: {{ item.subjectA }}</v-list-item-subtitle
-              >
-              <v-list-item-subtitle class="leftDetails"
-                >Current Grade: {{ item.currGradeA }}</v-list-item-subtitle
-              >
-              <v-list-item-subtitle class="leftDetails"
-                >Day: {{ item.dayA }}</v-list-item-subtitle
-              ></v-col>
-              <v-col cols="6">
-              <v-list-item-subtitle class="rightDetails"
-                >Rate: S${{ item.rateA }}</v-list-item-subtitle
-              >
-              <v-list-item-subtitle class="rightDetails"
-                >Location: {{ item.locationA }}</v-list-item-subtitle
-              ></v-col>
+          <v-col cols="6">
+            <v-list-item-subtitle
+              class="leftDetails"
+              font-size="20px"
+              style="color: #388087; position: relative; left: 10px"
+            >
+              Subject: {{ item.subjectA }}</v-list-item-subtitle
+            >
+            <v-list-item-subtitle
+              class="leftDetails"
+              style="color: #388087; position: relative; left: 10px"
+              >Current Grade: {{ item.currGradeA }}</v-list-item-subtitle
+            >
+            <v-list-item-subtitle
+              class="leftDetails"
+              style="color: #388087; position: relative; left: 10px"
+              >Day: {{ item.dayA }}</v-list-item-subtitle
+            ></v-col
+          >
+          <v-col cols="6">
+            <v-list-item-subtitle class="rightDetails" style="color: #388087"
+              >Rate: S${{ item.rateA }}</v-list-item-subtitle
+            >
+            <v-list-item-subtitle class="rightDetails" style="color: #388087"
+              >Location: {{ item.locationA }}</v-list-item-subtitle
+            >
+            <v-list-item-subtitle class="rightDetails" style="color: #388087"
+              >Time: {{ item.startHr + "." +  item.startMin + " " + item.startP}}</v-list-item-subtitle
+            >
+          
+          </v-col>
+          <div class="actions">
+            <v-btn
+              id="confirmBtn"
+              v-bind:stuid="item.id"
+              v-on:click="confirmApp($event)"
+              >Confirm</v-btn
+            ><br /><br />
+            <v-btn
+              id="chatBtn"
+              v-bind:stuid="item.id"
+              v-on:click="goChat($event)"
+              >Chat</v-btn
+            >
+          </div>
+        </v-list-item>
 
-            <div class="actions">
-              <v-btn
-                id="confirmBtn"
-                v-bind:stuid="item.id"
-                v-on:click="confirmApp($event)"
-                >Confirm</v-btn
-              ><br><br>
-              <v-btn
-                id="chatBtn"
-                v-bind:stuid="item.id"
-                v-on:click="goChat($event)"
-                >Chat</v-btn
-              >
-            </div>
-
-          </v-list-item>
-
-          <v-divider></v-divider>
+        <v-divider></v-divider>
       </v-list>
+      </div>
     </v-card>
   </div>
 </template>
@@ -54,11 +82,12 @@
 <script>
 import Header from "./Header.vue";
 import firebaseApp from "../firebase.js";
-import MenuBarTutors from './MenuBarTutors.vue'
+import MenuBarTutors from "./MenuBarTutors.vue";
 
 export default {
   components: {
-    Header, MenuBarTutors
+    Header,
+    MenuBarTutors,
   },
   data() {
     return {
@@ -66,62 +95,80 @@ export default {
       stuid: "",
       studentapps: [],
       currApp: [],
-      startDate: "", 
+      startDate: "",
       days: [
+        "Sunday",
         "Monday",
         "Tuesday",
         "Wednesday",
         "Thursday",
         "Friday",
         "Saturday",
-        "Sunday",
       ],
     };
   },
 
   methods: {
     fetchItems: function () {
-      firebaseApp
-        .firestore()
-        .collection("users")
-        .doc(this.uid)
-        .collection("applicationsNew")
-        .get()
-        .then((snapshot) => {
+      console.log("fetching")
+      console.log(this.uid)
+      firebaseApp.firestore().collection("users").doc(this.uid).collection("applicationsNew").onSnapshot((snapshot) => {
           let app = {};
-          snapshot.docs.forEach((doc) => {
+          snapshot.forEach((doc) => {
+            console.log(this.uid)
             app = doc.data();
             app.id = doc.id;
-            let post = {};
-            firebaseApp
-              .firestore()
-              .collection("users")
-              .doc(app.id)
+            console.log(app)
+            this.studentapps.push(app)
+            console.log(this.studentapps)
+          });
+          
+          for (let i = 0; i < Object.values(this.studentapps).length; i++) {
+            let curr = this.studentapps[i]
+            let currID = curr.id
+            console.log(currID)
+            firebaseApp.firestore().collection("users").doc(curr.id)
               .get()
               .then((snapshot) => {
+                
+                let post = {};
                 post = snapshot.data();
-                app.stuName = post.firstName + " " + post.lastName;
-              });
-            var storageRef = firebaseApp.storage().ref();
-            storageRef
-              .child("images/" + app.id)
-              .getDownloadURL()
-              .then((url) => {
-                app.stuImg = url;
-                console.log(app.stuImg);
-              }); 
-            this.studentapps.push(app);
-          });
-        });
+                curr.stuName = post.firstName + " " + post.lastName;
+                console.log(curr.stuName)
+                
+                var storageRef = firebaseApp.storage().ref();
+                storageRef
+                  .child("images/" + currID)
+                  .getDownloadURL()
+                  .then((url) => {
+                    console.log(currID)
+                    curr.stuImg = url;
+                    console.log(curr)
+                    this.studentapps.splice(i, 1, curr)
+                  })
+              })
+          }
+        })
     },
 
     generateDate: function (dayA) {
         var currDate = new Date();
-        
+        console.log(dayA)
+        var count = 0
         while (this.days[currDate.getDay()] != dayA) {
           currDate.setDate(currDate.getDate() + 1);
-          
+          console.log(this.days[currDate.getDay()])
+          count++;
+          if (this.days[currDate.getDay()] == dayA) {
+            break;
+          }
+          if (count > 10) {
+            alert("no date");
+            break; 
+          }
         }
+        console.log(currDate)
+        console.log(currDate.toISOString())
         this.startDate = currDate.toISOString().substr(0, 10);
         console.log(currDate.toISOString().substr(0, 10))
     },
@@ -130,56 +177,54 @@ export default {
       console.log(event.currentTarget.getAttribute("stuid"));
       this.stuid = event.currentTarget.getAttribute("stuid");
       if (this.stuid != null) {
-          this.$router.push({
-            name: "chat",
-            params: { uid: this.uid, otherid: this.stuid },
-            props: true,
-          });
+        this.$router.push({
+          name: "chat",
+          params: { uid: this.uid, otherid: this.stuid },
+          props: true,
+        });
       }
-      
     },
 
     confirmApp: function (event) {
-      console.log("wts")
-      this.stuid = event.target.getAttribute("stuid");
+      this.stuid = event.currentTarget.getAttribute("stuid");
+      console.log(event.target.getAttribute("stuid"))
       let docref = firebaseApp.firestore().collection("users").doc(this.uid);
-      console.log(docref);
       let appDetails = [];
       for (let i = 0; i < Object.values(this.studentapps).length; i++) {
         if (this.studentapps[i].id == this.stuid) {
           appDetails = this.studentapps[i];
-          console.log("wts2")
-        }
+          }
       }
+      console.log(appDetails)
       this.generateDate(appDetails.dayA)
-      console.log("wts2")
+       
       docref.collection("applicationsConfirmed")
         .doc(this.stuid)
-        .set(appDetails).then();
+        .set(appDetails);
+      console.log("added to applications")
 
-      
       docref.collection("calEvent")
         .doc(this.stuid)
         .set({
           color: "#1976D2",
-          details: "test",
+          details: "Subject: " + appDetails.subjectA + ", " 
+            + "Start Time: " + appDetails.startHr + "." +  appDetails.startMin + " " + appDetails.startP + ", "
+            + "Location: " + appDetails.locationA,
           end: this.startDate,
           name: appDetails.stuName,
           start: this.startDate,
         });
 
-
+      console.log("added to cal")
 
       docref
         .collection("applicationsNew")
         .doc(this.stuid)
         .delete()
-        .then(() => {
-          location.reload();
-        });
-
       
+      console.log("deleted from new apps")
       alert("Application Confirmed");
+      this.$router.push({ path: "/homeTutor/:uid" });
     },
   },
 
@@ -190,17 +235,28 @@ export default {
 </script>
 
 <style scoped>
+.wholeList{
+  background: #388087;
+  border-radius: 35px;
+  height: 700px;
+  width: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
 
+.wholeList::-webkit-scrollbar {
+  display: none;
+}
 .list {
   background-color: #388087;
 }
-p{
+p {
   font-size: 1.2rem;
   font-weight: medium;
   padding: 2px;
-
 }
-.leftDetails, .rightDetails{
+.leftDetails,
+.rightDetails {
   font-size: 1rem !important;
   padding: 2px;
 }
@@ -235,13 +291,16 @@ H1 {
   margin-left: 20px;
 }
 
-.listItem:hover{
-  background: #BADFE7;
+.listItem:hover {
+  background: #badfe7;
   padding: 20px;
 }
 .listItem {
   padding: 20px;
-
+  border: none;
+  border-right: 5px solid #388087;
+  border-left: 5px solid #388087;
+  background: white;
+  border-radius: 15px;
 }
-
 </style>
